@@ -1,0 +1,2986 @@
+<!DOCTYPE html>
+    <html lang="es" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>DS Store | Tecnología Premium & Luxury Audio</title>
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Fuentes Google: Inter (limpia y moderna) y Playfair Display para acentos de lujo -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+        <!-- Iconos Lucide -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                            serif: ['Playfair Display', 'Georgia', 'serif'],
+                        },
+                        colors: {
+                            ds: {
+                                black: '#08080A',
+                                surface: '#121216',
+                                gold: '#D4AF37',
+                                goldLight: '#F3E5AB',
+                                goldDark: '#AA8220',
+                                muted: '#9CA3AF'
+                            }
+                        },
+                        borderRadius: {
+                            '4xl': '2rem',
+                            '5xl': '2.75rem',
+                        }
+                    }
+                }
+            };
+        </script>
+
+        <style>
+            /* ==========================================================================
+            ESTILOS LIQUID GLASS & PALETA NEGRO PROFUNDO + DORADO METÁLICO
+            ========================================================================== */
+            html, body, button, a, input, textarea, select, label {
+                touch-action: manipulation;
+            }
+
+            html, body {
+                max-width: 100%;
+                overflow-x: clip;
+            }
+
+            body {
+                background-color: #08080A;
+                color: #F9FAFB;
+                font-family: 'Inter', sans-serif;
+                -webkit-tap-highlight-color: transparent;
+                min-height: 100dvh;
+                display: block;
+            }
+
+            body.ds-modal-open {
+                overflow: hidden !important;
+                position: fixed;
+                width: 100%;
+                touch-action: none;
+            }
+
+            body.ds-modal-open .ds-modal-scroll {
+                touch-action: pan-y;
+            }
+
+            /* Esferas de luz dorada ambiental en el fondo */
+            .gold-orb {
+                position: fixed;
+                border-radius: 9999px;
+                filter: blur(110px);
+                z-index: 0;
+                pointer-events: none;
+                opacity: 0.22;
+            }
+
+            /* Fondo Hero de lujo con resplandor dorado radial */
+            .hero-luxury-bg {
+                background:
+                    radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.22) 0%, rgba(170, 130, 32, 0.08) 38%, rgba(8, 8, 10, 0) 72%),
+                    linear-gradient(180deg, #0D0C0A 0%, #08080A 100%);
+            }
+
+            /* Efecto Liquid Glass elegante estilo iPhone con reflejos dorados */
+            .liquid-glass-dark {
+                background: rgba(16, 16, 22, 0.44);
+                backdrop-filter: blur(36px) saturate(200%) brightness(1.08);
+                -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.08);
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                box-shadow:
+                    0 20px 42px -14px rgba(0, 0, 0, 0.52),
+                    0 0 0 1px rgba(212, 175, 55, 0.26),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+                    inset 0 -1px 0.5px rgba(212, 175, 55, 0.16);
+            }
+
+            /* Tarjeta de producto Liquid Glass elegante estilo iPhone */
+            .product-glass-card {
+                background: linear-gradient(160deg, rgba(30, 30, 40, 0.5) 0%, rgba(14, 14, 19, 0.36) 100%);
+                backdrop-filter: blur(32px) saturate(195%) brightness(1.06);
+                -webkit-backdrop-filter: blur(32px) saturate(195%) brightness(1.06);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                box-shadow:
+                    0 18px 36px -14px rgba(0, 0, 0, 0.48),
+                    0 0 0 1px rgba(212, 175, 55, 0.2),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.24),
+                    inset 0 -1px 0.5px rgba(212, 175, 55, 0.1);
+                transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            }
+
+            .product-glass-card:hover {
+                transform: translateY(-3px);
+                background: linear-gradient(160deg, rgba(40, 40, 52, 0.58) 0%, rgba(18, 18, 24, 0.44) 100%);
+                border-color: rgba(212, 175, 55, 0.46);
+                box-shadow:
+                    0 22px 42px -14px rgba(0, 0, 0, 0.6),
+                    0 0 0 1px rgba(212, 175, 55, 0.32),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.32);
+            }
+
+            /* Gradiente dorado metálico para textos y botones */
+            .gold-text-gradient {
+                background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA8220 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .gold-btn-gradient {
+                background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B58E26 100%);
+                color: #08080A;
+                box-shadow:
+                    0 12px 28px -5px rgba(212, 175, 55, 0.38),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.65);
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .gold-btn-gradient:hover {
+                filter: brightness(1.08);
+                transform: scale(1.02);
+            }
+
+            .gold-btn-gradient:active {
+                transform: scale(0.97);
+            }
+
+            /* Botón secundario con borde dorado metálico */
+            .gold-outline-btn {
+                background: rgba(212, 175, 55, 0.06);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1.5px solid rgba(212, 175, 55, 0.65);
+                color: #F3E5AB;
+                box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.6);
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .gold-outline-btn:hover {
+                background: rgba(212, 175, 55, 0.16);
+                border-color: #F3E5AB;
+                transform: scale(1.02);
+            }
+
+            .gold-outline-btn:active {
+                transform: scale(0.97);
+            }
+
+            /* Personalización de scrollbar */
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #08080A;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: rgba(212, 175, 55, 0.3);
+                border-radius: 9999px;
+            }
+
+            /* Ocultar insignia inyectada por Netlify para que no tape la barra VER PEDIDO */
+            [data-netlify-badge],
+            [data-netlify-badge="true"],
+            .netlify-badge,
+            [class*="netlify-badge"],
+            [id*="netlify-badge"],
+            a[href*="netlify.com"][style*="position: fixed"],
+            a[href*="netlify.com"][style*="position:fixed"],
+            div[style*="Powered by Netlify"],
+            div[style*="powered by netlify"] {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                width: 0 !important;
+                height: 0 !important;
+                max-width: 0 !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+                pointer-events: none !important;
+            }
+        </style>
+    </head>
+    <body class="antialiased selection:bg-ds-gold selection:text-ds-black">
+
+        <!-- Luces ambientales doradas de fondo -->
+        <div class="gold-orb w-80 h-80 sm:w-[480px] sm:h-[480px] bg-ds-gold -top-24 -left-24"></div>
+        <div class="gold-orb w-96 h-96 sm:w-[550px] sm:h-[550px] bg-amber-600 top-1/2 -right-32"></div>
+        <div class="gold-orb w-72 h-72 sm:w-[400px] sm:h-[400px] bg-ds-gold bottom-0 left-1/4"></div>
+
+        <!-- Notificación Toast Flotante -->
+        <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] pointer-events-none transition-all duration-300 opacity-0 -translate-y-4 w-[90%] max-w-sm">
+            <div class="liquid-glass-dark rounded-full px-5 py-2 border border-ds-gold/45 shadow-2xl flex items-center justify-center">
+                <span id="toast-msg" class="text-xs sm:text-sm font-medium text-white text-center truncate">Producto agregado</span>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+            BARRA SUPERIOR FLOTANTE (LOGO DS STORE + ADMIN + CARRITO)
+            ========================================================================== -->
+        <header class="fixed top-2.5 sm:top-3 left-0 right-0 z-40 px-2.5 sm:px-6">
+            <nav class="max-w-5xl mx-auto liquid-glass-dark rounded-full px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-2">
+
+                <!-- Marca + Logo Circular -->
+                <button type="button" onclick="showView('inicio')" class="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none min-w-0">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full p-0.5 bg-gradient-to-tr from-ds-goldDark via-ds-goldLight to-ds-gold shadow-lg flex-shrink-0 overflow-hidden">
+                        <div id="default-leopard-svg" class="w-full h-full rounded-full bg-ds-black flex flex-col items-center justify-center text-ds-gold">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M2 18h20M4 15l2-9 6 4 6-4 2 9H4z" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="6" cy="5" r="1" fill="currentColor"/>
+                                <circle cx="12" cy="4" r="1" fill="currentColor"/>
+                                <circle cx="18" cy="5" r="1" fill="currentColor"/>
+                            </svg>
+                            <span class="text-[7px] sm:text-[8px] font-serif font-bold tracking-widest leading-none mt-0.5">DS</span>
+                        </div>
+                    </div>
+                    <div class="min-w-0">
+                        <span id="header-store-name" class="block font-serif text-sm sm:text-lg font-semibold tracking-wide gold-text-gradient leading-tight truncate">
+                            DS Store
+                        </span>
+                        <span id="header-store-tagline" class="block text-[9px] sm:text-xs text-ds-muted font-light truncate">
+                            Luxury & Exclusive Tech
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Botones Derecha: Admin Discreto + Carrito de Compras -->
+                <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+                    <button
+                        type="button"
+                        onclick="openPinModal()"
+                        title="Panel Administrador"
+                        class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/10 border border-ds-gold/25 flex items-center justify-center text-ds-goldLight transition-all">
+                        <i data-lucide="settings" class="w-4 h-4"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="openOrderModal()"
+                        class="relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-ds-gold/40 text-white transition-all">
+                        <i data-lucide="shopping-bag" class="w-4 h-4 sm:w-5 sm:h-5 text-ds-gold"></i>
+                        <span class="text-xs font-medium hidden sm:inline">Carrito</span>
+                        <span id="header-cart-count" class="min-w-[20px] h-[20px] sm:min-w-[22px] sm:h-[22px] px-1.5 rounded-full gold-btn-gradient text-[10px] sm:text-[11px] font-bold flex items-center justify-center">
+                            0
+                        </span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ==========================================================================
+            PRIMERA VISTA: HERO / PORTADA DE LUJO (LEE LOGO Y SUBTÍTULO DESDE FIRESTORE)
+            ========================================================================== -->
+        <section id="inicio" class="hero-luxury-bg relative z-10 min-h-dvh flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-16 sm:pt-20 pb-8">
+            <div class="max-w-2xl w-full mx-auto flex flex-col items-center space-y-3 sm:space-y-4">
+
+                <!-- Emblema / Logo Central DS Store -->
+                <div class="relative">
+                    <div class="absolute inset-0 rounded-full bg-ds-gold/25 blur-xl scale-105"></div>
+                    <div class="relative w-20 h-20 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-ds-goldDark via-ds-goldLight to-ds-gold shadow-2xl overflow-hidden">
+                        <div id="hero-default-svg" class="w-full h-full rounded-full bg-ds-black flex flex-col items-center justify-center text-ds-gold">
+                            <svg class="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M2 18h20M4 15l2-9 6 4 6-4 2 9H4z" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="6" cy="5" r="1" fill="currentColor"/>
+                                <circle cx="12" cy="4" r="1" fill="currentColor"/>
+                                <circle cx="18" cy="5" r="1" fill="currentColor"/>
+                            </svg>
+                            <span id="hero-default-text" class="text-[8px] sm:text-xs font-serif font-bold tracking-[0.08em] sm:tracking-[0.2em] leading-none mt-1 whitespace-nowrap">DS STORE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Etiqueta superior sincronizada con el Subtítulo -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ds-gold/10 border border-ds-gold/30 text-[10px] sm:text-xs font-medium text-ds-goldLight tracking-[0.14em] sm:tracking-[0.18em] uppercase max-w-full">
+                    <i data-lucide="sparkles" class="w-3 h-3 text-ds-gold flex-shrink-0"></i>
+                    <span id="hero-tagline-badge" class="truncate">Luxury & Exclusive Tech</span>
+                </span>
+
+                <!-- Título GRANDE -->
+                <h1 class="text-[22px] sm:text-5xl font-serif font-bold tracking-tight leading-[1.15] gold-text-gradient uppercase px-1 max-w-[22rem] sm:max-w-none">
+                    TECNOLOGÍA PREMIUM PARA TI
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-xs sm:text-base text-gray-300 font-light max-w-md leading-relaxed px-1">
+                    Audífonos de lujo, envíos seguros a <strong class="text-ds-goldLight font-medium">TODO ECUADOR</strong>, retiro sin costo adicional
+                </p>
+
+                <!-- DOS BOTONES GRANDES -->
+                <div class="w-full max-w-md flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-1">
+                    <!-- 1. Botón DORADO: VER LA TIENDA -->
+                    <button
+                        type="button"
+                        onclick="showView('tienda')"
+                        class="w-full sm:flex-1 gold-btn-gradient py-3.5 px-6 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase flex items-center justify-center gap-2 shadow-xl">
+                        <span>VER LA TIENDA</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 stroke-[2.5]"></i>
+                    </button>
+
+                    <!-- 2. Botón con borde dorado: ESCRÍBENOS -->
+                    <a
+                        id="hero-whatsapp-link"
+                        href="https://wa.me/message/5MNZMEN6YM6JD1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-full sm:flex-1 gold-outline-btn py-3.5 px-6 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4 text-ds-gold stroke-[2.2]"></i>
+                        <span>ESCRÍBENOS</span>
+                    </a>
+                </div>
+
+                <!-- Texto pequeño debajo -->
+                <p class="text-[11px] sm:text-xs text-ds-muted/90 font-light tracking-wide">
+                    Calidad premium para tu día a día
+                </p>
+
+                <!-- Redes Sociales: Instagram y TikTok -->
+                <div class="flex items-center justify-center gap-3">
+                    <a
+                        id="hero-instagram-link"
+                        href="https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram DS Store"
+                        class="w-10 h-10 rounded-full bg-white/5 hover:bg-ds-gold/20 border border-ds-gold/35 hover:border-ds-goldLight text-ds-goldLight flex items-center justify-center transition-all hover:scale-105 shadow-md">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+
+                    <a
+                        id="hero-tiktok-link"
+                        href="https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="TikTok DS Store"
+                        class="w-10 h-10 rounded-full bg-white/5 hover:bg-ds-gold/20 border border-ds-gold/35 hover:border-ds-goldLight text-ds-goldLight flex items-center justify-center transition-all hover:scale-105 shadow-md">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Pie de página compacto integrado sin franja extra -->
+                <footer class="pt-2.5 mt-0.5 border-t border-white/10 w-full max-w-md text-center text-[#9CA3AF] text-[10px] sm:text-xs">
+                    <p>© 2026 DS Store · Todos los derechos reservados · <span class="text-ds-goldLight font-medium">DR WEB</span></p>
+                </footer>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+            SEGUNDA VISTA: CATÁLOGO DE PRODUCTOS (PÁGINA INDEPENDIENTE)
+            ========================================================================== -->
+        <main id="tienda" class="hidden relative z-10 min-h-dvh pt-20 sm:pt-24 pb-24 sm:pb-14 px-2.5 sm:px-6 max-w-5xl mx-auto w-full space-y-3.5 sm:space-y-4">
+
+            <!-- Barra superior de navegación interna para volver al Inicio -->
+            <div class="flex items-center justify-between gap-2">
+                <button
+                    type="button"
+                    onclick="showView('inicio')"
+                    class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-ds-gold/30 text-[11px] sm:text-xs font-medium text-ds-goldLight transition-all">
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                    <span>Volver al Inicio</span>
+                </button>
+
+                <a
+                    id="store-whatsapp-link"
+                    href="https://wa.me/message/5MNZMEN6YM6JD1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-full bg-ds-gold/15 hover:bg-ds-gold/25 border border-ds-gold/40 text-[11px] sm:text-xs font-semibold text-ds-goldLight transition-all">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5 text-ds-gold"></i>
+                    <span>Ayuda por WhatsApp</span>
+                </a>
+            </div>
+
+            <!-- Encabezado de Sección Catálogo -->
+            <div class="liquid-glass-dark rounded-3xl sm:rounded-4xl p-3.5 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <div class="space-y-0.5">
+                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-ds-gold/15 border border-ds-gold/30 text-[10px] font-medium text-ds-goldLight tracking-wider uppercase">
+                        Catálogo Oficial
+                    </span>
+                    <h2 class="text-base sm:text-xl font-serif font-medium text-white">
+                        Selecciona tus favoritos y arma tu pedido
+                    </h2>
+                    <p class="text-[11px] sm:text-xs text-ds-muted font-light">
+                        Presiona <strong class="text-ds-goldLight font-medium">+ AGREGAR</strong> en los modelos que desees y finaliza tu pedido abajo.
+                    </p>
+                </div>
+                <!-- Botón rápido visible solo cuando el admin inicia sesión -->
+                <button type="button" id="quick-add-btn" onclick="openProductEditor(null)" class="hidden gold-btn-gradient px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 flex-shrink-0">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span>Agregar Producto</span>
+                </button>
+            </div>
+
+            <!-- Menú de Categorías del Catálogo -->
+            <div id="category-menu-bar" class="flex items-center justify-center flex-wrap gap-2 pb-1">
+                <!-- Los botones de categorías se renderizan dinámicamente -->
+            </div>
+
+            <!-- Cuadrícula de Tarjetas de Productos -->
+            <section id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
+                <!-- Las tarjetas se renderizan dinámicamente aquí -->
+            </section>
+
+            <!-- Pie de página compacto en vista Tienda -->
+            <footer class="pt-3 mt-2 border-t border-white/10 text-center text-[#9CA3AF] text-[10px] sm:text-xs">
+                <p>© 2026 DS Store · Todos los derechos reservados · <span class="text-ds-goldLight font-medium">DR WEB</span></p>
+            </footer>
+
+        </main>
+
+        <!-- ==========================================================================
+            BARRA INFERIOR FIJA: BOTÓN "VER PEDIDO"
+            ========================================================================== -->
+        <div id="bottom-order-bar" class="hidden fixed bottom-3 sm:bottom-6 left-0 right-0 z-40 px-2.5 sm:px-6 transition-all duration-300">
+            <div class="max-w-xl mx-auto">
+                <button
+                    type="button"
+                    onclick="openOrderModal()"
+                    class="w-full gold-btn-gradient rounded-full py-3 sm:py-4 px-4 sm:px-6 flex items-center justify-between shadow-2xl border border-ds-goldLight/60">
+                    <div class="flex items-center gap-2 sm:gap-2.5">
+                        <span id="bar-item-badge" class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-ds-black text-ds-gold text-xs font-bold flex items-center justify-center">
+                            0
+                        </span>
+                        <span class="text-xs sm:text-base font-bold tracking-wide uppercase">
+                            VER PEDIDO
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <span id="bar-total-price" class="text-sm sm:text-lg font-extrabold">
+                            $0.00
+                        </span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+            MODAL FORMULARIO DE PEDIDO (RESUMEN + ENVÍO + WHATSAPP)
+            ========================================================================== -->
+        <div id="order-modal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/80 backdrop-blur-md p-0 sm:p-4 overflow-hidden">
+            <div class="liquid-glass-dark w-full max-w-lg rounded-t-5xl sm:rounded-5xl max-h-[90dvh] flex flex-col border-t sm:border border-ds-gold/30 shadow-2xl overflow-hidden">
+
+                <!-- Cabecera del Modal -->
+                <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
+                    <div class="flex items-center gap-2.5">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-ds-gold"></i>
+                        <h3 class="text-lg font-serif font-semibold text-white">Tu Pedido</h3>
+                    </div>
+                    <button type="button" onclick="closeOrderModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-gray-300 transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Contenido Desplazable del Pedido -->
+                <div class="ds-modal-scroll p-5 sm:p-6 overflow-y-auto overscroll-contain space-y-6 flex-1 min-h-0" style="-webkit-overflow-scrolling: touch;">
+
+                    <!-- Lista de productos agregados -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-ds-goldLight">Productos seleccionados</span>
+                            <button type="button" onclick="clearCart()" id="clear-cart-btn" class="text-xs text-red-400 hover:text-red-300 hidden">Vaciar todo</button>
+                        </div>
+
+                        <div id="cart-items-list" class="space-y-2.5">
+                            <!-- Items del carrito renderizados por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Entrega (Solo visible si hay productos) -->
+                    <div id="checkout-form-section" class="space-y-5 pt-2 border-t border-white/10">
+
+                        <!-- Opciones de envío -->
+                        <div class="space-y-2.5">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-ds-goldLight">
+                                Método de Entrega
+                            </label>
+
+                            <div class="grid grid-cols-1 gap-2.5">
+                                <!-- Opción 1: Retiro en persona -->
+                                <label class="cursor-pointer relative flex items-center justify-between p-3.5 rounded-3xl bg-white/5 border border-ds-gold/30 hover:bg-white/10 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <input type="radio" name="deliveryMethod" value="Retiro en persona - Quinindé (GRATIS)" checked onchange="updateDeliveryUI()" class="accent-[#D4AF37] w-4 h-4">
+                                        <div>
+                                            <span class="block text-sm font-medium text-white">Retiro en persona</span>
+                                            <span class="block text-[11px] text-ds-muted">Coordinamos punto de entrega en Quinindé</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">GRATIS</span>
+                                </label>
+
+                                <!-- Opción 2: Envío a domicilio / ciudad -->
+                                <label class="cursor-pointer relative flex items-center justify-between p-3.5 rounded-3xl bg-white/5 border border-ds-gold/30 hover:bg-white/10 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <input type="radio" name="deliveryMethod" value="Envío seguro a domicilio / Servientrega" onchange="updateDeliveryUI()" class="accent-[#D4AF37] w-4 h-4">
+                                        <div>
+                                            <span class="block text-sm font-medium text-white">Envío a todo Ecuador</span>
+                                            <span class="block text-[11px] text-ds-muted">Envío asegurado hasta tu ciudad</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 rounded-full bg-ds-gold/20 text-ds-goldLight text-[10px] font-bold">A TODO EL PAÍS</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Datos del cliente -->
+                        <div class="space-y-3">
+                            <div>
+                                <label for="customer-name" class="block text-xs text-gray-300 mb-1 pl-3">Nombre completo *</label>
+                                <input type="text" id="customer-name" placeholder="Tu nombre y apellido" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-gray-500 focus:border-ds-gold focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label for="customer-address" class="block text-xs text-gray-300 mb-1 pl-3">Dirección / Ciudad / Referencia *</label>
+                                <input type="text" id="customer-address" placeholder="Ej. Quinindé, sector centro o Ciudad y dirección" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-gray-500 focus:border-ds-gold focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label for="customer-notes" class="block text-xs text-gray-300 mb-1 pl-3">Notas (preferencias, color o dudas)</label>
+                                <textarea id="customer-notes" rows="2" placeholder="Escribe aquí cualquier detalle adicional..." class="w-full rounded-3xl bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:border-ds-gold focus:outline-none resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Resumen de Totales -->
+                        <div class="rounded-3xl bg-black/40 border border-white/10 p-4 space-y-2 text-xs">
+                            <div class="flex items-center justify-between text-gray-300">
+                                <span>Costo de entrega:</span>
+                                <span id="summary-shipping-label" class="text-emerald-400 font-medium">GRATIS</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/10 text-sm sm:text-base font-bold text-white">
+                                <span>Total a pagar:</span>
+                                <span id="modal-total-price" class="gold-text-gradient text-lg font-extrabold">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pie fijo del Modal: Botón Enviar Pedido por WhatsApp -->
+                <div id="modal-footer-action" class="p-4 sm:p-5 border-t border-white/10 bg-black/40 flex-shrink-0">
+                    <button
+                        type="button"
+                        onclick="sendOrderToWhatsApp()"
+                        class="w-full gold-btn-gradient py-3.5 sm:py-4 px-6 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase flex items-center justify-center gap-2 shadow-xl">
+                        <i data-lucide="message-circle" class="w-4 h-4 stroke-[2.3]"></i>
+                        <span>ENVIAR PEDIDO POR WHATSAPP</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+            VISOR AMPLIADO DE FOTOS DEL PRODUCTO (GALERÍA TÁCTIL PARA CLIENTES)
+            ========================================================================== -->
+        <div id="product-lightbox-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md">
+            <div
+                ontouchstart="handleLightboxTouchStart(event)"
+                ontouchend="handleLightboxTouchEnd(event)"
+                class="liquid-glass-dark w-full max-w-md rounded-5xl p-4 sm:p-6 border border-ds-gold/40 shadow-2xl space-y-3.5">
+
+                <!-- Cabecera del visor -->
+                <div class="flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                        <span id="lightbox-prod-category" class="inline-block px-2.5 py-0.5 rounded-full bg-ds-gold/15 border border-ds-gold/30 text-[10px] font-medium text-ds-goldLight">
+                            Categoría
+                        </span>
+                        <h3 id="lightbox-prod-name" class="text-base sm:text-lg font-serif font-semibold text-white truncate mt-1">
+                            Producto DS Store
+                        </h3>
+                    </div>
+                    <button type="button" onclick="closeProductLightbox()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-gray-300 flex-shrink-0">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Imagen principal ampliada con flechas -->
+                <div class="relative aspect-square w-full rounded-4xl overflow-hidden bg-black/60 border border-white/15">
+                    <img id="lightbox-main-image" src="" alt="Vista ampliada" class="w-full h-full object-cover select-none">
+
+                    <span id="lightbox-counter-badge" class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-semibold text-white">
+                        1 / 1
+                    </span>
+
+                    <button
+                        type="button"
+                        id="lightbox-prev-btn"
+                        onclick="prevLightboxPhoto()"
+                        aria-label="Foto anterior"
+                        class="hidden absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/65 hover:bg-black/85 border border-white/20 text-white items-center justify-center">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        id="lightbox-next-btn"
+                        onclick="nextLightboxPhoto()"
+                        aria-label="Siguiente foto"
+                        class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/65 hover:bg-black/85 border border-white/20 text-white items-center justify-center">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Miniaturas para tocar -->
+                <div id="lightbox-thumbnails" class="flex items-center justify-center gap-2 overflow-x-auto py-1"></div>
+
+                <!-- Precio, disponibilidad y botón agregar -->
+                <div class="flex items-center justify-between gap-3 pt-2 border-t border-white/10">
+                    <div>
+                        <span id="lightbox-prod-price" class="block text-lg font-extrabold gold-text-gradient">$0.00</span>
+                        <span id="lightbox-prod-status" class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">DISPONIBLE</span>
+                    </div>
+                    <div id="lightbox-action-wrap" class="w-44"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+            MODAL PIN ADMINISTRADOR
+            ========================================================================== -->
+        <div id="pin-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+            <div class="liquid-glass-dark rounded-5xl p-6 sm:p-7 max-w-xs w-full space-y-4 border border-ds-gold/40 text-center shadow-2xl">
+                <div class="w-12 h-12 rounded-full bg-ds-gold/15 border border-ds-gold/30 flex items-center justify-center mx-auto text-ds-gold">
+                    <i data-lucide="lock" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-serif font-semibold text-white">Acceso Administrador</h3>
+                    <p class="text-xs text-ds-muted mt-1">Ingresa tu PIN de seguridad</p>
+                </div>
+                <input
+                    type="password"
+                    id="admin-pin-input"
+                    maxlength="6"
+                    inputmode="numeric"
+                    placeholder="••••"
+                    class="w-full rounded-full bg-white/10 border border-white/20 px-4 py-3 text-center text-lg tracking-[0.4em] text-white focus:border-ds-gold focus:outline-none">
+                <div class="flex gap-2.5 pt-1">
+                    <button type="button" onclick="closePinModal()" class="flex-1 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-gray-300 text-xs font-medium">
+                        Cancelar
+                    </button>
+                    <button type="button" onclick="verifyAdminPin()" class="flex-1 py-2.5 rounded-full gold-btn-gradient text-xs font-bold">
+                        Entrar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+            MODAL PANEL ADMINISTRADOR (CONFIGURACIÓN + MENÚS + PRODUCTOS)
+            ========================================================================== -->
+        <div id="admin-dashboard-modal" class="fixed inset-0 z-[75] hidden items-end sm:items-center justify-center bg-black/85 backdrop-blur-md p-0 sm:p-4 overflow-hidden">
+            <div class="liquid-glass-dark w-full max-w-2xl rounded-t-5xl sm:rounded-5xl max-h-[90dvh] flex flex-col border-t sm:border border-ds-gold/40 shadow-2xl overflow-hidden">
+
+                <!-- Cabecera Admin -->
+                <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
+                    <div>
+                        <h3 class="text-lg font-serif font-semibold text-white">Panel Administrador</h3>
+                        <div class="flex items-center gap-1.5 mt-0.5">
+                            <span id="firebase-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <span id="firebase-status-text" class="text-[10px] text-ds-muted">Sincronizado</span>
+                        </div>
+                    </div>
+                    <button type="button" onclick="closeAdminDashboard()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-gray-300">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Cuerpo Desplazable Admin -->
+                <div class="ds-modal-scroll p-5 sm:p-6 overflow-y-auto overscroll-contain space-y-6 flex-1 min-h-0" style="-webkit-overflow-scrolling: touch;">
+
+                    <!-- Configuración General -->
+                    <div class="rounded-4xl bg-white/5 border border-white/10 p-4 sm:p-5 space-y-3.5">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-ds-goldLight flex items-center gap-2">
+                            <i data-lucide="sliders" class="w-4 h-4"></i>
+                            <span>Configuración General</span>
+                        </h4>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="cfg-store-name" class="block text-[11px] text-ds-muted mb-1 pl-3">Nombre de la Tienda</label>
+                                <input type="text" id="cfg-store-name" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="cfg-whatsapp" class="block text-[11px] text-ds-muted mb-1 pl-3">Número de WhatsApp (ej. 593988623836)</label>
+                                <input type="text" id="cfg-whatsapp" placeholder="593988623836" value="593988623836" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="cfg-tagline" class="block text-[11px] text-ds-muted mb-1 pl-3">Subtítulo (Portada y Encabezado)</label>
+                                <input type="text" id="cfg-tagline" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="cfg-pin" class="block text-[11px] text-ds-muted mb-1 pl-3">PIN de Seguridad (4-6 dígitos)</label>
+                                <input type="text" id="cfg-pin" maxlength="6" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="cfg-instagram" class="block text-[11px] text-ds-muted mb-1 pl-3">Enlace de Instagram</label>
+                                <input type="url" id="cfg-instagram" placeholder="https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="cfg-tiktok" class="block text-[11px] text-ds-muted mb-1 pl-3">Enlace de TikTok</label>
+                                <input type="url" id="cfg-tiktok" placeholder="https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            </div>
+                        </div>
+
+                        <button type="button" id="btn-save-general" onclick="saveGeneralSettings()" class="w-full py-3.5 rounded-full gold-btn-gradient text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-lg">
+                            <i data-lucide="save" class="w-4 h-4"></i>
+                            <span>Guardar Configuración General</span>
+                        </button>
+                    </div>
+
+                    <!-- Gestión de Menús / Categorías desde la Web -->
+                    <div class="rounded-4xl bg-white/5 border border-white/10 p-4 sm:p-5 space-y-3.5">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-ds-goldLight flex items-center gap-2">
+                            <i data-lucide="list-filter" class="w-4 h-4"></i>
+                            <span>Menús del Catálogo</span>
+                        </h4>
+
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input
+                                type="text"
+                                id="new-category-name"
+                                placeholder="Ej. Parlantes, Cables, Accesorios..."
+                                onkeypress="if(event.key==='Enter'){event.preventDefault();addCustomCategory();}"
+                                class="flex-1 rounded-full bg-black/40 border border-white/15 focus:border-ds-gold px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none"
+                            >
+                            <button
+                                type="button"
+                                onclick="addCustomCategory()"
+                                class="gold-btn-gradient px-5 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 flex-shrink-0">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                <span>Agregar Menú</span>
+                            </button>
+                        </div>
+
+                        <div id="admin-categories-list" class="flex flex-wrap gap-2">
+                            <!-- Lista de menús configurados -->
+                        </div>
+                    </div>
+
+                    <!-- Gestión de Productos -->
+                    <div class="space-y-3.5">
+                        <div class="flex items-center justify-between gap-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-ds-goldLight flex items-center gap-2">
+                                <i data-lucide="package" class="w-4 h-4"></i>
+                                <span>Tus Productos (<span id="admin-prod-count">0</span>)</span>
+                            </h4>
+                            <button type="button" onclick="openProductEditor(null)" class="gold-btn-gradient px-4 py-2 rounded-full text-xs font-bold flex items-center gap-1.5">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                <span>Nuevo Producto</span>
+                            </button>
+                        </div>
+
+                        <div id="admin-products-list" class="space-y-2.5">
+                            <!-- Lista editable de productos -->
+                        </div>
+
+                        <!-- Botón Guardar exclusivo para la sección de Tus Productos -->
+                        <button
+                            type="button"
+                            id="btn-save-products-section"
+                            onclick="saveProductsSectionChanges()"
+                            class="w-full py-3.5 rounded-full gold-btn-gradient text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-lg">
+                            <i data-lucide="save" class="w-4 h-4"></i>
+                            <span>Guardar Productos</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Formulario Agregar / Editar Producto Individual -->
+        <div id="product-editor-modal" class="fixed inset-0 z-[80] hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md overflow-hidden">
+            <div class="liquid-glass-dark rounded-t-5xl sm:rounded-5xl max-w-md w-full max-h-[90dvh] flex flex-col border-t sm:border border-ds-gold/40 shadow-2xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
+                    <h3 id="editor-modal-title" class="text-lg font-serif font-semibold text-white">Nuevo Producto</h3>
+                    <button type="button" onclick="closeProductEditor()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-300">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <input type="hidden" id="edit-prod-id">
+
+                <div class="ds-modal-scroll p-5 sm:p-6 overflow-y-auto overscroll-contain space-y-3 flex-1 min-h-0" style="-webkit-overflow-scrolling: touch;">
+                    <div>
+                        <label for="edit-prod-name" class="block text-xs text-gray-300 mb-1 pl-3">Nombre del producto *</label>
+                        <input type="text" id="edit-prod-name" placeholder="Ej. Audífonos DS Gold Pro" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label for="edit-prod-category" class="block text-xs text-gray-300 mb-1 pl-3">Categoría del menú *</label>
+                        <select id="edit-prod-category" class="w-full rounded-full bg-[#14141A] border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            <!-- Opciones pobladas dinámicamente según los menús -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="edit-prod-price" class="block text-xs text-gray-300 mb-1 pl-3">Precio (USD) *</label>
+                        <input type="number" step="0.01" id="edit-prod-price" placeholder="Ej. 35.00" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="edit-prod-stock" class="block text-xs text-gray-300 mb-1 pl-3">Unidades / Stock</label>
+                            <input type="number" min="0" step="1" id="edit-prod-stock" placeholder="Ej. 5" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="edit-prod-status" class="block text-xs text-gray-300 mb-1 pl-3">Estado inicial</label>
+                            <select id="edit-prod-status" class="w-full rounded-full bg-[#14141A] border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                                <option value="disponible">Disponible</option>
+                                <option value="no_disponible">No disponible</option>
+                                <option value="agotado">Agotado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="edit-prod-desc" class="block text-xs text-gray-300 mb-1 pl-3">Descripción corta</label>
+                        <textarea id="edit-prod-desc" rows="2" placeholder="Ej. Cancelación de ruido, estuche metálico..." class="w-full rounded-3xl bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none resize-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="edit-prod-image" class="block text-xs text-gray-300 mb-1 pl-3">Fotos del producto (una URL por línea o sube desde tu galería)</label>
+                        <textarea id="edit-prod-image" rows="2" placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg" oninput="renderEditorGalleryPreview()" class="w-full rounded-3xl bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none mb-2 resize-none"></textarea>
+
+                        <label class="cursor-pointer w-full py-2.5 px-4 rounded-full bg-white/5 hover:bg-white/10 border border-dashed border-ds-gold/40 text-xs text-ds-goldLight flex items-center justify-center gap-2 transition-colors">
+                            <i data-lucide="image-plus" class="w-4 h-4"></i>
+                            <span>Seleccionar una o varias fotos desde mi celular / PC</span>
+                            <input type="file" accept="image/*" multiple onchange="handleLocalImageUpload(event)" class="hidden">
+                        </label>
+
+                        <div id="edit-prod-gallery-preview" class="mt-2.5 flex items-center gap-2 overflow-x-auto pb-1">
+                            <!-- Miniaturas de fotos cargadas -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-5 border-t border-white/10 bg-black/40 flex gap-3 flex-shrink-0">
+                    <button type="button" onclick="closeProductEditor()" class="flex-1 py-3 rounded-full bg-white/10 hover:bg-white/15 text-gray-300 text-xs font-medium transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="button" id="btn-save-product" onclick="saveProductFromEditor()" class="flex-1 py-3 rounded-full gold-btn-gradient text-xs font-bold">
+                        Guardar Producto
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+            LÓGICA DE LA APLICACIÓN (CONECTADA A FIREBASE FIRESTORE)
+            ========================================================================== -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+            import {
+                getFirestore,
+                doc,
+                getDoc,
+                setDoc,
+                collection,
+                getDocs,
+                deleteDoc,
+                onSnapshot
+            } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+            const CONFIG_COLLECTION = "store_config";
+            const CONFIG_DOC_ID = "main";
+            const PRODUCTS_COLLECTION = "products";
+            const FALLBACK_PRODUCT_IMAGE = "https://placehold.co/600x600/121216/D4AF37?text=DS+Store";
+            const DEFAULT_CATEGORIES = ["Audífonos", "Reloj", "Cargadores", "Estuches"];
+            const SYNC_STORE_KEY = "ds_store_quininde_2026_live_v1";
+            const LOCAL_BLOB_ID_KEY = "ds_store_jsonblob_id_v1";
+            const SHARED_BOOTSTRAP_BLOB_ID = "";
+            const KEYV_BASE_URL = "https://keyv.vercel.app/api/kv";
+            const RESTFUL_OBJECT_ID = "ds-store-quininde-2026-catalog";
+            const SYNC_ENDPOINTS = [
+                `https://api.restful-api.dev/objects/${RESTFUL_OBJECT_ID}`,
+                `https://api.restful-api.dev/objects`
+            ];
+            const SHARED_GET_ENDPOINTS = [
+                `https://api.restful-api.dev/objects/${RESTFUL_OBJECT_ID}`,
+                `https://api.restful-api.dev/objects?id=${RESTFUL_OBJECT_ID}`
+            ];
+
+            let isSavingRemote = false;
+            let activeAdminCategory = "Todos";
+            let lastKnownRemoteUpdatedAt = 0;
+            let restfulStoredId = null;
+            let activeJsonBlobId = null;
+            let firestoreUnsubscribeConfig = null;
+            let firestoreUnsubscribeProducts = null;
+            let app = null;
+            let db = null;
+            let isFirebaseReady = false;
+
+            try {
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDemoKey-DSStore-2026",
+                    authDomain: "ds-store-demo.firebaseapp.com",
+                    projectId: "ds-store-demo",
+                    storageBucket: "ds-store-demo.appspot.com",
+                    messagingSenderId: "1234567890",
+                    appId: "1:1234567890:web:dsstore2026"
+                };
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                isFirebaseReady = true;
+            } catch (err) {
+                console.warn("Firebase no configurado o sin conexión, usando almacenamiento local:", err);
+                isFirebaseReady = false;
+            }
+
+            const DEFAULT_WHATSAPP_NUMBER = "593988623836";
+            const DEFAULT_WHATSAPP_LINK = "https://wa.me/message/5MNZMEN6YM6JD1";
+            const DEFAULT_INSTAGRAM_LINK = "https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr";
+            const DEFAULT_TIKTOK_LINK = "https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ";
+
+            const DEFAULT_STORE_CONFIG = {
+                storeName: "DS Store",
+                tagline: "Luxury & Exclusive Tech",
+                whatsapp: DEFAULT_WHATSAPP_NUMBER,
+                whatsappUrl: DEFAULT_WHATSAPP_LINK,
+                instagram: DEFAULT_INSTAGRAM_LINK,
+                tiktok: DEFAULT_TIKTOK_LINK,
+                pin: "2026",
+                categories: [...DEFAULT_CATEGORIES]
+            };
+
+            const DEFAULT_PRODUCTS = [
+                {
+                    id: "prod-1",
+                    name: "DS Royal Pro Gold Edition",
+                    category: "Audífonos",
+                    price: 45.00,
+                    stock: 6,
+                    status: "disponible",
+                    description: "Audio espacial de alta fidelidad, cancelación activa de ruido y acabados premium.",
+                    images: [
+                        "https://placehold.co/600x600/181610/D4AF37?text=DS+Royal+Pro+1",
+                        "https://placehold.co/600x600/121216/F3E5AB?text=DS+Royal+Pro+2",
+                        "https://placehold.co/600x600/1a1812/E5C158?text=DS+Royal+Pro+3"
+                    ]
+                },
+                {
+                    id: "prod-2",
+                    name: "DS Pulse Studio Wireless",
+                    category: "Audífonos",
+                    price: 35.00,
+                    stock: 5,
+                    status: "disponible",
+                    description: "Almohadillas ergonómicas de lujo y graves profundos envolventes.",
+                    images: [
+                        "https://placehold.co/600x600/14141A/D4AF37?text=DS+Pulse+1",
+                        "https://placehold.co/600x600/0E0E13/F3E5AB?text=DS+Pulse+2",
+                        "https://placehold.co/600x600/1E1E28/D4AF37?text=DS+Pulse+3"
+                    ]
+                },
+                {
+                    id: "prod-3",
+                    name: "DS AirPods Luxe ANC",
+                    category: "Audífonos",
+                    price: 29.99,
+                    stock: 8,
+                    status: "disponible",
+                    description: "Conexión instantánea, resistencia al sudor y diseño minimalista.",
+                    images: [
+                        "https://placehold.co/600x600/121216/D4AF37?text=DS+AirPods+1",
+                        "https://placehold.co/600x600/191814/F3E5AB?text=DS+AirPods+2",
+                        "https://placehold.co/600x600/0B0B0E/E5C158?text=DS+AirPods+3"
+                    ]
+                },
+                {
+                    id: "prod-4",
+                    name: "DS Watch Ultra Gold",
+                    category: "Reloj",
+                    price: 55.00,
+                    stock: 4,
+                    status: "disponible",
+                    description: "Pantalla brillante AMOLED, monitoreo diario y correa elegante.",
+                    images: [
+                        "https://placehold.co/600x600/16140E/D4AF37?text=DS+Watch+1",
+                        "https://placehold.co/600x600/101014/F3E5AB?text=DS+Watch+2",
+                        "https://placehold.co/600x600/1C1911/E5C158?text=DS+Watch+3"
+                    ]
+                },
+                {
+                    id: "prod-5",
+                    name: "DS Charger GaN 65W",
+                    category: "Cargadores",
+                    price: 22.00,
+                    stock: 10,
+                    status: "disponible",
+                    description: "Carga rápida segura multipuerto con protección inteligente.",
+                    images: [
+                        "https://placehold.co/600x600/131318/D4AF37?text=DS+Charger+1",
+                        "https://placehold.co/600x600/1A1710/F3E5AB?text=DS+Charger+2",
+                        "https://placehold.co/600x600/0D0D11/E5C158?text=DS+Charger+3"
+                    ]
+                },
+                {
+                    id: "prod-6",
+                    name: "DS Case Armor Luxe",
+                    category: "Estuches",
+                    price: 15.00,
+                    stock: 7,
+                    status: "disponible",
+                    description: "Protección antigolpes de tacto suave con ajuste preciso.",
+                    images: [
+                        "https://placehold.co/600x600/171510/D4AF37?text=DS+Case+1",
+                        "https://placehold.co/600x600/111116/F3E5AB?text=DS+Case+2",
+                        "https://placehold.co/600x600/1F1B12/E5C158?text=DS+Case+3"
+                    ]
+                }
+            ];
+
+            const LOCAL_CONFIG_KEY = "ds_store_config_v1";
+            const LOCAL_PRODUCTS_KEY = "ds_store_products_v1";
+            const LOCAL_CART_KEY = "ds_store_cart_v1";
+            const LOCAL_DELETED_IDS_KEY = "ds_store_deleted_product_ids_v1";
+
+            function normalizeCategoryList(list) {
+                if (!Array.isArray(list) || list.length === 0) {
+                    return [...DEFAULT_CATEGORIES];
+                }
+                const cleaned = [];
+                list.forEach((item) => {
+                    const name = String(item || "").trim();
+                    if (name && name.toLowerCase() !== "todos" && !cleaned.some((c) => c.toLowerCase() === name.toLowerCase())) {
+                        cleaned.push(name);
+                    }
+                });
+                return cleaned.length > 0 ? cleaned : [...DEFAULT_CATEGORIES];
+            }
+
+            function readStoredJSON(key, fallback) {
+                try {
+                    const raw = localStorage.getItem(key);
+                    if (!raw) return fallback;
+                    return JSON.parse(raw);
+                } catch (_) {
+                    return fallback;
+                }
+            }
+
+            function writeStoredJSON(key, value) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } catch (_) {}
+            }
+
+            function sanitizePhoneNumber(raw) {
+                const digits = String(raw || "").replace(/\D/g, "");
+                if (!digits) return DEFAULT_WHATSAPP_NUMBER;
+                if (digits.startsWith("0") && digits.length === 10) {
+                    return "593" + digits.slice(1);
+                }
+                return digits;
+            }
+
+            function isValidImageSource(src) {
+                const val = String(src || "").trim();
+                if (!val) return false;
+                if (val.startsWith("data:image/")) {
+                    return val.includes(";base64,") && val.split(";base64,")[1].length > 10;
+                }
+                return (
+                    val.startsWith("https://") ||
+                    val.startsWith("http://") ||
+                    val.startsWith("blob:") ||
+                    val.startsWith("/") ||
+                    val.startsWith("./")
+                );
+            }
+
+            function parseImageListInput(rawText) {
+                const text = String(rawText || "").trim();
+                if (!text) return [];
+                const lines = text.split(/\r?\n/);
+                const urls = [];
+                lines.forEach((line) => {
+                    const trimmedLine = line.trim();
+                    if (!trimmedLine) return;
+                    if (trimmedLine.startsWith("data:image/")) {
+                        if (isValidImageSource(trimmedLine)) {
+                            urls.push(trimmedLine);
+                        }
+                    } else {
+                        trimmedLine.split(",").forEach((part) => {
+                            const clean = part.trim();
+                            if (isValidImageSource(clean)) {
+                                urls.push(clean);
+                            }
+                        });
+                    }
+                });
+                return urls;
+            }
+
+            function normalizeProductItem(raw, idx = 0) {
+                const base = DEFAULT_PRODUCTS[idx % DEFAULT_PRODUCTS.length];
+                const rawList = Array.isArray(raw?.images)
+                    ? raw.images.map((u) => String(u || "").trim()).filter((u) => isValidImageSource(u))
+                    : parseImageListInput(raw?.image || raw?.imageUrl || "");
+
+                const finalImages = rawList.length > 0 ? rawList : [...base.images];
+                const stock = Math.max(0, parseInt(raw?.stock ?? base.stock ?? 5, 10) || 0);
+                const rawStatus = String(raw?.status || "disponible").toLowerCase();
+                let status = "disponible";
+                if (rawStatus === "agotado" || (rawStatus === "disponible" && stock <= 0)) {
+                    status = "agotado";
+                } else if (rawStatus === "no_disponible") {
+                    status = "no_disponible";
+                }
+
+                return {
+                    id: String(raw?.id || `prod-${Date.now()}-${idx}`),
+                    name: String(raw?.name || base.name).trim(),
+                    category: String(raw?.category || base.category).trim(),
+                    price: Math.max(0, parseFloat(raw?.price ?? base.price) || 0),
+                    stock,
+                    status,
+                    description: String(raw?.description || base.description || "").trim(),
+                    images: finalImages
+                };
+            }
+
+            let storeConfig = {
+                ...DEFAULT_STORE_CONFIG,
+                ...(readStoredJSON(LOCAL_CONFIG_KEY, {}) || {}),
+                whatsapp: DEFAULT_WHATSAPP_NUMBER
+            };
+            storeConfig.categories = normalizeCategoryList(storeConfig.categories);
+
+            let products = (() => {
+                const saved = readStoredJSON(LOCAL_PRODUCTS_KEY, null);
+                if (Array.isArray(saved) && saved.length > 0) {
+                    return saved.map((item, idx) => normalizeProductItem(item, idx));
+                }
+                return DEFAULT_PRODUCTS.map((item, idx) => normalizeProductItem(item, idx));
+            })();
+
+            let cart = (() => {
+                const savedCart = readStoredJSON(LOCAL_CART_KEY, []);
+                return Array.isArray(savedCart) ? savedCart : [];
+            })();
+
+            let deletedProductIds = (() => {
+                const savedDeleted = readStoredJSON(LOCAL_DELETED_IDS_KEY, []);
+                return Array.isArray(savedDeleted) ? savedDeleted.map((id) => String(id)) : [];
+            })();
+
+            function filterOutDeletedProducts(list) {
+                const deletedSet = new Set((Array.isArray(deletedProductIds) ? deletedProductIds : []).map((id) => String(id).trim()));
+                return (Array.isArray(list) ? list : []).filter((item) => {
+                    const itemId = String(item?.id || "").trim();
+                    return itemId && !deletedSet.has(itemId);
+                });
+            }
+
+            function recordDeletedProductId(productId) {
+                const cleanId = String(productId || "").trim();
+                if (!cleanId) return;
+                if (!Array.isArray(deletedProductIds)) {
+                    deletedProductIds = [];
+                }
+                if (!deletedProductIds.includes(cleanId)) {
+                    deletedProductIds.push(cleanId);
+                }
+                writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+            }
+
+            products = filterOutDeletedProducts(products);
+            writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+
+            let activeCategory = "Todos";
+            let activeView = "inicio";
+            let carouselTimerId = null;
+            let lightboxProductId = null;
+            let lightboxPhotoIndex = 0;
+            let lightboxTouchStartX = 0;
+            let savedScrollY = 0;
+
+            function syncBodyScrollLock() {
+                const modalIds = [
+                    "order-modal",
+                    "product-lightbox-modal",
+                    "pin-modal",
+                    "admin-dashboard-modal",
+                    "product-editor-modal"
+                ];
+                const anyOpen = modalIds.some((id) => {
+                    const el = document.getElementById(id);
+                    return el && !el.classList.contains("hidden");
+                });
+
+                if (anyOpen) {
+                    if (!document.body.classList.contains("ds-modal-open")) {
+                        savedScrollY = window.scrollY || window.pageYOffset || 0;
+                        document.body.style.top = `-${savedScrollY}px`;
+                        document.body.classList.add("ds-modal-open");
+                    }
+                } else if (document.body.classList.contains("ds-modal-open")) {
+                    document.body.classList.remove("ds-modal-open");
+                    document.body.style.top = "";
+                    window.scrollTo(0, savedScrollY);
+                }
+            }
+
+            function showToast(message) {
+                const toast = document.getElementById("toast");
+                const msgEl = document.getElementById("toast-msg");
+                if (!toast || !msgEl) return;
+                msgEl.textContent = message;
+                toast.classList.remove("opacity-0", "-translate-y-4");
+                toast.classList.add("opacity-100", "translate-y-0");
+                clearTimeout(showToast._timer);
+                showToast._timer = setTimeout(() => {
+                    toast.classList.remove("opacity-100", "translate-y-0");
+                    toast.classList.add("opacity-0", "-translate-y-4");
+                }, 2400);
+            }
+
+            function refreshIcons() {
+                if (window.lucide && typeof window.lucide.createIcons === "function") {
+                    try {
+                        window.lucide.createIcons();
+                    } catch (_) {}
+                }
+            }
+
+            function getDirectWhatsAppHref() {
+                const cleanUrl = String(storeConfig.whatsappUrl || "").trim();
+                if (cleanUrl.startsWith("https://wa.me/") || cleanUrl.startsWith("http://wa.me/")) {
+                    return cleanUrl;
+                }
+                const phone = sanitizePhoneNumber(storeConfig.whatsapp || DEFAULT_WHATSAPP_NUMBER);
+                return `https://wa.me/${phone}`;
+            }
+
+            function renderStoreBranding() {
+                const nameText = String(storeConfig.storeName || "DS Store").trim() || "DS Store";
+                const taglineText = String(storeConfig.tagline || "Luxury & Exclusive Tech").trim() || "Luxury & Exclusive Tech";
+                const waHref = getDirectWhatsAppHref();
+                const igHref = String(storeConfig.instagram || DEFAULT_INSTAGRAM_LINK).trim() || DEFAULT_INSTAGRAM_LINK;
+                const ttHref = String(storeConfig.tiktok || DEFAULT_TIKTOK_LINK).trim() || DEFAULT_TIKTOK_LINK;
+
+                const headerName = document.getElementById("header-store-name");
+                const headerTagline = document.getElementById("header-store-tagline");
+                const heroBadge = document.getElementById("hero-tagline-badge");
+                const heroDefaultText = document.getElementById("hero-default-text");
+                const heroWa = document.getElementById("hero-whatsapp-link");
+                const storeWa = document.getElementById("store-whatsapp-link");
+                const heroIg = document.getElementById("hero-instagram-link");
+                const heroTt = document.getElementById("hero-tiktok-link");
+
+                if (headerName) headerName.textContent = nameText;
+                if (headerTagline) headerTagline.textContent = taglineText;
+                if (heroBadge) heroBadge.textContent = taglineText;
+                if (heroDefaultText) heroDefaultText.textContent = nameText.toUpperCase();
+                if (heroWa) heroWa.href = waHref;
+                if (storeWa) storeWa.href = waHref;
+                if (heroIg) heroIg.href = igHref;
+                if (heroTt) heroTt.href = ttHref;
+            }
+
+            window.showView = (viewName) => {
+                activeView = viewName === "tienda" ? "tienda" : "inicio";
+                const inicioEl = document.getElementById("inicio");
+                const tiendaEl = document.getElementById("tienda");
+
+                if (activeView === "tienda") {
+                    if (inicioEl) inicioEl.classList.add("hidden");
+                    if (tiendaEl) tiendaEl.classList.remove("hidden");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                    if (tiendaEl) tiendaEl.classList.add("hidden");
+                    if (inicioEl) inicioEl.classList.remove("hidden");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+                updateBottomOrderBar();
+                refreshIcons();
+            };
+
+            window.selectCategory = (cat) => {
+                activeCategory = cat || "Todos";
+                renderCategoryMenu();
+                renderCatalog();
+            };
+
+            function renderCategoryMenu() {
+                const menuBar = document.getElementById("category-menu-bar");
+                if (!menuBar) return;
+
+                const categories = ["Todos", ...normalizeCategoryList(storeConfig.categories)];
+                if (activeCategory !== "Todos" && !categories.some((c) => c.toLowerCase() === activeCategory.toLowerCase())) {
+                    activeCategory = "Todos";
+                }
+
+                menuBar.innerHTML = categories.map((cat) => {
+                    const isActive = cat.toLowerCase() === activeCategory.toLowerCase();
+                    const safeCat = cat.replace(/'/g, "\\'");
+                    return `
+                        <button
+                            type="button"
+                            onclick="selectCategory('${safeCat}')"
+                            class="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold transition-all ${
+                                isActive
+                                    ? "gold-btn-gradient shadow-md"
+                                    : "bg-white/5 hover:bg-white/10 text-gray-300 border border-ds-gold/25"
+                            }">
+                            ${cat}
+                        </button>
+                    `;
+                }).join("");
+            }
+
+            function getProductStatusMeta(prod) {
+                const stock = Math.max(0, parseInt(prod?.stock ?? 0, 10) || 0);
+                const rawStatus = String(prod?.status || "disponible").toLowerCase();
+                if (rawStatus === "agotado" || (rawStatus === "disponible" && stock <= 0)) {
+                    return { label: "AGOTADO", colorClass: "text-red-400", canBuy: false };
+                }
+                if (rawStatus === "no_disponible") {
+                    return { label: "NO DISPONIBLE", colorClass: "text-red-400", canBuy: false };
+                }
+                return { label: "DISPONIBLE", colorClass: "text-emerald-400", canBuy: true };
+            }
+
+            function getCartQtyForProduct(productId) {
+                const found = cart.find((item) => item.id === productId);
+                return found ? (parseInt(found.qty, 10) || 0) : 0;
+            }
+
+            function startAutoCarousel() {
+                if (carouselTimerId) {
+                    clearInterval(carouselTimerId);
+                    carouselTimerId = null;
+                }
+                carouselTimerId = setInterval(() => {
+                    const carousels = document.querySelectorAll("[data-carousel-slides]");
+                    carousels.forEach((container) => {
+                        const count = parseInt(container.getAttribute("data-carousel-slides") || "1", 10);
+                        if (count <= 1) return;
+                        let current = parseInt(container.getAttribute("data-carousel-index") || "0", 10);
+                        current = (current + 1) % count;
+                        setCardSlide(container.getAttribute("data-product-id"), current, false);
+                    });
+                }, 3200);
+            }
+
+            function setCardSlide(productId, index, resetTimer = true) {
+                const container = document.querySelector(`[data-carousel-container="${productId}"]`);
+                if (!container) return;
+                const slides = container.querySelectorAll("[data-slide-idx]");
+                const dots = container.querySelectorAll("[data-dot-idx]");
+                const counter = container.querySelector("[data-slide-counter]");
+                const total = slides.length;
+                if (total === 0) return;
+
+                const safeIndex = ((index % total) + total) % total;
+                container.setAttribute("data-carousel-index", String(safeIndex));
+
+                slides.forEach((slide, i) => {
+                    if (i === safeIndex) {
+                        slide.classList.remove("opacity-0", "pointer-events-none");
+                        slide.classList.add("opacity-100");
+                    } else {
+                        slide.classList.remove("opacity-100");
+                        slide.classList.add("opacity-0", "pointer-events-none");
+                    }
+                });
+
+                dots.forEach((dot, i) => {
+                    if (i === safeIndex) {
+                        dot.classList.remove("bg-white/35", "w-1.5");
+                        dot.classList.add("bg-ds-gold", "w-3.5");
+                    } else {
+                        dot.classList.remove("bg-ds-gold", "w-3.5");
+                        dot.classList.add("bg-white/35", "w-1.5");
+                    }
+                });
+
+                if (counter) {
+                    counter.textContent = `${safeIndex + 1} / ${total}`;
+                }
+
+                if (resetTimer) {
+                    startAutoCarousel();
+                }
+            }
+
+            function renderCatalog() {
+                const grid = document.getElementById("catalog-grid");
+                if (!grid) return;
+
+                const filtered = activeCategory === "Todos"
+                    ? products
+                    : products.filter((p) => String(p.category || "").toLowerCase() === activeCategory.toLowerCase());
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="col-span-2 md:col-span-3 liquid-glass-dark rounded-4xl p-8 text-center space-y-2">
+                            <p class="text-sm font-medium text-white">No hay productos en "${activeCategory}" por el momento.</p>
+                            <button type="button" onclick="selectCategory('Todos')" class="mt-2 px-4 py-2 rounded-full gold-btn-gradient text-xs font-bold">
+                                Ver todos los productos
+                            </button>
+                        </div>
+                    `;
+                    refreshIcons();
+                    return;
+                }
+
+                grid.innerHTML = filtered.map((prod) => {
+                    const imgs = Array.isArray(prod.images) && prod.images.length > 0 ? prod.images : [FALLBACK_PRODUCT_IMAGE];
+                    const statusMeta = getProductStatusMeta(prod);
+                    const qtyInCart = getCartQtyForProduct(prod.id);
+                    const remainingStock = Math.max(0, (parseInt(prod.stock, 10) || 0) - qtyInCart);
+                    const isBuyable = statusMeta.canBuy && remainingStock > 0;
+                    const displayStatusLabel = statusMeta.canBuy && remainingStock <= 0 ? "AGOTADO" : statusMeta.label;
+                    const displayStatusColor = isBuyable ? "text-emerald-400" : "text-red-400";
+
+                    const slidesHtml = imgs.map((src, idx) => `
+                        <img
+                            src="${src}"
+                            alt="${prod.name} - foto ${idx + 1}"
+                            data-slide-idx="${idx}"
+                            onerror="this.onerror=null;this.src='${FALLBACK_PRODUCT_IMAGE}';"
+                            class="w-full h-full object-cover absolute inset-0 transition-opacity duration-500 ${idx === 0 ? "opacity-100" : "opacity-0 pointer-events-none"}">
+                    `).join("");
+
+                    const dotsHtml = imgs.length > 1
+                        ? `<div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/55 backdrop-blur-md px-2 py-1 rounded-full z-10">
+                            ${imgs.map((_, i) => `<span data-dot-idx="${i}" class="h-1.5 rounded-full transition-all ${i === 0 ? "w-3.5 bg-ds-gold" : "w-1.5 bg-white/35"}"></span>`).join("")}
+                        </div>`
+                        : "";
+
+                    const counterHtml = imgs.length > 1
+                        ? `<span data-slide-counter class="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-black/65 backdrop-blur-md text-[10px] font-semibold text-white z-10">1 / ${imgs.length}</span>`
+                        : "";
+
+                    const actionButtonHtml = isBuyable
+                        ? `<button
+                            type="button"
+                            onclick="addToCart('${prod.id}')"
+                            class="w-full gold-btn-gradient py-2.5 sm:py-3 px-3 rounded-full text-[11px] sm:text-xs font-extrabold tracking-wider uppercase flex items-center justify-center gap-1.5">
+                            <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                            <span>AGREGAR</span>
+                        </button>`
+                        : `<button
+                            type="button"
+                            disabled
+                            class="w-full py-2.5 sm:py-3 px-3 rounded-full bg-white/5 border border-red-500/30 text-red-400 text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-not-allowed">
+                            ${displayStatusLabel}
+                        </button>`;
+
+                    return `
+                        <article class="product-glass-card rounded-3xl sm:rounded-4xl p-2.5 sm:p-3.5 flex flex-col justify-between gap-2.5">
+                            <div class="space-y-2">
+                                <div
+                                    onclick="openProductLightbox('${prod.id}')"
+                                    data-carousel-container="${prod.id}"
+                                    data-carousel-slides="${imgs.length}"
+                                    data-carousel-index="0"
+                                    data-product-id="${prod.id}"
+                                    class="cursor-pointer relative aspect-square w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black/50 border border-white/10 group">
+                                    ${slidesHtml}
+                                    ${counterHtml}
+                                    ${dotsHtml}
+                                </div>
+
+                                <div class="px-1 space-y-1">
+                                    <span class="inline-block text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-ds-goldLight/80">
+                                        ${prod.category}
+                                    </span>
+                                    <h3 class="text-xs sm:text-sm font-semibold text-white leading-snug line-clamp-1">
+                                        ${prod.name}
+                                    </h3>
+                                    <p class="text-[11px] sm:text-xs text-gray-300/90 font-light leading-snug line-clamp-2 min-h-[2.1rem]">
+                                        ${prod.description || "Tecnología exclusiva DS Store."}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="px-1 pt-1.5 border-t border-white/10 space-y-2.5">
+                                <div class="flex items-center justify-between gap-1">
+                                    <span class="text-sm sm:text-base font-extrabold gold-text-gradient">
+                                        $${Number(prod.price || 0).toFixed(2)}
+                                    </span>
+                                    <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider ${displayStatusColor}">
+                                        ${displayStatusLabel}
+                                    </span>
+                                </div>
+                                ${actionButtonHtml}
+                            </div>
+                        </article>
+                    `;
+                }).join("");
+
+                startAutoCarousel();
+                refreshIcons();
+            }
+
+            window.openProductLightbox = (productId) => {
+                const prod = products.find((p) => p.id === productId);
+                if (!prod) return;
+
+                lightboxProductId = prod.id;
+                lightboxPhotoIndex = 0;
+
+                const modal = document.getElementById("product-lightbox-modal");
+                const catEl = document.getElementById("lightbox-prod-category");
+                const nameEl = document.getElementById("lightbox-prod-name");
+                const priceEl = document.getElementById("lightbox-prod-price");
+
+                if (catEl) catEl.textContent = prod.category;
+                if (nameEl) nameEl.textContent = prod.name;
+                if (priceEl) priceEl.textContent = `$${Number(prod.price || 0).toFixed(2)}`;
+
+                renderLightboxState();
+
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    modal.classList.add("flex");
+                }
+                syncBodyScrollLock();
+                refreshIcons();
+            };
+
+            function renderLightboxState() {
+                const prod = products.find((p) => p.id === lightboxProductId);
+                if (!prod) return;
+
+                const imgs = Array.isArray(prod.images) && prod.images.length > 0 ? prod.images : [FALLBACK_PRODUCT_IMAGE];
+                lightboxPhotoIndex = ((lightboxPhotoIndex % imgs.length) + imgs.length) % imgs.length;
+
+                const mainImg = document.getElementById("lightbox-main-image");
+                const counterEl = document.getElementById("lightbox-counter-badge");
+                const prevBtn = document.getElementById("lightbox-prev-btn");
+                const nextBtn = document.getElementById("lightbox-next-btn");
+                const thumbsEl = document.getElementById("lightbox-thumbnails");
+                const statusEl = document.getElementById("lightbox-prod-status");
+                const actionWrap = document.getElementById("lightbox-action-wrap");
+
+                if (mainImg) {
+                    mainImg.onerror = () => {
+                        mainImg.onerror = null;
+                        mainImg.src = FALLBACK_PRODUCT_IMAGE;
+                    };
+                    mainImg.src = imgs[lightboxPhotoIndex];
+                }
+                if (counterEl) {
+                    counterEl.textContent = `${lightboxPhotoIndex + 1} / ${imgs.length}`;
+                }
+
+                const showArrows = imgs.length > 1;
+                if (prevBtn) {
+                    prevBtn.classList.toggle("hidden", !showArrows);
+                    prevBtn.classList.toggle("flex", showArrows);
+                }
+                if (nextBtn) {
+                    nextBtn.classList.toggle("hidden", !showArrows);
+                    nextBtn.classList.toggle("flex", showArrows);
+                }
+
+                if (thumbsEl) {
+                    thumbsEl.innerHTML = imgs.map((src, idx) => `
+                        <button
+                            type="button"
+                            onclick="selectLightboxPhoto(${idx})"
+                            class="w-12 h-12 rounded-2xl overflow-hidden border flex-shrink-0 transition-all ${
+                                idx === lightboxPhotoIndex ? "border-ds-gold scale-105" : "border-white/15 opacity-60 hover:opacity-100"
+                            }">
+                            <img src="${src}" alt="Miniatura ${idx + 1}" onerror="this.onerror=null;this.src='${FALLBACK_PRODUCT_IMAGE}';" class="w-full h-full object-cover">
+                        </button>
+                    `).join("");
+                }
+
+                const statusMeta = getProductStatusMeta(prod);
+                const qtyInCart = getCartQtyForProduct(prod.id);
+                const remainingStock = Math.max(0, (parseInt(prod.stock, 10) || 0) - qtyInCart);
+                const isBuyable = statusMeta.canBuy && remainingStock > 0;
+                const label = statusMeta.canBuy && remainingStock <= 0 ? "AGOTADO" : statusMeta.label;
+
+                if (statusEl) {
+                    statusEl.textContent = label;
+                    statusEl.className = `text-[10px] font-extrabold uppercase tracking-wider ${isBuyable ? "text-emerald-400" : "text-red-400"}`;
+                }
+
+                if (actionWrap) {
+                    if (isBuyable) {
+                        actionWrap.innerHTML = `
+                            <button
+                                type="button"
+                                onclick="addToCart('${prod.id}');renderLightboxState();"
+                                class="w-full gold-btn-gradient py-2.5 px-4 rounded-full text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-1.5">
+                                <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
+                                <span>AGREGAR</span>
+                            </button>
+                        `;
+                    } else {
+                        actionWrap.innerHTML = `
+                            <button
+                                type="button"
+                                disabled
+                                class="w-full py-2.5 px-4 rounded-full bg-white/5 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider cursor-not-allowed">
+                                ${label}
+                            </button>
+                        `;
+                    }
+                }
+                refreshIcons();
+            }
+
+            window.selectLightboxPhoto = (idx) => {
+                lightboxPhotoIndex = idx;
+                renderLightboxState();
+            };
+
+            window.prevLightboxPhoto = () => {
+                lightboxPhotoIndex -= 1;
+                renderLightboxState();
+            };
+
+            window.nextLightboxPhoto = () => {
+                lightboxPhotoIndex += 1;
+                renderLightboxState();
+            };
+
+            window.handleLightboxTouchStart = (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    lightboxTouchStartX = e.touches[0].clientX;
+                }
+            };
+
+            window.handleLightboxTouchEnd = (e) => {
+                if (!e.changedTouches || e.changedTouches.length === 0) return;
+                const deltaX = e.changedTouches[0].clientX - lightboxTouchStartX;
+                if (Math.abs(deltaX) > 35) {
+                    if (deltaX < 0) {
+                        window.nextLightboxPhoto();
+                    } else {
+                        window.prevLightboxPhoto();
+                    }
+                }
+            };
+
+            window.closeProductLightbox = () => {
+                const modal = document.getElementById("product-lightbox-modal");
+                if (modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+                syncBodyScrollLock();
+            };
+
+            function persistCart() {
+                writeStoredJSON(LOCAL_CART_KEY, cart);
+                updateBottomOrderBar();
+                if (activeView === "tienda") {
+                    renderCatalog();
+                }
+            }
+
+            window.addToCart = (productId) => {
+                const prod = products.find((p) => p.id === productId);
+                if (!prod) return;
+
+                const statusMeta = getProductStatusMeta(prod);
+                const currentQty = getCartQtyForProduct(productId);
+                const maxStock = Math.max(0, parseInt(prod.stock, 10) || 0);
+
+                if (!statusMeta.canBuy || currentQty >= maxStock) {
+                    showToast("Producto agotado o sin stock disponible");
+                    return;
+                }
+
+                const existing = cart.find((item) => item.id === productId);
+                if (existing) {
+                    existing.qty += 1;
+                } else {
+                    cart.push({
+                        id: prod.id,
+                        name: prod.name,
+                        price: Number(prod.price) || 0,
+                        image: (Array.isArray(prod.images) && prod.images[0]) || FALLBACK_PRODUCT_IMAGE,
+                        qty: 1
+                    });
+                }
+
+                persistCart();
+                showToast(`Agregado: ${prod.name}`);
+            };
+
+            window.changeCartQty = (productId, delta) => {
+                const idx = cart.findIndex((item) => item.id === productId);
+                if (idx === -1) return;
+
+                const prod = products.find((p) => p.id === productId);
+                const maxStock = prod ? Math.max(1, parseInt(prod.stock, 10) || 1) : 99;
+                const nextQty = (parseInt(cart[idx].qty, 10) || 0) + delta;
+
+                if (nextQty <= 0) {
+                    cart.splice(idx, 1);
+                } else if (nextQty > maxStock) {
+                    showToast("Alcanzaste el stock máximo disponible");
+                    return;
+                } else {
+                    cart[idx].qty = nextQty;
+                }
+
+                persistCart();
+                renderCartModal();
+            };
+
+            window.clearCart = () => {
+                cart = [];
+                persistCart();
+                renderCartModal();
+            };
+
+            function getCartTotals() {
+                const totalItems = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 0), 0);
+                const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (parseInt(item.qty, 10) || 0), 0);
+                return { totalItems, subtotal, shipping: 0, total: subtotal };
+            }
+
+            function updateBottomOrderBar() {
+                const { totalItems, total } = getCartTotals();
+                const headerCount = document.getElementById("header-cart-count");
+                const bottomBar = document.getElementById("bottom-order-bar");
+                const barBadge = document.getElementById("bar-item-badge");
+                const barTotal = document.getElementById("bar-total-price");
+
+                if (headerCount) headerCount.textContent = String(totalItems);
+                if (barBadge) barBadge.textContent = String(totalItems);
+                if (barTotal) barTotal.textContent = `$${total.toFixed(2)}`;
+
+                if (bottomBar) {
+                    if (totalItems > 0 && activeView === "tienda") {
+                        bottomBar.classList.remove("hidden");
+                    } else {
+                        bottomBar.classList.add("hidden");
+                    }
+                }
+            }
+
+            window.openOrderModal = () => {
+                const modal = document.getElementById("order-modal");
+                renderCartModal();
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    modal.classList.add("flex");
+                }
+                syncBodyScrollLock();
+                refreshIcons();
+            };
+
+            window.closeOrderModal = () => {
+                const modal = document.getElementById("order-modal");
+                if (modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+                syncBodyScrollLock();
+            };
+
+            window.updateDeliveryUI = () => {
+                const selected = document.querySelector('input[name="deliveryMethod"]:checked');
+                const labelEl = document.getElementById("summary-shipping-label");
+                if (!labelEl || !selected) return;
+                if (selected.value.includes("Retiro")) {
+                    labelEl.textContent = "GRATIS";
+                    labelEl.className = "text-emerald-400 font-medium";
+                } else {
+                    labelEl.textContent = "A coordinar";
+                    labelEl.className = "text-ds-goldLight font-medium";
+                }
+            };
+
+            function renderCartModal() {
+                const listEl = document.getElementById("cart-items-list");
+                const clearBtn = document.getElementById("clear-cart-btn");
+                const formSection = document.getElementById("checkout-form-section");
+                const footerAction = document.getElementById("modal-footer-action");
+                const modalTotalEl = document.getElementById("modal-total-price");
+
+                if (!listEl) return;
+
+                if (cart.length === 0) {
+                    listEl.innerHTML = `
+                        <div class="rounded-3xl bg-white/5 border border-white/10 p-6 text-center space-y-2">
+                            <p class="text-sm font-medium text-white">Tu pedido está vacío</p>
+                            <p class="text-xs text-ds-muted">Agrega productos del catálogo para armar tu pedido.</p>
+                        </div>
+                    `;
+                    if (clearBtn) clearBtn.classList.add("hidden");
+                    if (formSection) formSection.classList.add("hidden");
+                    if (footerAction) footerAction.classList.add("hidden");
+                    return;
+                }
+
+                if (clearBtn) clearBtn.classList.remove("hidden");
+                if (formSection) formSection.classList.remove("hidden");
+                if (footerAction) footerAction.classList.remove("hidden");
+
+                listEl.innerHTML = cart.map((item) => {
+                    const lineTotal = (Number(item.price) || 0) * (parseInt(item.qty, 10) || 0);
+                    return `
+                        <div class="flex items-center justify-between gap-3 p-3 rounded-3xl bg-white/5 border border-white/10">
+                            <img
+                                src="${item.image || FALLBACK_PRODUCT_IMAGE}"
+                                alt="${item.name}"
+                                onerror="this.onerror=null;this.src='${FALLBACK_PRODUCT_IMAGE}';"
+                                class="w-12 h-12 rounded-2xl object-cover bg-black/50 flex-shrink-0">
+                            <div class="min-w-0 flex-1">
+                                <p class="text-xs sm:text-sm font-semibold text-white truncate">${item.name}</p>
+                                <p class="text-xs font-bold text-ds-goldLight">$${lineTotal.toFixed(2)}</p>
+                            </div>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <button type="button" onclick="changeCartQty('${item.id}', -1)" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center">-</button>
+                                <span class="text-xs font-bold text-white w-5 text-center">${item.qty}</span>
+                                <button type="button" onclick="changeCartQty('${item.id}', 1)" class="w-7 h-7 rounded-full gold-btn-gradient text-xs font-extrabold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+
+                window.updateDeliveryUI();
+                const { total } = getCartTotals();
+                if (modalTotalEl) modalTotalEl.textContent = `$${total.toFixed(2)}`;
+            }
+
+            window.sendOrderToWhatsApp = () => {
+                if (cart.length === 0) {
+                    showToast("Agrega al menos un producto");
+                    return;
+                }
+
+                const nameInput = document.getElementById("customer-name");
+                const addressInput = document.getElementById("customer-address");
+                const notesInput = document.getElementById("customer-notes");
+                const selectedDelivery = document.querySelector('input[name="deliveryMethod"]:checked');
+
+                const customerName = String(nameInput?.value || "").trim();
+                const customerAddress = String(addressInput?.value || "").trim();
+                const customerNotes = String(notesInput?.value || "").trim();
+                const deliveryMethod = selectedDelivery ? selectedDelivery.value : "Retiro en persona";
+
+                if (!customerName) {
+                    showToast("Por favor ingresa tu nombre completo");
+                    nameInput?.focus();
+                    return;
+                }
+                if (!customerAddress) {
+                    showToast("Por favor ingresa tu dirección o ciudad");
+                    addressInput?.focus();
+                    return;
+                }
+
+                const { subtotal, total } = getCartTotals();
+                const lines = [
+                    `Hola *${storeConfig.storeName || "DS Store"}*, quiero realizar el siguiente pedido:`,
+                    "",
+                    ...cart.map((item) => `• ${item.qty}x ${item.name} — $${((Number(item.price) || 0) * (parseInt(item.qty, 10) || 0)).toFixed(2)}`),
+                    "",
+                    `Método de entrega: ${deliveryMethod}`,
+                    `Nombre: ${customerName}`,
+                    `Dirección / Ciudad: ${customerAddress}`,
+                    ...(customerNotes ? [`Notas: ${customerNotes}`] : []),
+                    `Subtotal: $${subtotal.toFixed(2)}`,
+                    `*Total: $${total.toFixed(2)}*`
+                ];
+
+                const waUrl = `https://wa.me/${sanitizePhoneNumber(storeConfig.whatsapp || DEFAULT_WHATSAPP_NUMBER)}?text=${encodeURIComponent(lines.join("\n"))}`;
+                window.open(waUrl, "_blank", "noopener,noreferrer");
+            };
+
+            function updateSyncStatusBadge(isCloudOk, detailText = "") {
+                const dot = document.getElementById("firebase-status-dot");
+                const text = document.getElementById("firebase-status-text");
+                if (!dot || !text) return;
+                if (isCloudOk) {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+                    text.textContent = detailText || "Nube compartida sincronizada";
+                } else {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-amber-400";
+                    text.textContent = detailText || "Solo local en este equipo";
+                }
+            }
+
+            window.openPinModal = () => {
+                const modal = document.getElementById("pin-modal");
+                const input = document.getElementById("admin-pin-input");
+                if (input) input.value = "";
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    modal.classList.add("flex");
+                }
+                syncBodyScrollLock();
+                setTimeout(() => input?.focus(), 60);
+                refreshIcons();
+            };
+
+            window.closePinModal = () => {
+                const modal = document.getElementById("pin-modal");
+                if (modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+                syncBodyScrollLock();
+            };
+
+            window.verifyAdminPin = () => {
+                const input = document.getElementById("admin-pin-input");
+                const entered = String(input?.value || "").trim();
+                const expected = String(storeConfig.pin || "2026").trim();
+                if (!entered) {
+                    showToast("Ingresa tu PIN");
+                    input?.focus();
+                    return;
+                }
+                if (entered !== expected) {
+                    showToast("PIN incorrecto");
+                    if (input) input.value = "";
+                    input?.focus();
+                    return;
+                }
+                window.closePinModal();
+                openAdminDashboard();
+            };
+
+            document.addEventListener("keydown", (e) => {
+                const pinModal = document.getElementById("pin-modal");
+                if (e.key === "Enter" && pinModal && !pinModal.classList.contains("hidden")) {
+                    e.preventDefault();
+                    window.verifyAdminPin();
+                }
+            });
+
+            function getStoredBlobId() {
+                if (activeJsonBlobId) return activeJsonBlobId;
+                try {
+                    const saved = localStorage.getItem(LOCAL_BLOB_ID_KEY);
+                    if (saved && saved.trim()) {
+                        activeJsonBlobId = saved.trim();
+                        return activeJsonBlobId;
+                    }
+                } catch (_) {}
+                return null;
+            }
+
+            function setStoredBlobId(blobId) {
+                if (!blobId) return;
+                activeJsonBlobId = String(blobId).trim();
+                try {
+                    localStorage.setItem(LOCAL_BLOB_ID_KEY, activeJsonBlobId);
+                } catch (_) {}
+            }
+
+            function buildLightweightCloudPayload(catalogState) {
+                const lightProducts = (Array.isArray(catalogState.products) ? catalogState.products : []).map((prod) => {
+                    const imgs = Array.isArray(prod.images) ? prod.images : [];
+                    const safeImgs = imgs.map((src) => {
+                        if (typeof src === "string" && src.startsWith("data:image/") && src.length > 85000) {
+                            return FALLBACK_PRODUCT_IMAGE;
+                        }
+                        return src;
+                    });
+                    return {
+                        ...prod,
+                        images: safeImgs.length > 0 ? safeImgs : [FALLBACK_PRODUCT_IMAGE]
+                    };
+                });
+                return {
+                    ...catalogState,
+                    products: lightProducts
+                };
+            }
+
+            function extractRemotePayload(rawJson) {
+                if (!rawJson) return null;
+                if (typeof rawJson === "string") {
+                    try {
+                        rawJson = JSON.parse(rawJson);
+                    } catch (_) {
+                        return null;
+                    }
+                }
+                if (Array.isArray(rawJson)) {
+                    const match = rawJson.find((entry) =>
+                        entry?.storeKey === SYNC_STORE_KEY ||
+                        entry?.data?.storeKey === SYNC_STORE_KEY ||
+                        entry?.data?.storeConfig ||
+                        entry?.storeConfig
+                    );
+                    if (!match) return null;
+                    if (match.id) restfulStoredId = String(match.id);
+                    return match.data && match.data.storeConfig ? match.data : match;
+                }
+                if (typeof rawJson === "object") {
+                    if (rawJson.id) restfulStoredId = String(rawJson.id);
+                    if (rawJson.value !== undefined) {
+                        return extractRemotePayload(rawJson.value);
+                    }
+                    if (rawJson.data && typeof rawJson.data === "object" && (rawJson.data.storeConfig || Array.isArray(rawJson.data.products))) {
+                        return rawJson.data;
+                    }
+                    if (rawJson.storeConfig || Array.isArray(rawJson.products)) {
+                        return rawJson;
+                    }
+                }
+                return null;
+            }
+
+            function applyRemoteCatalogState(extracted) {
+                if (!extracted || typeof extracted !== "object") return false;
+                const remoteUpdatedAt = Number(extracted.updatedAt || 0) || 0;
+                if (remoteUpdatedAt > 0 && lastKnownRemoteUpdatedAt > 0 && remoteUpdatedAt < lastKnownRemoteUpdatedAt) {
+                    return false;
+                }
+                lastKnownRemoteUpdatedAt = Math.max(lastKnownRemoteUpdatedAt, remoteUpdatedAt);
+
+                if (Array.isArray(extracted.deletedProductIds)) {
+                    deletedProductIds = Array.from(new Set([
+                        ...deletedProductIds.map((id) => String(id).trim()),
+                        ...extracted.deletedProductIds.map((id) => String(id).trim())
+                    ].filter(Boolean)));
+                    writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+                }
+
+                if (extracted.storeConfig) {
+                    storeConfig = {
+                        ...storeConfig,
+                        ...extracted.storeConfig,
+                        whatsapp: DEFAULT_WHATSAPP_NUMBER,
+                        categories: normalizeCategoryList(extracted.storeConfig.categories || storeConfig.categories)
+                    };
+                    writeStoredJSON(LOCAL_CONFIG_KEY, storeConfig);
+                }
+
+                if (Array.isArray(extracted.products)) {
+                    products = filterOutDeletedProducts(extracted.products.map((item, idx) => normalizeProductItem(item, idx)));
+                    writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                }
+
+                cart = filterOutDeletedProducts(cart);
+                writeStoredJSON(LOCAL_CART_KEY, cart);
+                updateSyncStatusBadge(true, "Sincronizado en la nube");
+                return true;
+            }
+
+            async function syncCatalogToSharedCloud() {
+                const cleanProducts = filterOutDeletedProducts(products);
+                products = cleanProducts;
+                writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+
+                const nowStamp = Date.now();
+                lastKnownRemoteUpdatedAt = Math.max(lastKnownRemoteUpdatedAt, nowStamp);
+
+                const catalogState = {
+                    storeKey: SYNC_STORE_KEY,
+                    updatedAt: nowStamp,
+                    deletedProductIds: Array.from(new Set(deletedProductIds.map((id) => String(id).trim()).filter(Boolean))),
+                    storeConfig: {
+                        storeName: storeConfig.storeName,
+                        tagline: storeConfig.tagline,
+                        whatsapp: storeConfig.whatsapp,
+                        whatsappUrl: storeConfig.whatsappUrl,
+                        instagram: storeConfig.instagram,
+                        tiktok: storeConfig.tiktok,
+                        pin: storeConfig.pin,
+                        categories: normalizeCategoryList(storeConfig.categories)
+                    },
+                    products: cleanProducts
+                };
+
+                const cloudPayload = buildLightweightCloudPayload(catalogState);
+                let synced = false;
+
+                try {
+                    const kvRes = await fetch(`${KEYV_BASE_URL}/${encodeURIComponent(SYNC_STORE_KEY)}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({ value: JSON.stringify(cloudPayload) })
+                    });
+                    if (kvRes.ok) {
+                        synced = true;
+                    }
+                } catch (_) {}
+
+                const currentBlobId = getStoredBlobId();
+                if (currentBlobId) {
+                    try {
+                        const blobPut = await fetch(`https://jsonblob.com/api/jsonBlob/${encodeURIComponent(currentBlobId)}`, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify(cloudPayload)
+                        });
+                        if (blobPut.ok) {
+                            synced = true;
+                        }
+                    } catch (_) {}
+                }
+
+                if (!synced) {
+                    try {
+                        const blobPost = await fetch("https://jsonblob.com/api/jsonBlob", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify(cloudPayload)
+                        });
+                        if (blobPost.ok) {
+                            const locHeader = blobPost.headers.get("X-Jsonblob-Id") || blobPost.headers.get("Location") || "";
+                            const idFromHeader = locHeader.split("/").filter(Boolean).pop();
+                            const createdJson = await blobPost.json().catch(() => null);
+                            const resolvedId = idFromHeader || createdJson?.id || "";
+                            if (resolvedId) {
+                                setStoredBlobId(resolvedId);
+                            }
+                            synced = true;
+                        }
+                    } catch (_) {}
+                }
+
+                if (restfulStoredId) {
+                    try {
+                        const putRes = await fetch(`https://api.restful-api.dev/objects/${encodeURIComponent(restfulStoredId)}`, {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                name: SYNC_STORE_KEY,
+                                data: cloudPayload
+                            })
+                        });
+                        if (putRes.ok) {
+                            synced = true;
+                        }
+                    } catch (_) {}
+                }
+
+                if (!synced) {
+                    try {
+                        const postRes = await fetch("https://api.restful-api.dev/objects", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                name: SYNC_STORE_KEY,
+                                data: cloudPayload
+                            })
+                        });
+                        if (postRes.ok) {
+                            const created = await postRes.json().catch(() => null);
+                            if (created && created.id) {
+                                restfulStoredId = String(created.id);
+                            }
+                            synced = true;
+                        }
+                    } catch (_) {}
+                }
+
+                updateSyncStatusBadge(synced, synced ? "Sincronizado en la nube" : "Sin conexión a nube (solo local)");
+                return synced;
+            }
+
+            async function loadDataFromSharedCloud() {
+                if (isSavingRemote) return false;
+
+                try {
+                    const kvRes = await fetch(`${KEYV_BASE_URL}/${encodeURIComponent(SYNC_STORE_KEY)}?t=${Date.now()}`, {
+                        cache: "no-store",
+                        headers: { "Accept": "application/json" }
+                    });
+                    if (kvRes.ok) {
+                        const kvJson = await kvRes.json().catch(() => null);
+                        const extracted = extractRemotePayload(kvJson);
+                        if (extracted && applyRemoteCatalogState(extracted)) {
+                            return true;
+                        }
+                    }
+                } catch (_) {}
+
+                const blobIdsToTry = Array.from(new Set([
+                    getStoredBlobId(),
+                    SHARED_BOOTSTRAP_BLOB_ID
+                ].filter(Boolean)));
+
+                for (const bId of blobIdsToTry) {
+                    try {
+                        const blobRes = await fetch(`https://jsonblob.com/api/jsonBlob/${encodeURIComponent(bId)}?t=${Date.now()}`, {
+                            cache: "no-store",
+                            headers: { "Accept": "application/json" }
+                        });
+                        if (!blobRes.ok) continue;
+                        const blobData = await blobRes.json().catch(() => null);
+                        const extracted = extractRemotePayload(blobData);
+                        if (extracted && (extracted.storeKey === SYNC_STORE_KEY || Array.isArray(extracted.products))) {
+                            setStoredBlobId(bId);
+                            if (applyRemoteCatalogState(extracted)) {
+                                return true;
+                            }
+                        }
+                    } catch (_) {}
+                }
+
+                const candidateUrls = [
+                    ...(restfulStoredId ? [`https://api.restful-api.dev/objects/${encodeURIComponent(restfulStoredId)}?t=${Date.now()}`] : []),
+                    `https://api.restful-api.dev/objects?t=${Date.now()}`
+                ];
+
+                for (const url of candidateUrls) {
+                    try {
+                        const res = await fetch(url, { cache: "no-store" });
+                        if (!res.ok) continue;
+                        const parsed = await res.json().catch(() => null);
+                        const list = Array.isArray(parsed)
+                            ? parsed.filter((item) => item?.name === SYNC_STORE_KEY || item?.data?.storeKey === SYNC_STORE_KEY)
+                            : (parsed && (parsed.name === SYNC_STORE_KEY || parsed.data?.storeKey === SYNC_STORE_KEY) ? [parsed] : []);
+
+                        let latestData = null;
+                        for (const entry of list) {
+                            const extracted = extractRemotePayload(entry);
+                            if (extracted) {
+                                const stamp = Number(extracted.updatedAt || 0) || 0;
+                                if (!latestData || stamp >= (Number(latestData.updatedAt || 0) || 0)) {
+                                    latestData = extracted;
+                                }
+                            }
+                        }
+
+                        if (!latestData) continue;
+
+                        if (applyRemoteCatalogState(latestData)) {
+                            return true;
+                        }
+                    } catch (_) {}
+                }
+                updateSyncStatusBadge(false, "Solo local en este equipo");
+                return false;
+            }
+
+            window.saveProductsSectionChanges = async () => {
+                isSavingRemote = true;
+                try {
+                    products = filterOutDeletedProducts(products.map((item, idx) => normalizeProductItem(item, idx)));
+                    writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                    writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+                    renderCatalog();
+                    renderAdminProductList();
+
+                    if (isFirebaseReady && db) {
+                        const activeIds = new Set(products.map((p) => String(p.id).trim()));
+                        try {
+                            const existingSnap = await getDocs(collection(db, PRODUCTS_COLLECTION));
+                            for (const docSnap of existingSnap.docs) {
+                                if (!activeIds.has(String(docSnap.id).trim())) {
+                                    await deleteDoc(doc(db, PRODUCTS_COLLECTION, docSnap.id));
+                                }
+                            }
+                        } catch (_) {}
+
+                        for (const deletedId of deletedProductIds) {
+                            try {
+                                await deleteDoc(doc(db, PRODUCTS_COLLECTION, deletedId));
+                            } catch (_) {}
+                        }
+                        try {
+                            await setDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), {
+                                categories: normalizeCategoryList(storeConfig.categories),
+                                deletedProductIds,
+                                updatedAt: Date.now()
+                            }, { merge: true });
+                        } catch (_) {}
+                        for (const prod of products) {
+                            try {
+                                await setDoc(doc(db, PRODUCTS_COLLECTION, prod.id), prod);
+                            } catch (_) {}
+                        }
+                        updateSyncStatusBadge(true);
+                    }
+
+                    await syncCatalogToSharedCloud();
+                    showToast("Productos guardados");
+                } finally {
+                    isSavingRemote = false;
+                }
+            };
+
+            function openAdminDashboard() {
+                const modal = document.getElementById("admin-dashboard-modal");
+                const nameInput = document.getElementById("cfg-store-name");
+                const waInput = document.getElementById("cfg-whatsapp");
+                const tagInput = document.getElementById("cfg-tagline");
+                const pinInput = document.getElementById("cfg-pin");
+                const igInput = document.getElementById("cfg-instagram");
+                const ttInput = document.getElementById("cfg-tiktok");
+
+                if (nameInput) nameInput.value = storeConfig.storeName || "DS Store";
+                if (waInput) waInput.value = storeConfig.whatsapp || DEFAULT_WHATSAPP_NUMBER;
+                if (tagInput) tagInput.value = storeConfig.tagline || "Luxury & Exclusive Tech";
+                if (pinInput) pinInput.value = storeConfig.pin || "2026";
+                if (igInput) igInput.value = storeConfig.instagram || DEFAULT_INSTAGRAM_LINK;
+                if (ttInput) ttInput.value = storeConfig.tiktok || DEFAULT_TIKTOK_LINK;
+
+                renderAdminCategoriesList();
+                renderAdminProductList();
+
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    modal.classList.add("flex");
+                    const scrollArea = modal.querySelector(".ds-modal-scroll");
+                    if (scrollArea) scrollArea.scrollTop = 0;
+                }
+                syncBodyScrollLock();
+                refreshIcons();
+            }
+
+            window.closeAdminDashboard = () => {
+                const modal = document.getElementById("admin-dashboard-modal");
+                if (modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+                syncBodyScrollLock();
+            };
+
+            window.saveGeneralSettings = async () => {
+                isSavingRemote = true;
+                try {
+                    const nameVal = String(document.getElementById("cfg-store-name")?.value || "").trim() || "DS Store";
+                    const waVal = sanitizePhoneNumber(document.getElementById("cfg-whatsapp")?.value || DEFAULT_WHATSAPP_NUMBER);
+                    const tagVal = String(document.getElementById("cfg-tagline")?.value || "").trim() || "Luxury & Exclusive Tech";
+                    const pinVal = String(document.getElementById("cfg-pin")?.value || "").trim() || "2026";
+                    const igVal = String(document.getElementById("cfg-instagram")?.value || "").trim() || DEFAULT_INSTAGRAM_LINK;
+                    const ttVal = String(document.getElementById("cfg-tiktok")?.value || "").trim() || DEFAULT_TIKTOK_LINK;
+
+                    storeConfig = {
+                        ...storeConfig,
+                        storeName: nameVal,
+                        whatsapp: waVal,
+                        tagline: tagVal,
+                        pin: pinVal,
+                        instagram: igVal,
+                        tiktok: ttVal
+                    };
+
+                    writeStoredJSON(LOCAL_CONFIG_KEY, storeConfig);
+                    renderStoreBranding();
+
+                    if (isFirebaseReady && db) {
+                        try {
+                            await setDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), storeConfig, { merge: true });
+                        } catch (_) {}
+                    }
+
+                    await syncCatalogToSharedCloud();
+                    showToast("Configuración guardada");
+                } finally {
+                    isSavingRemote = false;
+                }
+            };
+
+            window.addCustomCategory = async () => {
+                const input = document.getElementById("new-category-name");
+                const newName = String(input?.value || "").trim();
+                if (!newName) {
+                    showToast("Escribe el nombre del menú");
+                    input?.focus();
+                    return;
+                }
+                if (newName.toLowerCase() === "todos") {
+                    showToast("'Todos' ya aparece automáticamente");
+                    return;
+                }
+
+                const current = normalizeCategoryList(storeConfig.categories);
+                if (current.some((c) => c.toLowerCase() === newName.toLowerCase())) {
+                    showToast("Ese menú ya existe");
+                    return;
+                }
+
+                isSavingRemote = true;
+                try {
+                    storeConfig.categories = [...current, newName];
+                    writeStoredJSON(LOCAL_CONFIG_KEY, storeConfig);
+                    if (input) input.value = "";
+
+                    renderAdminCategoriesList();
+                    renderAdminProductList();
+                    renderCategoryMenu();
+
+                    if (isFirebaseReady && db) {
+                        try {
+                            await setDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), { categories: storeConfig.categories }, { merge: true });
+                        } catch (_) {}
+                    }
+
+                    await syncCatalogToSharedCloud();
+                    showToast(`Menú "${newName}" agregado`);
+                } finally {
+                    isSavingRemote = false;
+                }
+            };
+
+            window.removeCustomCategory = async (catName) => {
+                const current = normalizeCategoryList(storeConfig.categories);
+                if (current.length <= 1) {
+                    showToast("Debe quedar al menos un menú");
+                    return;
+                }
+
+                isSavingRemote = true;
+                try {
+                    storeConfig.categories = current.filter((c) => c.toLowerCase() !== String(catName).toLowerCase());
+                    if (activeCategory.toLowerCase() === String(catName).toLowerCase()) {
+                        activeCategory = "Todos";
+                    }
+                    if (activeAdminCategory.toLowerCase() === String(catName).toLowerCase()) {
+                        activeAdminCategory = "Todos";
+                    }
+
+                    writeStoredJSON(LOCAL_CONFIG_KEY, storeConfig);
+                    renderAdminCategoriesList();
+                    renderAdminProductList();
+                    renderCategoryMenu();
+                    renderCatalog();
+
+                    if (isFirebaseReady && db) {
+                        try {
+                            await setDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), { categories: storeConfig.categories }, { merge: true });
+                        } catch (_) {}
+                    }
+
+                    await syncCatalogToSharedCloud();
+                    showToast("Menú eliminado");
+                } finally {
+                    isSavingRemote = false;
+                }
+            };
+
+            function renderAdminCategoriesList() {
+                const container = document.getElementById("admin-categories-list");
+                if (!container) return;
+                const cats = normalizeCategoryList(storeConfig.categories);
+
+                container.innerHTML = cats.map((cat) => {
+                    const escaped = cat.replace(/'/g, "\\'");
+                    return `
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-ds-gold/30 text-xs font-medium text-white">
+                            <span>${cat}</span>
+                            <button type="button" onclick="removeCustomCategory('${escaped}')" class="text-red-400 hover:text-red-300 font-bold leading-none">
+                                ×
+                            </button>
+                        </span>
+                    `;
+                }).join("");
+            }
+
+            window.selectAdminCategory = (cat) => {
+                activeAdminCategory = cat || "Todos";
+                renderAdminProductList();
+            };
+
+            function renderAdminProductList() {
+                const listEl = document.getElementById("admin-products-list");
+                const countEl = document.getElementById("admin-prod-count");
+                if (!listEl) return;
+
+                const menus = ["Todos", ...normalizeCategoryList(storeConfig.categories)];
+                if (activeAdminCategory !== "Todos" && !menus.some((m) => m.toLowerCase() === activeAdminCategory.toLowerCase())) {
+                    activeAdminCategory = "Todos";
+                }
+
+                const filtered = activeAdminCategory === "Todos"
+                    ? products
+                    : products.filter((p) => String(p.category || "").toLowerCase() === activeAdminCategory.toLowerCase());
+
+                if (countEl) countEl.textContent = String(filtered.length);
+
+                const menuTabsHtml = `
+                    <div class="flex items-center flex-wrap gap-1.5 pb-1">
+                        ${menus.map((menu) => {
+                            const isSelected = menu.toLowerCase() === activeAdminCategory.toLowerCase();
+                            const safeMenu = menu.replace(/'/g, "\\'");
+                            return `
+                                <button
+                                    type="button"
+                                    onclick="selectAdminCategory('${safeMenu}')"
+                                    class="px-3 py-1 rounded-full text-[11px] font-semibold transition-all ${
+                                        isSelected
+                                            ? "gold-btn-gradient"
+                                            : "bg-white/5 hover:bg-white/10 text-gray-300 border border-white/15"
+                                    }">
+                                    ${menu}
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                `;
+
+                if (filtered.length === 0) {
+                    listEl.innerHTML = `
+                        ${menuTabsHtml}
+                        <p class="text-xs text-ds-muted text-center py-4">No hay productos en "${activeAdminCategory}".</p>
+                    `;
+                    return;
+                }
+
+                const itemsHtml = filtered.map((prod) => {
+                    const thumb = (Array.isArray(prod.images) && prod.images[0]) || FALLBACK_PRODUCT_IMAGE;
+                    const statusMeta = getProductStatusMeta(prod);
+                    return `
+                        <div class="flex items-center justify-between gap-3 p-3 rounded-3xl bg-white/5 border border-white/10">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <img
+                                    src="${thumb}"
+                                    alt="${prod.name}"
+                                    onerror="this.onerror=null;this.src='${FALLBACK_PRODUCT_IMAGE}';"
+                                    class="w-12 h-12 rounded-2xl object-cover bg-black/50 flex-shrink-0">
+                                <div class="min-w-0">
+                                    <p class="text-xs sm:text-sm font-semibold text-white truncate">${prod.name}</p>
+                                    <p class="text-[11px] text-ds-muted truncate">
+                                        ${prod.category} · <span class="text-ds-goldLight font-semibold">$${Number(prod.price || 0).toFixed(2)}</span> · Stock: ${prod.stock} · <span class="${statusMeta.colorClass} font-semibold">${statusMeta.label}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1.5 flex-shrink-0">
+                                <button type="button" onclick="openProductEditor('${prod.id}')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-ds-goldLight">
+                                    Editar
+                                </button>
+                                <button type="button" onclick="deleteProduct('${prod.id}')" class="px-2.5 py-1.5 rounded-full bg-red-500/15 hover:bg-red-500/25 text-xs font-medium text-red-300">
+                                    Borrar
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+
+                listEl.innerHTML = `${menuTabsHtml}${itemsHtml}`;
+            }
+
+            function populateEditorCategorySelect(selectedCategory) {
+                const select = document.getElementById("edit-prod-category");
+                if (!select) return;
+                const cats = normalizeCategoryList(storeConfig.categories);
+                if (selectedCategory && !cats.some((c) => c.toLowerCase() === selectedCategory.toLowerCase())) {
+                    cats.unshift(selectedCategory);
+                }
+                select.innerHTML = cats.map((cat) => `<option value="${cat}">${cat}</option>`).join("");
+                if (selectedCategory) {
+                    select.value = selectedCategory;
+                }
+            }
+
+            window.openProductEditor = (productId) => {
+                const modal = document.getElementById("product-editor-modal");
+                const titleEl = document.getElementById("editor-modal-title");
+                const idInput = document.getElementById("edit-prod-id");
+                const nameInput = document.getElementById("edit-prod-name");
+                const priceInput = document.getElementById("edit-prod-price");
+                const stockInput = document.getElementById("edit-prod-stock");
+                const statusSelect = document.getElementById("edit-prod-status");
+                const descInput = document.getElementById("edit-prod-desc");
+                const imgTextarea = document.getElementById("edit-prod-image");
+
+                if (productId) {
+                    const prod = products.find((p) => p.id === productId);
+                    if (!prod) return;
+                    if (titleEl) titleEl.textContent = "Editar Producto";
+                    if (idInput) idInput.value = prod.id;
+                    if (nameInput) nameInput.value = prod.name;
+                    populateEditorCategorySelect(prod.category);
+                    if (priceInput) priceInput.value = String(prod.price);
+                    if (stockInput) stockInput.value = String(prod.stock);
+                    if (statusSelect) statusSelect.value = prod.status || "disponible";
+                    if (descInput) descInput.value = prod.description || "";
+                    if (imgTextarea) imgTextarea.value = (prod.images || []).join("\n");
+                } else {
+                    const defaultCat = activeAdminCategory !== "Todos"
+                        ? activeAdminCategory
+                        : (normalizeCategoryList(storeConfig.categories)[0] || "Audífonos");
+                    if (titleEl) titleEl.textContent = "Nuevo Producto";
+                    if (idInput) idInput.value = "";
+                    if (nameInput) nameInput.value = "";
+                    populateEditorCategorySelect(defaultCat);
+                    if (priceInput) priceInput.value = "";
+                    if (stockInput) stockInput.value = "5";
+                    if (statusSelect) statusSelect.value = "disponible";
+                    if (descInput) descInput.value = "";
+                    if (imgTextarea) imgTextarea.value = "";
+                }
+
+                renderEditorGalleryPreview();
+
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    modal.classList.add("flex");
+                    const scrollArea = modal.querySelector(".ds-modal-scroll");
+                    if (scrollArea) scrollArea.scrollTop = 0;
+                }
+                syncBodyScrollLock();
+                refreshIcons();
+            };
+
+            window.closeProductEditor = () => {
+                const modal = document.getElementById("product-editor-modal");
+                if (modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+                syncBodyScrollLock();
+            };
+
+            window.renderEditorGalleryPreview = () => {
+                const previewEl = document.getElementById("edit-prod-gallery-preview");
+                const rawText = document.getElementById("edit-prod-image")?.value || "";
+                if (!previewEl) return;
+
+                const urls = parseImageListInput(rawText);
+                if (urls.length === 0) {
+                    previewEl.innerHTML = `<span class="text-[11px] text-ds-muted">Sin fotos cargadas aún (se usará imagen por defecto).</span>`;
+                    return;
+                }
+
+                previewEl.innerHTML = urls.map((url, idx) => `
+                    <div class="relative w-14 h-14 rounded-2xl overflow-hidden border border-ds-gold/35 bg-black/50 flex-shrink-0">
+                        <img src="${url}" alt="Foto ${idx + 1}" onerror="this.onerror=null;this.src='${FALLBACK_PRODUCT_IMAGE}';" class="w-full h-full object-cover">
+                        <button type="button" onclick="removeEditorImageAt(${idx})" class="absolute top-0.5 right-0.5 w-5 h-5 rounded-full bg-black/80 text-red-300 text-[11px] font-bold flex items-center justify-center">×</button>
+                    </div>
+                `).join("");
+            };
+
+            window.removeEditorImageAt = (indexToRemove) => {
+                const textarea = document.getElementById("edit-prod-image");
+                if (!textarea) return;
+                const urls = parseImageListInput(textarea.value);
+                urls.splice(indexToRemove, 1);
+                textarea.value = urls.join("\n");
+                window.renderEditorGalleryPreview();
+            };
+
+            function compressUploadedImage(file, maxSize = 640, quality = 0.72) {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const dataUrl = typeof reader.result === "string" ? reader.result : "";
+                        if (!dataUrl || !dataUrl.startsWith("data:image/")) {
+                            resolve("");
+                            return;
+                        }
+                        const img = new Image();
+                        img.onload = () => {
+                            let { width, height } = img;
+                            if (width > maxSize || height > maxSize) {
+                                if (width >= height) {
+                                    height = Math.round((height * maxSize) / width);
+                                    width = maxSize;
+                                } else {
+                                    width = Math.round((width * maxSize) / height);
+                                    height = maxSize;
+                                }
+                            }
+                            const canvas = document.createElement("canvas");
+                            canvas.width = Math.max(1, width);
+                            canvas.height = Math.max(1, height);
+                            const ctx = canvas.getContext("2d");
+                            if (!ctx) {
+                                resolve(dataUrl);
+                                return;
+                            }
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            let currentQuality = quality;
+                            let resultUrl = dataUrl;
+                            try {
+                                resultUrl = canvas.toDataURL("image/jpeg", currentQuality);
+                                while (resultUrl.length > 220000 && currentQuality > 0.35) {
+                                    currentQuality -= 0.1;
+                                    resultUrl = canvas.toDataURL("image/jpeg", currentQuality);
+                                }
+                            } catch (_) {}
+                            resolve(resultUrl && resultUrl.length > 50 ? resultUrl : dataUrl);
+                        };
+                        img.onerror = () => resolve(dataUrl);
+                        img.src = dataUrl;
+                    };
+                    reader.onerror = () => resolve("");
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            window.handleLocalImageUpload = (event) => {
+                const files = Array.from(event.target?.files || []);
+                if (files.length === 0) return;
+
+                const textarea = document.getElementById("edit-prod-image");
+                const existing = textarea ? parseImageListInput(textarea.value) : [];
+
+                Promise.all(files.map((file) => compressUploadedImage(file))).then((dataUrls) => {
+                    const validNew = dataUrls.filter((u) => isValidImageSource(u));
+                    const merged = [...existing, ...validNew];
+                    if (textarea) {
+                        textarea.value = merged.join("\n");
+                    }
+                    window.renderEditorGalleryPreview();
+                    event.target.value = "";
+                    if (validNew.length > 0) {
+                        showToast(`${validNew.length} foto(s) cargada(s)`);
+                    } else {
+                        showToast("No se pudo leer la imagen seleccionada");
+                    }
+                });
+            };
+
+            window.saveProductFromEditor = async () => {
+                const id = String(document.getElementById("edit-prod-id")?.value || "").trim();
+                const name = String(document.getElementById("edit-prod-name")?.value || "").trim();
+                const category = String(document.getElementById("edit-prod-category")?.value || "").trim() || (normalizeCategoryList(storeConfig.categories)[0] || "Audífonos");
+                const price = parseFloat(document.getElementById("edit-prod-price")?.value || "0");
+                const stock = Math.max(0, parseInt(document.getElementById("edit-prod-stock")?.value || "0", 10) || 0);
+                const status = String(document.getElementById("edit-prod-status")?.value || "disponible");
+                const description = String(document.getElementById("edit-prod-desc")?.value || "").trim();
+                const rawImages = parseImageListInput(document.getElementById("edit-prod-image")?.value || "");
+
+                if (!name) {
+                    showToast("Ingresa el nombre del producto");
+                    return;
+                }
+                if (isNaN(price) || price <= 0) {
+                    showToast("Ingresa un precio válido");
+                    return;
+                }
+
+                const images = rawImages.length > 0 ? rawImages : [...DEFAULT_PRODUCTS[0].images];
+
+                const productObj = normalizeProductItem({
+                    id: id || `prod-${Date.now()}`,
+                    name,
+                    category,
+                    price,
+                    stock,
+                    status,
+                    description,
+                    images
+                });
+
+                deletedProductIds = deletedProductIds.filter((delId) => String(delId).trim() !== String(productObj.id).trim());
+                writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+
+                isSavingRemote = true;
+                try {
+                    if (id) {
+                        const idx = products.findIndex((p) => String(p.id || "").trim() === id);
+                        if (idx !== -1) {
+                            products[idx] = productObj;
+                        } else {
+                            products.unshift(productObj);
+                        }
+                    } else {
+                        products.unshift(productObj);
+                    }
+
+                    products = filterOutDeletedProducts(products);
+                    writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                    renderCatalog();
+                    renderAdminProductList();
+                    updateBottomOrderBar();
+                    window.closeProductEditor();
+
+                    if (isFirebaseReady && db) {
+                        try {
+                            await setDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), { deletedProductIds, updatedAt: Date.now() }, { merge: true });
+                            await setDoc(doc(db, PRODUCTS_COLLECTION, productObj.id), productObj);
+                        } catch (_) {}
+                    }
+
+                    await syncCatalogToSharedCloud();
+                    showToast("Producto guardado");
+                } finally {
+                    isSavingRemote = false;
+                }
+            };
+
+            window.deleteProduct = async (productId) => {
+                const cleanId = String(productId || "").trim();
+                if (!cleanId) return;
+                isSavingRemote = true;
+                try {
+                    recordDeletedProductId(cleanId);
+                    products = filterOutDeletedProducts(products.filter((p) => String(p.id || "").trim() !== cleanId));
+                    cart = filterOutDeletedProducts(cart.filter((item) => String(item.id || "").trim() !== cleanId));
+                    writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                    writeStoredJSON(LOCAL_CART_KEY, cart);
+
+                    renderCatalog();
+                    renderAdminProductList();
+                    updateBottomOrderBar();
+
+                    if (isFirebaseReady && db) {
+                        try {
+                            await deleteDoc(doc(db, PRODUCTS_COLLECTION, cleanId));
+                            await setDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), { deletedProductIds, updatedAt: Date.now() }, { merge: true });
+                        } catch (_) {}
+                    }
+
+                    await syncCatalogToSharedCloud();
+                    showToast("Producto eliminado");
+                } finally {
+                    isSavingRemote = false;
+                }
+            };
+
+            async function loadDataFromFirestore() {
+                if (!isFirebaseReady || !db) return false;
+                try {
+                    const configSnap = await getDoc(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID));
+                    if (configSnap.exists()) {
+                        const remoteCfg = configSnap.data() || {};
+                        if (Array.isArray(remoteCfg.deletedProductIds)) {
+                            deletedProductIds = Array.from(new Set([
+                                ...deletedProductIds.map((id) => String(id).trim()),
+                                ...remoteCfg.deletedProductIds.map((id) => String(id).trim())
+                            ].filter(Boolean)));
+                            writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+                        }
+                        storeConfig = {
+                            ...storeConfig,
+                            ...remoteCfg,
+                            whatsapp: DEFAULT_WHATSAPP_NUMBER,
+                            categories: normalizeCategoryList(remoteCfg.categories || storeConfig.categories)
+                        };
+                        writeStoredJSON(LOCAL_CONFIG_KEY, storeConfig);
+                    }
+
+                    const prodSnap = await getDocs(collection(db, PRODUCTS_COLLECTION));
+                    if (!prodSnap.empty) {
+                        const remoteProducts = [];
+                        prodSnap.forEach((docSnap) => {
+                            remoteProducts.push(normalizeProductItem({ id: docSnap.id, ...docSnap.data() }));
+                        });
+                        const filteredRemote = filterOutDeletedProducts(remoteProducts);
+                        products = filteredRemote;
+                        writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                        cart = filterOutDeletedProducts(cart);
+                        writeStoredJSON(LOCAL_CART_KEY, cart);
+                    }
+                    updateSyncStatusBadge(true);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            function subscribeToFirestoreRealtime() {
+                if (!isFirebaseReady || !db) return;
+
+                if (typeof firestoreUnsubscribeConfig === "function") {
+                    firestoreUnsubscribeConfig();
+                }
+                if (typeof firestoreUnsubscribeProducts === "function") {
+                    firestoreUnsubscribeProducts();
+                }
+
+                firestoreUnsubscribeConfig = onSnapshot(doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID), (snap) => {
+                    if (isSavingRemote || !snap.exists()) return;
+                    const remoteCfg = snap.data() || {};
+                    if (Array.isArray(remoteCfg.deletedProductIds)) {
+                        deletedProductIds = Array.from(new Set([
+                            ...deletedProductIds.map((id) => String(id).trim()),
+                            ...remoteCfg.deletedProductIds.map((id) => String(id).trim())
+                        ].filter(Boolean)));
+                        writeStoredJSON(LOCAL_DELETED_IDS_KEY, deletedProductIds);
+                    }
+                    storeConfig = {
+                        ...storeConfig,
+                        ...remoteCfg,
+                        whatsapp: DEFAULT_WHATSAPP_NUMBER,
+                        categories: normalizeCategoryList(remoteCfg.categories || storeConfig.categories)
+                    };
+                    writeStoredJSON(LOCAL_CONFIG_KEY, storeConfig);
+                    products = filterOutDeletedProducts(products);
+                    writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                    renderAll();
+                    if (document.getElementById("admin-dashboard-modal")?.classList.contains("flex")) {
+                        renderAdminCategoriesList();
+                        renderAdminProductList();
+                    }
+                }, () => {});
+
+                firestoreUnsubscribeProducts = onSnapshot(collection(db, PRODUCTS_COLLECTION), (snap) => {
+                    if (isSavingRemote) return;
+                    const liveProducts = [];
+                    snap.forEach((docSnap) => {
+                        liveProducts.push(normalizeProductItem({ id: docSnap.id, ...docSnap.data() }));
+                    });
+                    products = filterOutDeletedProducts(liveProducts);
+                    writeStoredJSON(LOCAL_PRODUCTS_KEY, products);
+                    cart = filterOutDeletedProducts(cart);
+                    writeStoredJSON(LOCAL_CART_KEY, cart);
+                    updateSyncStatusBadge(true);
+                    renderAll();
+                    if (document.getElementById("admin-dashboard-modal")?.classList.contains("flex")) {
+                        renderAdminProductList();
+                    }
+                }, () => {});
+            }
+
+            function renderAll() {
+                renderStoreBranding();
+                renderCategoryMenu();
+                renderCatalog();
+                updateBottomOrderBar();
+                refreshIcons();
+            }
+
+            async function refreshRemoteStoreData() {
+                if (isSavingRemote) return;
+                const cloudOk = await loadDataFromSharedCloud();
+                if (!cloudOk) {
+                    await loadDataFromFirestore();
+                }
+                renderAll();
+                if (document.getElementById("admin-dashboard-modal")?.classList.contains("flex")) {
+                    renderAdminCategoriesList();
+                    renderAdminProductList();
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", async () => {
+                renderAll();
+                subscribeToFirestoreRealtime();
+                await refreshRemoteStoreData();
+                setInterval(() => {
+                    if (!document.hidden && !isSavingRemote) {
+                        refreshRemoteStoreData();
+                    }
+                }, 6000);
+            });
+
+            document.addEventListener("visibilitychange", () => {
+                if (!document.hidden) {
+                    refreshRemoteStoreData();
+                }
+            });
+        </script>
+    </body>
+    </html>
