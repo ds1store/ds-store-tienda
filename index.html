@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DS Store | Tecnología Premium & Luxury Audio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fuentes Google: Inter (limpia y moderna) y Playfair Display para acentos de lujo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                    colors: {
+                        ds: {
+                            black: '#08080A',
+                            surface: '#121216',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            goldDark: '#AA8220',
+                            muted: '#9CA3AF'
+                        }
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.75rem',
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* ==========================================================================
+           ESTILOS LIQUID GLASS & PALETA NEGRO PROFUNDO + DORADO METÁLICO
+           ========================================================================== */
+        html, body, button, a, input, textarea, select, label {
+            touch-action: manipulation;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: clip;
+        }
+
+        body {
+            background-color: #08080A;
+            color: #F9FAFB;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Esferas de luz dorada ambiental en el fondo */
+        .gold-orb {
+            position: fixed;
+            border-radius: 9999px;
+            filter: blur(110px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.22;
+        }
+
+        /* Fondo Hero de lujo con resplandor dorado radial */
+        .hero-luxury-bg {
+            background:
+                radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.22) 0%, rgba(170, 130, 32, 0.08) 38%, rgba(8, 8, 10, 0) 72%),
+                linear-gradient(180deg, #0D0C0A 0%, #08080A 100%);
+        }
+
+        /* Efecto Liquid Glass elegante estilo iPhone con reflejos dorados */
+        .liquid-glass-dark {
+            background: rgba(16, 16, 22, 0.44);
+            backdrop-filter: blur(36px) saturate(200%) brightness(1.08);
+            -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow:
+                0 20px 42px -14px rgba(0, 0, 0, 0.52),
+                0 0 0 1px rgba(212, 175, 55, 0.26),
+                inset 0 1px 1px rgba(255, 255, 255, 0.28),
+                inset 0 -1px 0.5px rgba(212, 175, 55, 0.16);
+        }
+
+        /* Tarjeta de producto Liquid Glass elegante estilo iPhone */
+        .product-glass-card {
+            background: linear-gradient(160deg, rgba(30, 30, 40, 0.5) 0%, rgba(14, 14, 19, 0.36) 100%);
+            backdrop-filter: blur(32px) saturate(195%) brightness(1.06);
+            -webkit-backdrop-filter: blur(32px) saturate(195%) brightness(1.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow:
+                0 18px 36px -14px rgba(0, 0, 0, 0.48),
+                0 0 0 1px rgba(212, 175, 55, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.24),
+                inset 0 -1px 0.5px rgba(212, 175, 55, 0.1);
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .product-glass-card:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(160deg, rgba(40, 40, 52, 0.58) 0%, rgba(18, 18, 24, 0.44) 100%);
+            border-color: rgba(212, 175, 55, 0.46);
+            box-shadow:
+                0 22px 42px -14px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(212, 175, 55, 0.32),
+                inset 0 1px 1px rgba(255, 255, 255, 0.32);
+        }
+
+        /* Gradiente dorado metálico para textos y botones */
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA8220 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-btn-gradient {
+            background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B58E26 100%);
+            color: #08080A;
+            box-shadow:
+                0 12px 28px -5px rgba(212, 175, 55, 0.38),
+                inset 0 1px 1px rgba(255, 255, 255, 0.65);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gold-btn-gradient:hover {
+            filter: brightness(1.08);
+            transform: scale(1.02);
+        }
+
+        .gold-btn-gradient:active {
+            transform: scale(0.97);
+        }
+
+        /* Botón secundario con borde dorado metálico */
+        .gold-outline-btn {
+            background: rgba(212, 175, 55, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(212, 175, 55, 0.65);
+            color: #F3E5AB;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gold-outline-btn:hover {
+            background: rgba(212, 175, 55, 0.16);
+            border-color: #F3E5AB;
+            transform: scale(1.02);
+        }
+
+        .gold-outline-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Personalización de scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08080A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 9999px;
+        }
+
+        /* Ocultar insignia inyectada por Netlify para que no tape la barra VER PEDIDO */
+        [data-netlify-badge],
+        [data-netlify-badge="true"],
+        .netlify-badge,
+        [class*="netlify-badge"],
+        [id*="netlify-badge"],
+        a[href*="netlify.com"][style*="position: fixed"],
+        a[href*="netlify.com"][style*="position:fixed"],
+        div[style*="Powered by Netlify"],
+        div[style*="powered by netlify"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            width: 0 !important;
+            height: 0 !important;
+            max-width: 0 !important;
+            max-height: 0 !important;
+            overflow: hidden !important;
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-ds-gold selection:text-ds-black">
+
+    <!-- Luces ambientales doradas de fondo -->
+    <div class="gold-orb w-80 h-80 sm:w-[480px] sm:h-[480px] bg-ds-gold -top-24 -left-24"></div>
+    <div class="gold-orb w-96 h-96 sm:w-[550px] sm:h-[550px] bg-amber-600 top-1/2 -right-32"></div>
+    <div class="gold-orb w-72 h-72 sm:w-[400px] sm:h-[400px] bg-ds-gold bottom-0 left-1/4"></div>
+
+    <!-- Notificación Toast Flotante -->
+    <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] pointer-events-none transition-all duration-300 opacity-0 -translate-y-4 w-[90%] max-w-sm">
+        <div class="liquid-glass-dark rounded-full px-5 py-2 border border-ds-gold/45 shadow-2xl flex items-center justify-center">
+            <span id="toast-msg" class="text-xs sm:text-sm font-medium text-white text-center truncate">Producto agregado</span>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         BARRA SUPERIOR FLOTANTE (LOGO DS STORE + ADMIN + CARRITO)
+         ========================================================================== -->
+    <header class="fixed top-2.5 sm:top-3 left-0 right-0 z-40 px-2.5 sm:px-6">
+        <nav class="max-w-5xl mx-auto liquid-glass-dark rounded-full px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-2">
+
+            <!-- Marca + Logo Circular -->
+            <button type="button" onclick="showView('inicio')" class="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none min-w-0">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full p-0.5 bg-gradient-to-tr from-ds-goldDark via-ds-goldLight to-ds-gold shadow-lg flex-shrink-0 overflow-hidden">
+                    <div id="default-leopard-svg" class="w-full h-full rounded-full bg-ds-black flex flex-col items-center justify-center text-ds-gold">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M2 18h20M4 15l2-9 6 4 6-4 2 9H4z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="6" cy="5" r="1" fill="currentColor"/>
+                            <circle cx="12" cy="4" r="1" fill="currentColor"/>
+                            <circle cx="18" cy="5" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="text-[7px] sm:text-[8px] font-serif font-bold tracking-widest leading-none mt-0.5">DS</span>
+                    </div>
+                </div>
+                <div class="min-w-0">
+                    <span id="header-store-name" class="block font-serif text-sm sm:text-lg font-semibold tracking-wide gold-text-gradient leading-tight truncate">
+                        DS Store
+                    </span>
+                    <span id="header-store-tagline" class="block text-[9px] sm:text-xs text-ds-muted font-light truncate">
+                        Luxury & Exclusive Tech
+                    </span>
+                </div>
+            </button>
+
+            <!-- Botones Derecha: Admin Discreto + Carrito de Compras -->
+            <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+                <button
+                    type="button"
+                    onclick="openPinModal()"
+                    title="Panel Administrador"
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/10 border border-ds-gold/25 flex items-center justify-center text-ds-goldLight transition-all">
+                    <i data-lucide="settings" class="w-4 h-4"></i>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="openOrderModal()"
+                    class="relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-ds-gold/40 text-white transition-all">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 sm:w-5 sm:h-5 text-ds-gold"></i>
+                    <span class="text-xs font-medium hidden sm:inline">Carrito</span>
+                    <span id="header-cart-count" class="min-w-[20px] h-[20px] sm:min-w-[22px] sm:h-[22px] px-1.5 rounded-full gold-btn-gradient text-[10px] sm:text-[11px] font-bold flex items-center justify-center">
+                        0
+                    </span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================================================
+         PRIMERA VISTA: HERO / PORTADA DE LUJO
+         ========================================================================== -->
+    <section id="inicio" class="hero-luxury-bg relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-20 sm:pt-24 pb-10">
+        <div class="max-w-2xl w-full mx-auto flex flex-col items-center space-y-3.5 sm:space-y-5">
+
+            <!-- Emblema / Logo Central DS Store -->
+            <div class="relative">
+                <div class="absolute inset-0 rounded-full bg-ds-gold/25 blur-xl scale-105"></div>
+                <div class="relative w-20 h-20 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-ds-goldDark via-ds-goldLight to-ds-gold shadow-2xl overflow-hidden">
+                    <div id="hero-default-svg" class="w-full h-full rounded-full bg-ds-black flex flex-col items-center justify-center text-ds-gold">
+                        <svg class="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M2 18h20M4 15l2-9 6 4 6-4 2 9H4z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="6" cy="5" r="1" fill="currentColor"/>
+                            <circle cx="12" cy="4" r="1" fill="currentColor"/>
+                            <circle cx="18" cy="5" r="1" fill="currentColor"/>
+                        </svg>
+                        <span id="hero-default-text" class="text-[8px] sm:text-xs font-serif font-bold tracking-[0.08em] sm:tracking-[0.2em] leading-none mt-1 whitespace-nowrap">DS STORE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Etiqueta superior sincronizada con el Subtítulo -->
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ds-gold/10 border border-ds-gold/30 text-[10px] sm:text-xs font-medium text-ds-goldLight tracking-[0.14em] sm:tracking-[0.18em] uppercase max-w-full">
+                <i data-lucide="sparkles" class="w-3 h-3 text-ds-gold flex-shrink-0"></i>
+                <span id="hero-tagline-badge" class="truncate">Luxury & Exclusive Tech</span>
+            </span>
+
+            <!-- Título GRANDE -->
+            <h1 class="text-[22px] sm:text-5xl font-serif font-bold tracking-tight leading-[1.15] gold-text-gradient uppercase px-1 max-w-[22rem] sm:max-w-none">
+                TECNOLOGÍA PREMIUM PARA TI
+            </h1>
+
+            <!-- Subtítulo -->
+            <p class="text-xs sm:text-base text-gray-300 font-light max-w-md leading-relaxed px-1">
+                Audífonos de lujo, envíos seguros a <strong class="text-ds-goldLight font-medium">TODO ECUADOR</strong>, retiro sin costo adicional
+            </p>
+
+            <!-- BOTONES PRINCIPALES -->
+            <div class="w-full max-w-xl flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-1">
+                <!-- 1. Botón DORADO: VER LA TIENDA -->
+                <button
+                    type="button"
+                    onclick="showView('tienda')"
+                    class="w-full sm:flex-1 gold-btn-gradient py-3 px-5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase flex flex-col items-center justify-center gap-0.5 shadow-xl">
+                    <span class="inline-flex items-center gap-1.5">
+                        <span>VER LA TIENDA</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 stroke-[2.5]"></i>
+                    </span>
+                    <span class="text-[9px] sm:text-[10px] font-bold tracking-[0.16em] opacity-90">TECNOLOGÍA</span>
+                </button>
+
+                <!-- 2. Botón con borde dorado: PERFUMES -->
+                <button
+                    type="button"
+                    onclick="showView('perfumes')"
+                    class="w-full sm:flex-1 gold-outline-btn py-3.5 px-5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase flex items-center justify-center gap-2">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-ds-gold stroke-[2.2]"></i>
+                    <span>PERFUMES</span>
+                </button>
+
+                <!-- 3. Botón con borde dorado: ESCRÍBENOS -->
+                <a
+                    id="hero-whatsapp-link"
+                    href="https://wa.me/593988623836"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full sm:flex-1 gold-outline-btn py-3.5 px-5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-ds-gold stroke-[2.2]"></i>
+                    <span>ESCRÍBENOS</span>
+                </a>
+            </div>
+
+            <!-- Texto pequeño debajo -->
+            <p class="text-[11px] sm:text-xs text-ds-muted/90 font-light tracking-wide">
+                Calidad premium para tu día a día
+            </p>
+
+            <!-- Redes Sociales: Instagram y TikTok -->
+            <div class="flex items-center justify-center gap-3">
+                <a
+                    id="hero-instagram-link"
+                    href="https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram DS Store"
+                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-ds-gold/20 border border-ds-gold/35 hover:border-ds-goldLight text-ds-goldLight flex items-center justify-center transition-all hover:scale-105 shadow-md">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+
+                <a
+                    id="hero-tiktok-link"
+                    href="https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok DS Store"
+                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-ds-gold/20 border border-ds-gold/35 hover:border-ds-goldLight text-ds-goldLight flex items-center justify-center transition-all hover:scale-105 shadow-md">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Pie de página compacto integrado sin franja extra -->
+            <footer class="pt-3 mt-1 border-t border-white/10 w-full max-w-md text-center text-[#9CA3AF] text-[10px] sm:text-xs">
+                <p>© 2026 DS Store · Todos los derechos reservados · <span class="text-ds-goldLight font-medium">DR WEB</span></p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEGUNDA VISTA: CATÁLOGO DE PRODUCTOS (MENÚS + CUADRÍCULA ORDENADA)
+         ========================================================================== -->
+    <main id="tienda" class="hidden relative z-10 flex-1 pt-20 sm:pt-24 pb-24 sm:pb-16 px-2.5 sm:px-6 max-w-5xl mx-auto w-full space-y-3.5 sm:space-y-4">
+
+        <!-- Barra superior de navegación interna para volver al Inicio -->
+        <div class="flex items-center justify-between gap-2">
+            <button
+                type="button"
+                onclick="showView('inicio')"
+                class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-ds-gold/30 text-[11px] sm:text-xs font-medium text-ds-goldLight transition-all">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <span>Volver al Inicio</span>
+            </button>
+
+            <a
+                id="store-whatsapp-link"
+                href="https://wa.me/593988623836"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-full bg-ds-gold/15 hover:bg-ds-gold/25 border border-ds-gold/40 text-[11px] sm:text-xs font-semibold text-ds-goldLight transition-all">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5 text-ds-gold"></i>
+                <span>Ayuda por WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Encabezado de Sección Catálogo -->
+        <div class="liquid-glass-dark rounded-3xl sm:rounded-4xl p-3.5 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div class="space-y-0.5">
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-ds-gold/15 border border-ds-gold/30 text-[10px] font-medium text-ds-goldLight tracking-wider uppercase">
+                    Catálogo Oficial
+                </span>
+                <h2 class="text-base sm:text-xl font-serif font-medium text-white">
+                    Selecciona tus favoritos y arma tu pedido
+                </h2>
+                <p class="text-[11px] sm:text-xs text-ds-muted font-light">
+                    Presiona <strong class="text-ds-goldLight font-medium">+ AGREGAR</strong> en los modelos que desees y finaliza tu pedido abajo.
+                </p>
+            </div>
+            <!-- Botón rápido visible solo cuando el admin inicia sesión -->
+            <button type="button" id="quick-add-btn" onclick="openProductEditor(null)" class="hidden gold-btn-gradient px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 flex-shrink-0">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Agregar Producto</span>
+            </button>
+        </div>
+
+        <!-- Menús de Categorías del Catálogo -->
+        <div id="category-menu-bar" class="flex items-center gap-2 overflow-x-auto pb-1">
+            <!-- Botones de menú renderizados por JS -->
+        </div>
+
+        <!-- Cuadrícula de Tarjetas de Productos -->
+        <section id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4 items-stretch">
+            <!-- Las tarjetas se renderizan dinámicamente aquí -->
+        </section>
+
+        <!-- Pie de página compacto en vista Tienda -->
+        <footer class="pt-3 mt-2 border-t border-white/10 text-center text-[#9CA3AF] text-[10px] sm:text-xs">
+            <p>© 2026 DS Store · Todos los derechos reservados · <span class="text-ds-goldLight font-medium">DR WEB</span></p>
+        </footer>
+
+    </main>
+
+    <!-- ==========================================================================
+         TERCERA VISTA: CATÁLOGO EXCLUSIVO DE PERFUMES
+         ========================================================================== -->
+    <main id="perfumes" class="hidden relative z-10 flex-1 pt-20 sm:pt-24 pb-24 sm:pb-16 px-2.5 sm:px-6 max-w-5xl mx-auto w-full space-y-3.5 sm:space-y-4">
+
+        <!-- Barra superior de navegación interna para volver al Inicio -->
+        <div class="flex items-center justify-between gap-2">
+            <button
+                type="button"
+                onclick="showView('inicio')"
+                class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-ds-gold/30 text-[11px] sm:text-xs font-medium text-ds-goldLight transition-all">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <span>Volver al Inicio</span>
+            </button>
+
+            <a
+                id="perfumes-whatsapp-link"
+                href="https://wa.me/593988623836"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-full bg-ds-gold/15 hover:bg-ds-gold/25 border border-ds-gold/40 text-[11px] sm:text-xs font-semibold text-ds-goldLight transition-all">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5 text-ds-gold"></i>
+                <span>Ayuda por WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Encabezado de Sección Perfumes -->
+        <div class="liquid-glass-dark rounded-3xl sm:rounded-4xl p-3.5 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div class="space-y-0.5">
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-ds-gold/15 border border-ds-gold/30 text-[10px] font-medium text-ds-goldLight tracking-wider uppercase">
+                    Colección Exclusiva
+                </span>
+                <h2 class="text-base sm:text-xl font-serif font-medium text-white">
+                    Perfumes Exclusivos DS Store
+                </h2>
+                <p class="text-[11px] sm:text-xs text-ds-muted font-light">
+                    Presiona <strong class="text-ds-goldLight font-medium">+ AGREGAR</strong> en tus fragancias favoritas y arma tu pedido.
+                </p>
+            </div>
+            <!-- Botón rápido visible solo cuando el admin inicia sesión -->
+            <button type="button" id="quick-add-perfume-btn" onclick="openPerfumeEditor()" class="hidden gold-btn-gradient px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 flex-shrink-0">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Agregar Perfume</span>
+            </button>
+        </div>
+
+        <!-- Cuadrícula Exclusiva de Perfumes -->
+        <section id="perfumes-grid" class="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4 items-stretch">
+            <!-- Las tarjetas de perfumes se renderizan dinámicamente aquí -->
+        </section>
+
+        <!-- Pie de página compacto en vista Perfumes -->
+        <footer class="pt-3 mt-2 border-t border-white/10 text-center text-[#9CA3AF] text-[10px] sm:text-xs">
+            <p>© 2026 DS Store · Todos los derechos reservados · <span class="text-ds-goldLight font-medium">DR WEB</span></p>
+        </footer>
+
+    </main>
+
+    <!-- ==========================================================================
+         BARRA INFERIOR FIJA: BOTÓN "VER PEDIDO"
+         ========================================================================== -->
+    <div id="bottom-order-bar" class="hidden fixed bottom-3 sm:bottom-6 left-0 right-0 z-40 px-2.5 sm:px-6 transition-all duration-300">
+        <div class="max-w-xl mx-auto">
+            <button
+                type="button"
+                onclick="openOrderModal()"
+                class="w-full gold-btn-gradient rounded-full py-3 sm:py-4 px-4 sm:px-6 flex items-center justify-between shadow-2xl border border-ds-goldLight/60">
+                <div class="flex items-center gap-2 sm:gap-2.5">
+                    <span id="bar-item-badge" class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-ds-black text-ds-gold text-xs font-bold flex items-center justify-center">
+                        0
+                    </span>
+                    <span class="text-xs sm:text-base font-bold tracking-wide uppercase">
+                        VER PEDIDO
+                    </span>
+                </div>
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    <span id="bar-total-price" class="text-sm sm:text-lg font-extrabold">
+                        $0.00
+                    </span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]"></i>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         MODAL FORMULARIO DE PEDIDO (RESUMEN + ENVÍO + WHATSAPP)
+         ========================================================================== -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/80 backdrop-blur-md p-0 sm:p-4">
+        <div class="liquid-glass-dark w-full max-w-lg rounded-t-5xl sm:rounded-5xl max-h-[92vh] flex flex-col border-t sm:border border-ds-gold/30 shadow-2xl overflow-hidden">
+
+            <!-- Cabecera del Modal -->
+            <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
+                <div class="flex items-center gap-2.5">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-ds-gold"></i>
+                    <h3 class="text-lg font-serif font-semibold text-white">Tu Pedido</h3>
+                </div>
+                <button type="button" onclick="closeOrderModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-gray-300 transition-colors">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Contenido Desplazable del Pedido -->
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-1">
+
+                <!-- Lista de productos agregados -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-ds-goldLight">Productos seleccionados</span>
+                        <button type="button" onclick="clearCart()" id="clear-cart-btn" class="text-xs text-red-400 hover:text-red-300 hidden">Vaciar todo</button>
+                    </div>
+
+                    <div id="cart-items-list" class="space-y-2.5">
+                        <!-- Items del carrito renderizados por JS -->
+                    </div>
+                </div>
+
+                <!-- Formulario de Entrega (Solo visible si hay productos) -->
+                <div id="checkout-form-section" class="space-y-5 pt-2 border-t border-white/10">
+
+                    <!-- Opciones de envío -->
+                    <div class="space-y-2.5">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-ds-goldLight">
+                            Método de Entrega
+                        </label>
+
+                        <div class="grid grid-cols-1 gap-2.5">
+                            <!-- Opción 1: Retiro en persona -->
+                            <label class="cursor-pointer relative flex items-center justify-between p-3.5 rounded-3xl bg-white/5 border border-ds-gold/30 hover:bg-white/10 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="radio" name="deliveryMethod" value="Retiro en persona - Quinindé (GRATIS)" checked onchange="updateDeliveryUI()" class="accent-[#D4AF37] w-4 h-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-white">Retiro en persona</p>
+                                        <p class="text-[11px] text-ds-muted">Coordinamos punto de entrega en Quinindé</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-semibold">
+                                    GRATIS
+                                </span>
+                            </label>
+
+                            <!-- Opción 2: Envío a otra ciudad / provincia -->
+                            <label class="cursor-pointer relative flex items-center justify-between p-3.5 rounded-3xl bg-white/5 border border-white/15 hover:bg-white/10 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="radio" name="deliveryMethod" value="Envío a otra ciudad / provincia (POR CONFIRMAR)" onchange="updateDeliveryUI()" class="accent-[#D4AF37] w-4 h-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-white">Envío a otra ciudad / provincia</p>
+                                        <p class="text-[11px] text-ds-muted">Servientrega / Transporte seguro a todo Ecuador</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-ds-gold/20 text-ds-goldLight text-[11px] font-semibold">
+                                    POR CONFIRMAR
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos del Cliente -->
+                    <div class="space-y-3.5">
+                        <div>
+                            <label for="customer-name" class="block text-xs text-gray-300 mb-1.5 pl-3">Nombre completo *</label>
+                            <input
+                                type="text"
+                                id="customer-name"
+                                placeholder="Ej. Camila Mendoza"
+                                class="w-full rounded-full bg-white/10 border border-white/15 focus:border-ds-gold px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="customer-address" class="block text-xs text-gray-300 mb-1.5 pl-3">Dirección / Ciudad / Referencia *</label>
+                            <input
+                                type="text"
+                                id="customer-address"
+                                placeholder="Ej. Quinindé, centro / Retiro sin costo"
+                                class="w-full rounded-full bg-white/10 border border-white/15 focus:border-ds-gold px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="customer-notes" class="block text-xs text-gray-300 mb-1.5 pl-3">Notas (preferencias, color o dudas)</label>
+                            <textarea
+                                id="customer-notes"
+                                rows="2"
+                                placeholder="Escribe aquí cualquier detalle adicional..."
+                                class="w-full rounded-3xl bg-white/10 border border-white/15 focus:border-ds-gold px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors resize-none"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Resumen Total -->
+                    <div class="rounded-3xl bg-black/40 border border-ds-gold/25 p-4 space-y-2">
+                        <div class="flex justify-between text-xs text-ds-muted">
+                            <span>Envío</span>
+                            <span id="summary-shipping-label" class="text-emerald-400 font-medium">GRATIS</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-1 border-t border-white/10">
+                            <span class="text-sm font-medium text-white">Total a pagar</span>
+                            <span id="modal-total-price" class="text-xl font-bold gold-text-gradient">$0.00</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Botón Final: ENVIAR PEDIDO POR WHATSAPP -->
+            <div id="modal-footer-action" class="p-4 sm:p-5 border-t border-white/10 bg-black/40 flex-shrink-0">
+                <button
+                    type="button"
+                    id="btn-send-whatsapp"
+                    onclick="sendOrderToWhatsApp()"
+                    class="w-full gold-btn-gradient rounded-full py-4 px-6 font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-xl">
+                    <i data-lucide="message-circle" class="w-5 h-5 stroke-[2.2]"></i>
+                    <span>ENVIAR PEDIDO POR WHATSAPP</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Acceso PIN Administrador -->
+    <div id="pin-modal" class="fixed inset-0 z-[75] hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div class="liquid-glass-dark rounded-5xl p-6 sm:p-7 max-w-sm w-full space-y-5 border border-ds-gold/40 shadow-2xl text-center">
+            <div class="w-12 h-12 rounded-full bg-ds-gold/15 border border-ds-gold/40 text-ds-gold flex items-center justify-center mx-auto">
+                <i data-lucide="lock" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 class="text-lg font-serif font-semibold text-white">Acceso Administrador</h3>
+                <p class="text-xs text-ds-muted">Ingresa tu PIN de seguridad para administrar la tienda.</p>
+            </div>
+            <input
+                type="password"
+                id="admin-pin-input"
+                maxlength="6"
+                inputmode="numeric"
+                placeholder="••••"
+                class="w-full rounded-full bg-white/10 border border-white/15 focus:border-ds-gold px-4 py-3 text-center text-lg tracking-[0.4em] text-white placeholder-gray-500 focus:outline-none transition-colors"
+            >
+            <div class="flex gap-3">
+                <button type="button" onclick="closePinModal()" class="flex-1 py-3 rounded-full bg-white/10 hover:bg-white/15 text-gray-300 text-xs font-medium transition-colors">
+                    Cancelar
+                </button>
+                <button type="button" onclick="verifyAdminPin()" class="flex-1 py-3 rounded-full gold-btn-gradient text-xs font-bold">
+                    Entrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Panel Principal de Administración -->
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-[70] hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md">
+        <div class="liquid-glass-dark w-full max-w-2xl rounded-t-5xl sm:rounded-5xl max-h-[92vh] flex flex-col border border-ds-gold/40 overflow-hidden">
+
+            <!-- Cabecera Admin -->
+            <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-black/30">
+                <div class="flex items-center gap-2.5">
+                    <span id="firebase-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <div>
+                        <h3 class="text-lg font-serif font-semibold gold-text-gradient leading-none">Administrador DS Store</h3>
+                        <span id="firebase-status-text" class="text-[10px] text-emerald-400">Conectado a Firebase Firestore (ds-store-cb90c)</span>
+                    </div>
+                </div>
+                <button type="button" onclick="closeAdminDashboard()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Cuerpo Admin -->
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-1">
+
+                <!-- Configuración General de la Tienda -->
+                <div class="rounded-4xl bg-white/5 border border-white/10 p-4 sm:p-5 space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-ds-goldLight flex items-center gap-2">
+                        <i data-lucide="store" class="w-4 h-4"></i>
+                        <span>Configuración General de la Tienda</span>
+                    </h4>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label for="cfg-store-name" class="block text-[11px] text-ds-muted mb-1 pl-3">Nombre de la Tienda</label>
+                            <input type="text" id="cfg-store-name" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="cfg-whatsapp" class="block text-[11px] text-ds-muted mb-1 pl-3">Número o Enlace de WhatsApp</label>
+                            <input type="text" id="cfg-whatsapp" placeholder="0988623836 o 593988623836" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="cfg-tagline" class="block text-[11px] text-ds-muted mb-1 pl-3">Subtítulo (Portada y Encabezado)</label>
+                            <input type="text" id="cfg-tagline" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="cfg-pin" class="block text-[11px] text-ds-muted mb-1 pl-3">PIN de Seguridad (4-6 dígitos)</label>
+                            <input type="text" id="cfg-pin" maxlength="6" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="cfg-instagram" class="block text-[11px] text-ds-muted mb-1 pl-3">Enlace de Instagram</label>
+                            <input type="url" id="cfg-instagram" placeholder="https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="cfg-tiktok" class="block text-[11px] text-ds-muted mb-1 pl-3">Enlace de TikTok</label>
+                            <input type="url" id="cfg-tiktok" placeholder="https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ" class="w-full rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </div>
+                    </div>
+
+                    <button type="button" id="btn-save-general" onclick="saveGeneralSettings()" class="w-full py-3.5 rounded-full gold-btn-gradient text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-lg">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        <span>Guardar Configuración General</span>
+                    </button>
+                </div>
+
+                <!-- Gestión de Menús / Categorías -->
+                <div class="rounded-4xl bg-white/5 border border-white/10 p-4 sm:p-5 space-y-3.5">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-ds-goldLight flex items-center gap-2">
+                        <i data-lucide="list-filter" class="w-4 h-4"></i>
+                        <span>Menús de la Tienda</span>
+                    </h4>
+
+                    <div class="flex gap-2">
+                        <input
+                            type="text"
+                            id="new-category-input"
+                            placeholder="Ej. Smartwatches, Parlantes..."
+                            class="flex-1 rounded-full bg-black/40 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none"
+                        >
+                        <button type="button" onclick="addCategoryMenu()" class="gold-btn-gradient px-4 py-2.5 rounded-full text-xs font-bold flex items-center gap-1.5 flex-shrink-0">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Agregar Menú</span>
+                        </button>
+                    </div>
+
+                    <div id="admin-categories-list" class="flex flex-wrap gap-2">
+                        <!-- Lista de menús renderizada por JS -->
+                    </div>
+                </div>
+
+                <!-- Gestión y Ordenamiento de Productos -->
+                <div class="space-y-3.5">
+                    <div class="flex items-center justify-between gap-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-ds-goldLight flex items-center gap-2">
+                            <i data-lucide="package" class="w-4 h-4"></i>
+                            <span>Orden y Gestión de Productos (<span id="admin-prod-count">0</span>)</span>
+                        </h4>
+                        <button type="button" onclick="openProductEditor(null)" class="gold-btn-gradient px-4 py-2 rounded-full text-xs font-bold flex items-center gap-1.5">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                            <span>Nuevo Producto</span>
+                        </button>
+                    </div>
+
+                    <div id="admin-products-list" class="space-y-2.5">
+                        <!-- Lista editable y ordenable de productos -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Formulario Agregar / Editar Producto Individual -->
+    <div id="product-editor-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div class="liquid-glass-dark rounded-5xl p-6 sm:p-7 max-w-md w-full max-h-[90vh] overflow-y-auto space-y-4 border border-ds-gold/40 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <h3 id="editor-modal-title" class="text-lg font-serif font-semibold text-white">Nuevo Producto</h3>
+                <button type="button" onclick="closeProductEditor()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-300">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <input type="hidden" id="edit-prod-id">
+
+            <div class="space-y-3">
+                <div>
+                    <label for="edit-prod-name" class="block text-xs text-gray-300 mb-1 pl-3">Nombre del producto *</label>
+                    <input type="text" id="edit-prod-name" placeholder="Ej. Audífonos DS Gold Pro" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="edit-prod-category" class="block text-xs text-gray-300 mb-1 pl-3">Menú / Categoría</label>
+                        <select id="edit-prod-category" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="edit-prod-status" class="block text-xs text-gray-300 mb-1 pl-3">Estado de disponibilidad</label>
+                        <select id="edit-prod-status" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                            <option value="Disponible" class="bg-ds-surface text-emerald-300">Disponible</option>
+                            <option value="Próximamente" class="bg-ds-surface text-sky-300">Próximamente</option>
+                            <option value="No disponible" class="bg-ds-surface text-amber-300">No disponible</option>
+                            <option value="Agotados" class="bg-ds-surface text-red-300">Agotados</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="edit-prod-price" class="block text-xs text-gray-300 mb-1 pl-3">Precio (USD) *</label>
+                    <input type="number" step="0.01" id="edit-prod-price" placeholder="Ej. 35.00" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none">
+                </div>
+
+                <div>
+                    <label for="edit-prod-desc" class="block text-xs text-gray-300 mb-1 pl-3">Descripción corta</label>
+                    <textarea id="edit-prod-desc" rows="2" placeholder="Ej. Cancelación de ruido, estuche metálico..." class="w-full rounded-3xl bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none resize-none"></textarea>
+                </div>
+
+                <div>
+                    <label for="edit-prod-image" class="block text-xs text-gray-300 mb-1 pl-3">Fotos del producto (varias URLs separadas por coma o subir archivos)</label>
+                    <input type="text" id="edit-prod-image" oninput="renderEditorImagePreviews()" placeholder="https://foto1.jpg, https://foto2.jpg" class="w-full rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white focus:border-ds-gold focus:outline-none mb-2">
+
+                    <label class="cursor-pointer w-full py-2.5 px-4 rounded-full bg-white/5 hover:bg-white/10 border border-dashed border-ds-gold/40 text-xs text-ds-goldLight flex items-center justify-center gap-2 transition-colors">
+                        <i data-lucide="image-plus" class="w-4 h-4"></i>
+                        <span>Seleccionar una o varias fotos desde mi celular / PC</span>
+                        <input type="file" accept="image/*" multiple onchange="handleLocalImageUpload(event)" class="hidden">
+                    </label>
+
+                    <div id="edit-prod-previews" class="mt-2.5 flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button type="button" onclick="closeProductEditor()" class="flex-1 py-3 rounded-full bg-white/10 text-gray-300 text-xs font-medium">
+                    Cancelar
+                </button>
+                <button type="button" id="btn-save-product" onclick="saveProductFromEditor()" class="flex-1 py-3 rounded-full gold-btn-gradient text-xs font-bold">
+                    Guardar Producto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Visor Ampliado de Imagen con Deslizamiento -->
+    <div id="image-lightbox-modal" class="fixed inset-0 z-[90] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="liquid-glass-dark rounded-5xl p-4 sm:p-6 max-w-lg w-full space-y-4 border border-ds-gold/40 shadow-2xl relative">
+            <div class="flex items-center justify-between gap-2">
+                <div class="min-w-0">
+                    <h3 id="lightbox-prod-name" class="text-sm sm:text-base font-serif font-semibold text-white truncate">Producto</h3>
+                    <span id="lightbox-img-counter" class="text-[11px] text-ds-goldLight font-medium">1 / 1</span>
+                </div>
+                <button type="button" onclick="closeImageLightbox()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white flex-shrink-0">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div id="lightbox-swipe-area" class="relative rounded-4xl overflow-hidden bg-black/60 aspect-square border border-white/10 flex items-center justify-center select-none">
+                <img
+                    id="lightbox-img-el"
+                    src=""
+                    alt=""
+                    onerror="this.src='https://placehold.co/800x800/121216/D4AF37?text=DS+Store'"
+                    class="w-full h-full object-contain transition-opacity duration-200"
+                >
+                <button
+                    type="button"
+                    id="lightbox-prev-btn"
+                    onclick="stepLightboxImage(-1)"
+                    aria-label="Imagen anterior"
+                    class="hidden absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-ds-gold hover:text-ds-black border border-ds-gold/40 text-white items-center justify-center transition-colors">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button
+                    type="button"
+                    id="lightbox-next-btn"
+                    onclick="stepLightboxImage(1)"
+                    aria-label="Siguiente imagen"
+                    class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-ds-gold hover:text-ds-black border border-ds-gold/40 text-white items-center justify-center transition-colors">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div id="lightbox-dots" class="flex items-center justify-center gap-2"></div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         JAVASCRIPT: CONEXIÓN REAL A FIREBASE FIRESTORE + CARRITO + WHATSAPP
+         ========================================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc,
+            deleteDoc,
+            collection,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // 1. Credenciales de Firebase para DS Store
+        const firebaseConfig = {
+            apiKey: "AIzaSyBc3Nh0Kn8RUCJbwRqN-s7Y1ZKMZ043efU",
+            authDomain: "ds-store-cb90c.firebaseapp.com",
+            projectId: "ds-store-cb90c",
+            storageBucket: "ds-store-cb90c.firebasestorage.app",
+            messagingSenderId: "848803802081",
+            appId: "1:848803802081:web:f3b0e90402f5a74225c0a0",
+            measurementId: "G-0ZTYV59HZW"
+        };
+
+        let app = null;
+        let db = null;
+        let isFirebaseReady = false;
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            isFirebaseReady = true;
+        } catch (initError) {
+            console.error("Error inicializando Firebase:", initError);
+        }
+
+        const CONFIG_COLLECTION = "configuracion_tienda";
+        const CONFIG_DOC_ID = "general";
+        const PRODUCTS_COLLECTION = "productos";
+
+        const DEFAULT_CATEGORIES = ["Audífonos", "Relojes", "Cargadores", "Accesorios", "Perfumes"];
+
+        const DEFAULT_PRODUCTS = [
+            {
+                id: "ds-1",
+                name: "DS Royal Pro Gold Edition",
+                category: "Audífonos",
+                status: "Disponible",
+                price: 45.00,
+                order: 0,
+                description: "Audio espacial de alta fidelidad, cancelación activa de ruido y acabados premium.",
+                images: [
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=800&q=85"
+                ],
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"
+            },
+            {
+                id: "ds-2",
+                name: "DS Pods Black & Gold",
+                category: "Audífonos",
+                status: "Disponible",
+                price: 32.00,
+                order: 1,
+                description: "Estuche magnético ultraligero, 24h de batería y micrófono HD.",
+                images: [
+                    "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=85"
+                ],
+                image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=800&q=85"
+            },
+            {
+                id: "ds-3",
+                name: "DS Studio Wireless Max",
+                category: "Audífonos",
+                status: "Agotados",
+                price: 55.00,
+                order: 2,
+                description: "Almohadillas ergonómicas de lujo y graves profundos envolventes.",
+                images: [
+                    "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"
+                ],
+                image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=85"
+            },
+            {
+                id: "ds-4",
+                name: "DS Air Luxe Edition",
+                category: "Audífonos",
+                status: "No disponible",
+                price: 28.00,
+                order: 3,
+                description: "Conexión instantánea, resistencia al sudor y diseño minimalista.",
+                images: [
+                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=800&q=85"
+                ],
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=85"
+            },
+            {
+                id: "ds-perf-1",
+                name: "DS Gold Elixir Intense",
+                category: "Perfumes",
+                status: "Disponible",
+                price: 42.00,
+                order: 4,
+                description: "Fragancia amaderada y ambarada de larga duración con notas de oud y vainilla.",
+                images: [
+                    "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85"
+                ],
+                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85"
+            },
+            {
+                id: "ds-perf-2",
+                name: "DS Noir Royale Parfum",
+                category: "Perfumes",
+                status: "Disponible",
+                price: 38.00,
+                order: 5,
+                description: "Aroma elegante y seductor ideal para noche con estela intensa.",
+                images: [
+                    "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=85",
+                    "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=85"
+                ],
+                image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=85"
+            }
+        ];
+
+        const DEFAULT_CONFIG = {
+            storeName: "DS Store",
+            tagline: "Tecnología y Calidad Premium",
+            logoUrl: "",
+            whatsappUrl: "593988623836",
+            instagramUrl: "https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr",
+            tiktokUrl: "https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ",
+            adminPin: "1234",
+            categories: [...DEFAULT_CATEGORIES],
+            products: [...DEFAULT_PRODUCTS]
+        };
+
+        function isPerfumeCategory(categoryName) {
+            return String(categoryName || "").trim().toLowerCase() === "perfumes";
+        }
+
+        function normalizeProductImages(prod) {
+            if (Array.isArray(prod.images) && prod.images.length > 0) {
+                const list = prod.images.map((u) => String(u || "").trim()).filter(Boolean);
+                if (list.length > 0) return list;
+            }
+            const raw = String(prod.image || "").trim();
+            if (raw) {
+                if (raw.startsWith("data:image/")) return [raw];
+                const splitList = raw.split(",").map((u) => u.trim()).filter(Boolean);
+                if (splitList.length > 0) return splitList;
+            }
+            return ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"];
+        }
+
+        function normalizeProductStatus(status) {
+            const val = String(status || "Disponible").trim();
+            if (val === "Próximamente" || val === "Proximamente") return "Próximamente";
+            if (val === "Agotados" || val === "Agotado") return "Agotados";
+            if (val === "No disponible" || val === "No Disponible") return "No disponible";
+            return "Disponible";
+        }
+
+        function loadLocalBackup() {
+            try {
+                const saved = localStorage.getItem("ds_store_firestore_backup_v1");
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    const categories = Array.isArray(parsed.categories) && parsed.categories.length > 0
+                        ? parsed.categories
+                        : [...DEFAULT_CATEGORIES];
+                    const products = Array.isArray(parsed.products)
+                        ? parsed.products.map((p, idx) => {
+                            const imgs = normalizeProductImages(p);
+                            return {
+                                ...p,
+                                category: p.category || categories[0] || "Audífonos",
+                                status: normalizeProductStatus(p.status),
+                                order: typeof p.order === "number" ? p.order : idx,
+                                images: imgs,
+                                image: imgs[0]
+                            };
+                        })
+                        : [...DEFAULT_PRODUCTS];
+
+                    return {
+                        ...DEFAULT_CONFIG,
+                        ...parsed,
+                        categories,
+                        products
+                    };
+                }
+            } catch (e) {
+                console.warn("No se pudo leer respaldo local:", e);
+            }
+            return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+        }
+
+        function saveLocalBackup() {
+            try {
+                localStorage.setItem("ds_store_firestore_backup_v1", JSON.stringify(storeState));
+            } catch (e) {
+                try {
+                    const lightCopy = {
+                        ...storeState,
+                        products: storeState.products.map((p) => {
+                            const imgs = normalizeProductImages(p);
+                            return { ...p, images: imgs, image: imgs[0] };
+                        })
+                    };
+                    localStorage.setItem("ds_store_firestore_backup_v1", JSON.stringify(lightCopy));
+                } catch (_) {
+                    console.warn("No se pudo guardar respaldo local:", e);
+                }
+            }
+        }
+
+        let storeState = loadLocalBackup();
+        let cart = [];
+        let isAdminLoggedIn = false;
+        let currentView = "inicio";
+        let selectedCategory = "Todos";
+        const productSlideIndex = {};
+        let lightboxImages = [];
+        let lightboxIndex = 0;
+        let lightboxProductId = null;
+        let lightboxTouchStartX = 0;
+
+        function updateBackgroundScrollLock() {
+            const anyAdminModalOpen =
+                !document.getElementById("admin-dashboard-modal")?.classList.contains("hidden") ||
+                !document.getElementById("pin-modal")?.classList.contains("hidden") ||
+                !document.getElementById("product-editor-modal")?.classList.contains("hidden") ||
+                !document.getElementById("image-lightbox-modal")?.classList.contains("hidden");
+
+            document.body.style.overflow = anyAdminModalOpen ? "hidden" : "";
+            document.documentElement.style.overflow = anyAdminModalOpen ? "hidden" : "";
+        }
+
+        function refreshIcons() {
+            if (window.lucide && typeof window.lucide.createIcons === "function") {
+                window.lucide.createIcons();
+            }
+        }
+
+        refreshIcons();
+
+        // 3. Lectura de datos desde Cloud Firestore
+        async function loadDataFromFirestore() {
+            const statusDot = document.getElementById("firebase-status-dot");
+            const statusText = document.getElementById("firebase-status-text");
+
+            if (!isFirebaseReady || !db) {
+                if (statusDot) statusDot.className = "w-2.5 h-2.5 rounded-full bg-amber-400";
+                if (statusText) {
+                    statusText.textContent = "Modo respaldo local (revisa conexión a Firebase)";
+                    statusText.className = "text-[10px] text-amber-400";
+                }
+                renderAll();
+                return;
+            }
+
+            try {
+                const configRef = doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID);
+                const configSnap = await getDoc(configRef);
+
+                if (configSnap.exists()) {
+                    const cfg = configSnap.data();
+                    storeState.storeName = cfg.storeName || storeState.storeName;
+                    storeState.tagline = cfg.tagline || storeState.tagline;
+                    storeState.logoUrl = cfg.logoUrl !== undefined ? cfg.logoUrl : storeState.logoUrl;
+                    storeState.whatsappUrl = cfg.whatsappUrl || storeState.whatsappUrl;
+                    storeState.instagramUrl = cfg.instagramUrl || storeState.instagramUrl;
+                    storeState.tiktokUrl = cfg.tiktokUrl || storeState.tiktokUrl;
+                    storeState.adminPin = cfg.adminPin || storeState.adminPin;
+                    if (Array.isArray(cfg.categories) && cfg.categories.length > 0) {
+                        storeState.categories = cfg.categories;
+                    }
+                    if (!storeState.categories.some((c) => isPerfumeCategory(c))) {
+                        storeState.categories.push("Perfumes");
+                    }
+                } else {
+                    await setDoc(configRef, {
+                        storeName: storeState.storeName,
+                        tagline: storeState.tagline,
+                        logoUrl: storeState.logoUrl || "",
+                        whatsappUrl: storeState.whatsappUrl,
+                        instagramUrl: storeState.instagramUrl || "",
+                        tiktokUrl: storeState.tiktokUrl || "",
+                        adminPin: storeState.adminPin,
+                        categories: storeState.categories
+                    });
+                }
+
+                const productsSnap = await getDocs(collection(db, PRODUCTS_COLLECTION));
+                if (!productsSnap.empty) {
+                    const loadedProducts = [];
+                    productsSnap.forEach((docItem) => {
+                        const data = docItem.data();
+                        const imgs = normalizeProductImages(data);
+                        loadedProducts.push({
+                            id: String(data.id || docItem.id),
+                            name: data.name || "Producto DS",
+                            category: data.category || storeState.categories[0] || "Audífonos",
+                            status: normalizeProductStatus(data.status),
+                            price: Number(data.price ?? 0),
+                            order: typeof data.order === "number" ? data.order : loadedProducts.length,
+                            description: data.description || "",
+                            images: imgs,
+                            image: imgs[0]
+                        });
+                    });
+                    loadedProducts.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+                    storeState.products = loadedProducts;
+                } else {
+                    for (let i = 0; i < storeState.products.length; i++) {
+                        const prod = { ...storeState.products[i], order: i };
+                        await setDoc(doc(db, PRODUCTS_COLLECTION, String(prod.id)), prod);
+                    }
+                }
+
+                saveLocalBackup();
+
+                if (statusDot) statusDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse";
+                if (statusText) {
+                    statusText.textContent = "Conectado a Firebase Firestore (ds-store-cb90c)";
+                    statusText.className = "text-[10px] text-emerald-400";
+                }
+            } catch (err) {
+                console.error("Error leyendo Firestore:", err);
+                if (statusDot) statusDot.className = "w-2.5 h-2.5 rounded-full bg-red-400";
+                if (statusText) {
+                    statusText.textContent = "Error Firestore: " + (err.message || "Verifica reglas de seguridad");
+                    statusText.className = "text-[10px] text-red-400";
+                }
+            }
+
+            renderAll();
+        }
+
+        // 4. Guardado permanente en Firestore
+        async function upsertConfigToFirestore() {
+            saveLocalBackup();
+            if (!isFirebaseReady || !db) return false;
+
+            const configRef = doc(db, CONFIG_COLLECTION, CONFIG_DOC_ID);
+            await setDoc(configRef, {
+                storeName: storeState.storeName,
+                tagline: storeState.tagline,
+                logoUrl: storeState.logoUrl || "",
+                whatsappUrl: storeState.whatsappUrl,
+                instagramUrl: storeState.instagramUrl || "",
+                tiktokUrl: storeState.tiktokUrl || "",
+                adminPin: storeState.adminPin,
+                categories: storeState.categories
+            }, { merge: true });
+
+            return true;
+        }
+
+        async function upsertProductToFirestore(prod) {
+            saveLocalBackup();
+            if (!isFirebaseReady || !db) return false;
+
+            const imgs = normalizeProductImages(prod);
+            const prodRef = doc(db, PRODUCTS_COLLECTION, String(prod.id));
+            await setDoc(prodRef, {
+                id: String(prod.id),
+                name: prod.name,
+                category: prod.category || storeState.categories[0] || "Audífonos",
+                status: normalizeProductStatus(prod.status),
+                price: Number(prod.price),
+                order: typeof prod.order === "number" ? prod.order : 0,
+                description: prod.description || "",
+                images: imgs,
+                image: imgs[0]
+            }, { merge: true });
+
+            return true;
+        }
+
+        async function saveProductsOrderToFirestore() {
+            saveLocalBackup();
+            if (!isFirebaseReady || !db) return false;
+
+            for (let i = 0; i < storeState.products.length; i++) {
+                const p = storeState.products[i];
+                p.order = i;
+                await upsertProductToFirestore(p);
+            }
+            return true;
+        }
+
+        async function deleteProductFromFirestore(productId) {
+            saveLocalBackup();
+            if (!isFirebaseReady || !db) return false;
+
+            const prodRef = doc(db, PRODUCTS_COLLECTION, String(productId));
+            await deleteDoc(prodRef);
+            return true;
+        }
+
+        // 5. Cambio de vista (Inicio / Tienda / Perfumes)
+        window.showView = (viewName) => {
+            currentView = viewName;
+            const heroSection = document.getElementById("inicio");
+            const storeSection = document.getElementById("tienda");
+            const perfumesSection = document.getElementById("perfumes");
+            const bottomBar = document.getElementById("bottom-order-bar");
+
+            heroSection.classList.add("hidden");
+            storeSection.classList.add("hidden");
+            if (perfumesSection) perfumesSection.classList.add("hidden");
+
+            if (viewName === "tienda") {
+                storeSection.classList.remove("hidden");
+                bottomBar.classList.remove("hidden");
+            } else if (viewName === "perfumes" && perfumesSection) {
+                perfumesSection.classList.remove("hidden");
+                bottomBar.classList.remove("hidden");
+            } else {
+                heroSection.classList.remove("hidden");
+                if (cart.length > 0) {
+                    bottomBar.classList.remove("hidden");
+                } else {
+                    bottomBar.classList.add("hidden");
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: "instant" });
+            refreshIcons();
+        };
+
+        // 6. Renderizado general, menús y catálogo ordenado
+        function renderAll() {
+            if (!storeState.categories.some((c) => isPerfumeCategory(c))) {
+                storeState.categories.push("Perfumes");
+            }
+
+            document.getElementById("header-store-name").textContent = storeState.storeName;
+            document.getElementById("header-store-tagline").textContent = storeState.tagline;
+            document.getElementById("hero-tagline-badge").textContent = storeState.tagline;
+            document.title = `${storeState.storeName} | ${storeState.tagline}`;
+
+            const cleanWaUrl = getDirectWhatsAppHref();
+            const heroWaLink = document.getElementById("hero-whatsapp-link");
+            const storeWaLink = document.getElementById("store-whatsapp-link");
+            const perfumesWaLink = document.getElementById("perfumes-whatsapp-link");
+            if (heroWaLink) heroWaLink.href = cleanWaUrl;
+            if (storeWaLink) storeWaLink.href = cleanWaUrl;
+            if (perfumesWaLink) perfumesWaLink.href = cleanWaUrl;
+
+            const heroIgLink = document.getElementById("hero-instagram-link");
+            const heroTtLink = document.getElementById("hero-tiktok-link");
+            if (heroIgLink) {
+                heroIgLink.href = (storeState.instagramUrl || "https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr").trim();
+            }
+            if (heroTtLink) {
+                heroTtLink.href = (storeState.tiktokUrl || "https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ").trim();
+            }
+
+            renderCategoryMenu();
+            renderCatalog();
+            renderPerfumesCatalog();
+            updateCartUI();
+
+            if (isAdminLoggedIn) {
+                renderAdminCategoriesList();
+                renderAdminProductList();
+            }
+        }
+
+        function renderCategoryMenu() {
+            const menuBar = document.getElementById("category-menu-bar");
+            if (!menuBar) return;
+
+            const storeCategories = storeState.categories.filter((c) => !isPerfumeCategory(c));
+            const menuItems = ["Todos", ...storeCategories];
+            if (!menuItems.includes(selectedCategory)) {
+                selectedCategory = "Todos";
+            }
+
+            menuBar.innerHTML = menuItems.map((cat) => {
+                const active = selectedCategory === cat;
+                return `
+                    <button
+                        type="button"
+                        onclick="selectCategoryMenu('${cat.replace(/'/g, "\\'")}')"
+                        class="px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
+                            active
+                                ? "gold-btn-gradient"
+                                : "bg-white/5 hover:bg-white/10 border border-ds-gold/25 text-ds-goldLight"
+                        }"
+                    >
+                        ${cat}
+                    </button>
+                `;
+            }).join("");
+        }
+
+        window.selectCategoryMenu = (categoryName) => {
+            selectedCategory = categoryName;
+            renderCategoryMenu();
+            renderCatalog();
+        };
+
+        function createProductCardElement(prod) {
+            const inCartItem = cart.find((item) => item.id === prod.id);
+            const qtyInCart = inCartItem ? inCartItem.qty : 0;
+            const imagesList = normalizeProductImages(prod);
+            const currentIdx = (productSlideIndex[prod.id] || 0) % imagesList.length;
+            const initialImg = imagesList[currentIdx];
+            const statusText = normalizeProductStatus(prod.status);
+            const isAvailable = statusText === "Disponible";
+            const isComingSoon = statusText === "Próximamente";
+
+            let statusBadgeClass = "bg-emerald-500/15 border-emerald-400/40 text-emerald-300 font-bold";
+            if (statusText === "Próximamente") {
+                statusBadgeClass = "bg-sky-500/15 border-sky-400/40 text-sky-300 font-bold";
+            } else if (statusText === "Agotados") {
+                statusBadgeClass = "bg-red-500/15 border-red-400/40 text-red-300 font-bold";
+            } else if (statusText === "No disponible") {
+                statusBadgeClass = "bg-amber-500/15 border-amber-400/40 text-amber-300 font-bold";
+            }
+
+            const card = document.createElement("article");
+            card.className = "product-glass-card rounded-4xl p-3 sm:p-4 flex flex-col justify-between relative overflow-hidden h-full";
+
+            card.innerHTML = `
+                ${qtyInCart > 0 ? `
+                    <div class="absolute top-5 right-5 z-10 px-2.5 py-1 rounded-full gold-btn-gradient text-[11px] font-bold shadow-lg">
+                        ${qtyInCart} en pedido
+                    </div>
+                ` : ""}
+
+                <div>
+                    <div class="rounded-3xl overflow-hidden bg-black/50 aspect-square mb-3 border border-white/10 relative">
+                        <img
+                            data-carousel-prod-id="${prod.id}"
+                            src="${initialImg}"
+                            alt="${prod.name}"
+                            onclick="openImageLightbox('${prod.id}')"
+                            onerror="this.src='https://placehold.co/600x600/121216/D4AF37?text=DS+Store'"
+                            class="w-full h-full object-cover transition-all duration-300 hover:scale-105 cursor-zoom-in"
+                        >
+                        ${imagesList.length > 1 ? `
+                            <span data-carousel-counter="${prod.id}" class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/75 border border-ds-gold/35 text-[10px] font-semibold text-ds-goldLight">
+                                ${currentIdx + 1}/${imagesList.length}
+                            </span>
+                        ` : ""}
+                    </div>
+
+                    <div class="flex items-center justify-between gap-1 mb-1">
+                        <span class="text-[10px] text-ds-goldLight/80 uppercase tracking-wider truncate">
+                            ${prod.category || "Audífonos"}
+                        </span>
+                    </div>
+
+                    <h3 class="text-sm sm:text-base font-semibold text-white leading-snug line-clamp-2 mb-1">
+                        ${prod.name}
+                    </h3>
+                    <p class="text-[11px] sm:text-xs text-ds-muted font-light line-clamp-2 mb-3">
+                        ${prod.description || ""}
+                    </p>
+                </div>
+
+                <div class="pt-2 border-t border-white/10 flex flex-col gap-2.5 mt-auto">
+                    <div class="flex items-center justify-between gap-1.5">
+                        <span class="text-base sm:text-lg font-bold gold-text-gradient">
+                            $${Number(prod.price).toFixed(2)}
+                        </span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider border ${statusBadgeClass}">
+                            ${statusText}
+                        </span>
+                    </div>
+
+                    ${isAvailable ? `
+                        <button
+                            type="button"
+                            onclick="addToCart('${prod.id}')"
+                            class="w-full py-2.5 sm:py-3 px-3 rounded-full gold-btn-gradient text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-1.5">
+                            <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
+                            <span>AGREGAR</span>
+                        </button>
+                    ` : isComingSoon ? `
+                        <button
+                            type="button"
+                            onclick="addToCart('${prod.id}', true)"
+                            class="w-full py-2.5 sm:py-3 px-3 rounded-full gold-outline-btn text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center gap-1.5">
+                            <span>AGENDA TU PEDIDO</span>
+                        </button>
+                    ` : `
+                        <button
+                            type="button"
+                            disabled
+                            class="w-full py-2.5 sm:py-3 px-3 rounded-full bg-white/10 border border-white/15 text-gray-400 text-xs sm:text-sm font-semibold tracking-wide cursor-not-allowed">
+                            ${statusText.toUpperCase()}
+                        </button>
+                    `}
+                </div>
+            `;
+
+            return card;
+        }
+
+        function renderCatalog() {
+            const grid = document.getElementById("catalog-grid");
+            grid.innerHTML = "";
+
+            const storeProducts = storeState.products.filter((p) => !isPerfumeCategory(p.category));
+            const visibleProducts = selectedCategory === "Todos"
+                ? storeProducts
+                : storeProducts.filter((p) => (p.category || "Audífonos") === selectedCategory);
+
+            if (visibleProducts.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-2 md:col-span-3 text-center py-10 px-4 rounded-4xl liquid-glass-dark text-ds-muted text-xs sm:text-sm">
+                        No hay productos en el menú "${selectedCategory}" todavía.
+                    </div>
+                `;
+                return;
+            }
+
+            visibleProducts.forEach((prod) => {
+                grid.appendChild(createProductCardElement(prod));
+            });
+
+            refreshIcons();
+        }
+
+        function renderPerfumesCatalog() {
+            const grid = document.getElementById("perfumes-grid");
+            if (!grid) return;
+            grid.innerHTML = "";
+
+            const perfumeProducts = storeState.products.filter((p) => isPerfumeCategory(p.category));
+
+            if (perfumeProducts.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-2 md:col-span-3 text-center py-10 px-4 rounded-4xl liquid-glass-dark text-ds-muted text-xs sm:text-sm">
+                        No hay perfumes agregados todavía.
+                    </div>
+                `;
+                return;
+            }
+
+            perfumeProducts.forEach((prod) => {
+                grid.appendChild(createProductCardElement(prod));
+            });
+
+            refreshIcons();
+        }
+
+        // Rotación automática de imágenes en las tarjetas de productos
+        setInterval(() => {
+            if (currentView !== "tienda" && currentView !== "perfumes") return;
+            if (!document.getElementById("image-lightbox-modal")?.classList.contains("hidden")) return;
+            const imgs = document.querySelectorAll("[data-carousel-prod-id]");
+            if (imgs.length === 0) return;
+
+            imgs.forEach((imgEl) => {
+                const pid = imgEl.getAttribute("data-carousel-prod-id");
+                const prod = storeState.products.find((p) => String(p.id) === String(pid));
+                if (!prod) return;
+                const list = normalizeProductImages(prod);
+                if (list.length <= 1) return;
+
+                const nextIdx = ((productSlideIndex[pid] || 0) + 1) % list.length;
+                productSlideIndex[pid] = nextIdx;
+                imgEl.style.opacity = "0.45";
+                setTimeout(() => {
+                    imgEl.src = list[nextIdx];
+                    imgEl.style.opacity = "1";
+                }, 140);
+
+                const counterEl = document.querySelector(`[data-carousel-counter="${pid}"]`);
+                if (counterEl) {
+                    counterEl.textContent = `${nextIdx + 1}/${list.length}`;
+                }
+            });
+        }, 2600);
+
+        function syncCardCarouselToIndex(pid, idx) {
+            if (!pid) return;
+            productSlideIndex[pid] = idx;
+            const imgEl = document.querySelector(`[data-carousel-prod-id="${pid}"]`);
+            if (imgEl && lightboxImages[idx]) {
+                imgEl.src = lightboxImages[idx];
+            }
+            const counterEl = document.querySelector(`[data-carousel-counter="${pid}"]`);
+            if (counterEl && lightboxImages.length > 1) {
+                counterEl.textContent = `${idx + 1}/${lightboxImages.length}`;
+            }
+        }
+
+        function renderLightboxView() {
+            const imgEl = document.getElementById("lightbox-img-el");
+            const counterEl = document.getElementById("lightbox-img-counter");
+            const dotsEl = document.getElementById("lightbox-dots");
+            const prevBtn = document.getElementById("lightbox-prev-btn");
+            const nextBtn = document.getElementById("lightbox-next-btn");
+            if (!imgEl || lightboxImages.length === 0) return;
+
+            lightboxIndex = ((lightboxIndex % lightboxImages.length) + lightboxImages.length) % lightboxImages.length;
+            imgEl.style.opacity = "0.4";
+            setTimeout(() => {
+                imgEl.src = lightboxImages[lightboxIndex];
+                imgEl.style.opacity = "1";
+            }, 90);
+
+            if (counterEl) {
+                counterEl.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+            }
+
+            const hasMultiple = lightboxImages.length > 1;
+            if (prevBtn) {
+                prevBtn.classList.toggle("hidden", !hasMultiple);
+                prevBtn.classList.toggle("flex", hasMultiple);
+            }
+            if (nextBtn) {
+                nextBtn.classList.toggle("hidden", !hasMultiple);
+                nextBtn.classList.toggle("flex", hasMultiple);
+            }
+
+            if (dotsEl) {
+                dotsEl.innerHTML = hasMultiple ? lightboxImages.map((_, i) => `
+                    <button
+                        type="button"
+                        onclick="goToLightboxImage(${i})"
+                        class="h-2 rounded-full transition-all ${i === lightboxIndex ? "w-6 gold-btn-gradient" : "w-2 bg-white/30"}"
+                        aria-label="Foto ${i + 1}"
+                    ></button>
+                `).join("") : "";
+            }
+
+            syncCardCarouselToIndex(lightboxProductId, lightboxIndex);
+        }
+
+        window.openImageLightbox = (productId) => {
+            const prod = storeState.products.find((p) => String(p.id) === String(productId));
+            if (!prod) return;
+
+            lightboxProductId = prod.id;
+            lightboxImages = normalizeProductImages(prod);
+            lightboxIndex = (productSlideIndex[prod.id] || 0) % lightboxImages.length;
+
+            const nameEl = document.getElementById("lightbox-prod-name");
+            const imgEl = document.getElementById("lightbox-img-el");
+            if (nameEl) nameEl.textContent = prod.name;
+            if (imgEl) {
+                imgEl.alt = prod.name;
+                imgEl.src = lightboxImages[lightboxIndex];
+            }
+
+            const modal = document.getElementById("image-lightbox-modal");
+            if (modal) {
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+            }
+            updateBackgroundScrollLock();
+            renderLightboxView();
+            refreshIcons();
+        };
+
+        window.closeImageLightbox = () => {
+            const modal = document.getElementById("image-lightbox-modal");
+            if (!modal) return;
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            updateBackgroundScrollLock();
+        };
+
+        window.stepLightboxImage = (delta) => {
+            if (lightboxImages.length <= 1) return;
+            lightboxIndex = (lightboxIndex + delta + lightboxImages.length) % lightboxImages.length;
+            renderLightboxView();
+        };
+
+        window.goToLightboxImage = (idx) => {
+            if (idx < 0 || idx >= lightboxImages.length) return;
+            lightboxIndex = idx;
+            renderLightboxView();
+        };
+
+        const lightboxSwipeArea = document.getElementById("lightbox-swipe-area");
+        if (lightboxSwipeArea) {
+            lightboxSwipeArea.addEventListener("touchstart", (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    lightboxTouchStartX = e.touches[0].clientX;
+                }
+            }, { passive: true });
+
+            lightboxSwipeArea.addEventListener("touchend", (e) => {
+                if (!e.changedTouches || e.changedTouches.length === 0) return;
+                const diffX = e.changedTouches[0].clientX - lightboxTouchStartX;
+                if (Math.abs(diffX) > 40) {
+                    window.stepLightboxImage(diffX < 0 ? 1 : -1);
+                }
+            }, { passive: true });
+        }
+
+        function getDirectWhatsAppHref() {
+            const rawTarget = (storeState.whatsappUrl || "593988623836").trim();
+            if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(rawTarget)) {
+                return rawTarget;
+            }
+            let phoneDigits = rawTarget.replace(/\D/g, "");
+            if (phoneDigits.startsWith("00")) {
+                phoneDigits = phoneDigits.slice(2);
+            }
+            if (/^09\d{8}$/.test(phoneDigits)) {
+                phoneDigits = "593" + phoneDigits.slice(1);
+            }
+            if (!phoneDigits) {
+                phoneDigits = "593988623836";
+            }
+            return `https://wa.me/${phoneDigits}`;
+        }
+
+        // 7. Lógica del carrito
+        window.addToCart = (productId, allowPreorder = false) => {
+            const product = storeState.products.find((p) => p.id === productId);
+            if (!product) return;
+            const currentStatus = normalizeProductStatus(product.status);
+            if (currentStatus !== "Disponible" && !(allowPreorder && currentStatus === "Próximamente")) {
+                showToast("Este producto no está disponible por el momento");
+                return;
+            }
+
+            const imgs = normalizeProductImages(product);
+            const existing = cart.find((item) => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: Number(product.price),
+                    image: imgs[0],
+                    qty: 1
+                });
+            }
+
+            updateCartUI();
+            renderCatalog();
+            renderPerfumesCatalog();
+            showToast(`+1 ${product.name} agregado`);
+        };
+
+        window.changeItemQty = (productId, delta) => {
+            const index = cart.findIndex((item) => item.id === productId);
+            if (index === -1) return;
+
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+            renderCatalog();
+            renderPerfumesCatalog();
+        };
+
+        window.clearCart = () => {
+            cart = [];
+            updateCartUI();
+            renderCatalog();
+            renderPerfumesCatalog();
+            showToast("Carrito vaciado");
+        };
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            const headerCartCount = document.getElementById("header-cart-count");
+            const barItemBadge = document.getElementById("bar-item-badge");
+            const barTotalPrice = document.getElementById("bar-total-price");
+            const modalTotalPrice = document.getElementById("modal-total-price");
+
+            if (headerCartCount) headerCartCount.textContent = totalItems;
+            if (barItemBadge) barItemBadge.textContent = totalItems;
+            if (barTotalPrice) barTotalPrice.textContent = `$${totalAmount.toFixed(2)}`;
+            if (modalTotalPrice) modalTotalPrice.textContent = `$${totalAmount.toFixed(2)}`;
+
+            const bottomBar = document.getElementById("bottom-order-bar");
+            if (bottomBar) {
+                if (currentView === "tienda" || currentView === "perfumes" || totalItems > 0) {
+                    bottomBar.classList.remove("hidden");
+                } else {
+                    bottomBar.classList.add("hidden");
+                }
+            }
+
+            const listContainer = document.getElementById("cart-items-list");
+            const checkoutSection = document.getElementById("checkout-form-section");
+            const footerAction = document.getElementById("modal-footer-action");
+            const clearBtn = document.getElementById("clear-cart-btn");
+
+            if (!listContainer) return;
+
+            if (cart.length === 0) {
+                if (clearBtn) clearBtn.classList.add("hidden");
+                if (checkoutSection) checkoutSection.classList.add("hidden");
+                if (footerAction) footerAction.classList.add("hidden");
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 px-4 rounded-4xl bg-white/5 border border-white/10 space-y-2">
+                        <i data-lucide="shopping-bag" class="w-8 h-8 text-ds-muted mx-auto stroke-[1.5]"></i>
+                        <p class="text-sm text-gray-300">Tu carrito está vacío</p>
+                        <p class="text-xs text-ds-muted">Presiona "+ AGREGAR" en los productos del catálogo para armar tu pedido.</p>
+                    </div>
+                `;
+            } else {
+                if (clearBtn) clearBtn.classList.remove("hidden");
+                if (checkoutSection) checkoutSection.classList.remove("hidden");
+                if (footerAction) footerAction.classList.remove("hidden");
+
+                listContainer.innerHTML = cart.map((item) => `
+                    <div class="flex items-center justify-between gap-3 p-3 rounded-3xl bg-white/5 border border-white/10">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/100x100/121216/D4AF37?text=DS'" class="w-12 h-12 rounded-2xl object-cover flex-shrink-0 border border-white/10">
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs sm:text-sm font-medium text-white truncate">${item.name}</p>
+                            <p class="text-xs font-semibold text-ds-gold">$${(item.price * item.qty).toFixed(2)}</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-black/50 rounded-full p-1 border border-white/10">
+                            <button type="button" onclick="changeItemQty('${item.id}', -1)" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm font-bold">-</button>
+                            <span class="text-xs font-bold w-5 text-center">${item.qty}</span>
+                            <button type="button" onclick="changeItemQty('${item.id}', 1)" class="w-7 h-7 rounded-full gold-btn-gradient flex items-center justify-center text-sm font-bold">+</button>
+                        </div>
+                    </div>
+                `).join("");
+            }
+
+            refreshIcons();
+        }
+
+        // 8. Pedido y WhatsApp
+        window.openOrderModal = () => {
+            updateCartUI();
+            const modal = document.getElementById("order-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        };
+
+        window.closeOrderModal = () => {
+            const modal = document.getElementById("order-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        };
+
+        window.updateDeliveryUI = () => {
+            const selectedEl = document.querySelector('input[name="deliveryMethod"]:checked');
+            const selected = selectedEl ? selectedEl.value : "Retiro en persona - Quinindé (GRATIS)";
+            const label = document.getElementById("summary-shipping-label");
+            if (!label) return;
+            if (selected.includes("GRATIS")) {
+                label.textContent = "GRATIS";
+                label.className = "text-emerald-400 font-medium";
+            } else {
+                label.textContent = "POR CONFIRMAR";
+                label.className = "text-ds-goldLight font-medium";
+            }
+        };
+
+        function buildWhatsAppOrderUrl(message) {
+            const rawTarget = (storeState.whatsappUrl || "593988623836").trim();
+            const normalizedMessage = String(message || "").replace(/\r\n/g, "\n");
+            const encodedText = encodeURIComponent(normalizedMessage);
+
+            const withoutMessagePath = rawTarget.replace(/https?:\/\/(?:www\.)?wa\.me\/message\/[^\s?#]+/gi, "");
+            const phoneMatch = withoutMessagePath.match(/(?:\+|00)?\d[\d\s\-()]{6,}\d/);
+            let phoneDigits = phoneMatch ? phoneMatch[0].replace(/\D/g, "") : "";
+            if (phoneDigits.startsWith("00")) {
+                phoneDigits = phoneDigits.slice(2);
+            }
+            if (/^09\d{8}$/.test(phoneDigits)) {
+                phoneDigits = "593" + phoneDigits.slice(1);
+            }
+            if (!phoneDigits) {
+                phoneDigits = "593988623836";
+            }
+
+            return `https://api.whatsapp.com/send?phone=${phoneDigits}&text=${encodedText}`;
+        }
+
+        window.sendOrderToWhatsApp = () => {
+            if (cart.length === 0) {
+                showToast("Agrega al menos un producto primero");
+                return;
+            }
+
+            const nameInput = document.getElementById("customer-name");
+            const addressInput = document.getElementById("customer-address");
+            const notesInput = document.getElementById("customer-notes");
+            const deliveryRadio = document.querySelector('input[name="deliveryMethod"]:checked');
+
+            const name = nameInput ? nameInput.value.trim() : "";
+            const address = addressInput ? addressInput.value.trim() : "";
+            const notes = notesInput ? notesInput.value.trim() : "";
+            const deliveryMethod = deliveryRadio ? deliveryRadio.value : "Retiro en persona - Quinindé (GRATIS)";
+
+            if (!name) {
+                showToast("Por favor escribe tu nombre");
+                if (nameInput) nameInput.focus();
+                return;
+            }
+
+            if (!address) {
+                showToast("Por favor escribe tu dirección o referencia");
+                if (addressInput) addressInput.focus();
+                return;
+            }
+
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const productLines = cart.map((item) =>
+                `▪️ ${item.qty}x ${item.name} — $${(item.price * item.qty).toFixed(2)}`
+            ).join("\n");
+
+            let message = `👑 *NUEVO PEDIDO - ${storeState.storeName.toUpperCase()}* 👑\n\n`;
+            message += `*Detalle del pedido:*\n${productLines}\n\n`;
+            message += `💰 *Total:* $${totalAmount.toFixed(2)}\n`;
+            message += `🚚 *Entrega:* ${deliveryMethod}\n\n`;
+            message += `👤 *Cliente:* ${name}\n`;
+            message += `📍 *Dirección / Ref:* ${address}\n`;
+            if (notes) {
+                message += `📝 *Notas:* ${notes}\n`;
+            }
+            message += `\n¡Hola! Quedo atento/a para confirmar mi pedido.`;
+
+            const finalWhatsappUrl = buildWhatsAppOrderUrl(message);
+            showToast("Abriendo WhatsApp con tu pedido...");
+
+            try {
+                const openedWin = window.open(finalWhatsappUrl, "_blank", "noopener,noreferrer");
+                if (!openedWin) {
+                    window.location.assign(finalWhatsappUrl);
+                }
+            } catch (err) {
+                console.error("Error abriendo WhatsApp:", err);
+                const anchor = document.createElement("a");
+                anchor.href = finalWhatsappUrl;
+                anchor.target = "_blank";
+                anchor.rel = "noopener noreferrer";
+                document.body.appendChild(anchor);
+                anchor.click();
+                anchor.remove();
+            }
+        };
+
+        // 9. Panel de administrador (Menús, Orden de Productos y Scroll Fijo)
+        window.openPinModal = () => {
+            if (isAdminLoggedIn) {
+                openAdminDashboard();
+                return;
+            }
+            const pinInput = document.getElementById("admin-pin-input");
+            const modal = document.getElementById("pin-modal");
+            if (!pinInput || !modal) {
+                openAdminDashboard();
+                return;
+            }
+            pinInput.value = "";
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            updateBackgroundScrollLock();
+            setTimeout(() => pinInput.focus(), 100);
+        };
+
+        window.closePinModal = () => {
+            const modal = document.getElementById("pin-modal");
+            if (!modal) return;
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            updateBackgroundScrollLock();
+        };
+
+        window.verifyAdminPin = () => {
+            const pinInput = document.getElementById("admin-pin-input");
+            const entered = pinInput ? pinInput.value.trim() : "";
+            if (entered === String(storeState.adminPin)) {
+                isAdminLoggedIn = true;
+                closePinModal();
+                document.getElementById("quick-add-btn")?.classList.remove("hidden");
+                document.getElementById("quick-add-perfume-btn")?.classList.remove("hidden");
+                openAdminDashboard();
+                showToast("Bienvenido al Panel Administrador");
+            } else {
+                showToast("PIN incorrecto");
+                if (pinInput) pinInput.value = "";
+            }
+        };
+
+        const adminPinInputEl = document.getElementById("admin-pin-input");
+        if (adminPinInputEl) {
+            adminPinInputEl.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") window.verifyAdminPin();
+            });
+        }
+
+        window.openAdminDashboard = () => {
+            const nameInput = document.getElementById("cfg-store-name");
+            const waInput = document.getElementById("cfg-whatsapp");
+            const tagInput = document.getElementById("cfg-tagline");
+            const pinInput = document.getElementById("cfg-pin");
+            const igInput = document.getElementById("cfg-instagram");
+            const ttInput = document.getElementById("cfg-tiktok");
+
+            if (nameInput) nameInput.value = storeState.storeName;
+            if (waInput) waInput.value = storeState.whatsappUrl || "0988623836";
+            if (tagInput) tagInput.value = storeState.tagline;
+            if (pinInput) pinInput.value = storeState.adminPin;
+            if (igInput) igInput.value = storeState.instagramUrl || "https://www.instagram.com/ds.store.premiun?evlk=b3lsZ3RzbnRtZ2Mz&utm_source=qr";
+            if (ttInput) ttInput.value = storeState.tiktokUrl || "https://www.tiktok.com/@dstech09?_r=1&_t=ZS-9BdDSob88yQ";
+
+            renderAdminCategoriesList();
+            renderAdminProductList();
+
+            const modal = document.getElementById("admin-dashboard-modal");
+            if (modal) {
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+            }
+            updateBackgroundScrollLock();
+        };
+
+        window.closeAdminDashboard = () => {
+            const modal = document.getElementById("admin-dashboard-modal");
+            if (!modal) return;
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            updateBackgroundScrollLock();
+        };
+
+        window.saveGeneralSettings = async () => {
+            const btn = document.getElementById("btn-save-general");
+            const nameVal = document.getElementById("cfg-store-name").value.trim();
+            const waVal = document.getElementById("cfg-whatsapp").value.trim();
+            const tagVal = document.getElementById("cfg-tagline").value.trim();
+            const pinVal = document.getElementById("cfg-pin").value.trim();
+            const igVal = document.getElementById("cfg-instagram").value.trim();
+            const ttVal = document.getElementById("cfg-tiktok").value.trim();
+
+            if (!nameVal) {
+                showToast("Escribe el nombre de la tienda");
+                return;
+            }
+            if (pinVal && (pinVal.length < 4 || pinVal.length > 6)) {
+                showToast("El PIN debe tener entre 4 y 6 dígitos");
+                return;
+            }
+
+            storeState.storeName = nameVal;
+            storeState.whatsappUrl = waVal || "593988623836";
+            storeState.tagline = tagVal || "Tecnología y Calidad Premium";
+            if (pinVal) storeState.adminPin = pinVal;
+            if (igVal) storeState.instagramUrl = igVal;
+            if (ttVal) storeState.tiktokUrl = ttVal;
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<span>Guardando...</span>';
+            }
+
+            try {
+                renderAll();
+                await upsertConfigToFirestore();
+                showToast("Configuración guardada en Firestore");
+            } catch (err) {
+                showToast("Error al guardar configuración");
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i data-lucide="save" class="w-4 h-4"></i><span>Guardar Configuración General</span>';
+                    refreshIcons();
+                }
+            }
+        };
+
+        function renderAdminCategoriesList() {
+            const container = document.getElementById("admin-categories-list");
+            if (!container) return;
+
+            container.innerHTML = storeState.categories.map((cat) => `
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 border border-ds-gold/30 text-xs text-ds-goldLight">
+                    <span>${cat}</span>
+                    ${storeState.categories.length > 1 ? `
+                        <button type="button" onclick="removeCategoryMenu('${cat.replace(/'/g, "\\'")}')" title="Quitar menú" class="text-red-400 hover:text-red-300 font-bold">
+                            ×
+                        </button>
+                    ` : ""}
+                </div>
+            `).join("");
+        }
+
+        window.addCategoryMenu = async () => {
+            const input = document.getElementById("new-category-input");
+            const val = input ? input.value.trim() : "";
+            if (!val) {
+                showToast("Escribe el nombre del nuevo menú");
+                return;
+            }
+            if (storeState.categories.some((c) => c.toLowerCase() === val.toLowerCase())) {
+                showToast("Ese menú ya existe");
+                return;
+            }
+
+            storeState.categories.push(val);
+            if (input) input.value = "";
+            renderAll();
+
+            try {
+                await upsertConfigToFirestore();
+                showToast(`Menú "${val}" agregado`);
+            } catch (err) {
+                showToast("Error guardando menú");
+            }
+        };
+
+        window.removeCategoryMenu = async (catName) => {
+            if (storeState.categories.length <= 1) {
+                showToast("Debe existir al menos un menú");
+                return;
+            }
+            storeState.categories = storeState.categories.filter((c) => c !== catName);
+            const fallbackCat = storeState.categories[0] || "Audífonos";
+            storeState.products.forEach((p) => {
+                if (p.category === catName) p.category = fallbackCat;
+            });
+            if (selectedCategory === catName) selectedCategory = "Todos";
+            renderAll();
+
+            try {
+                await upsertConfigToFirestore();
+                showToast(`Menú "${catName}" eliminado`);
+            } catch (err) {
+                showToast("Error al quitar menú");
+            }
+        };
+
+        window.moveProductOrder = async (index, delta) => {
+            const targetIdx = index + delta;
+            if (targetIdx < 0 || targetIdx >= storeState.products.length) return;
+
+            const temp = storeState.products[index];
+            storeState.products[index] = storeState.products[targetIdx];
+            storeState.products[targetIdx] = temp;
+
+            storeState.products.forEach((p, idx) => {
+                p.order = idx;
+            });
+
+            renderAll();
+
+            try {
+                await saveProductsOrderToFirestore();
+                showToast("Orden de productos actualizado");
+            } catch (err) {
+                showToast("Error al guardar el orden");
+            }
+        };
+
+        function renderAdminProductList() {
+            const container = document.getElementById("admin-products-list");
+            document.getElementById("admin-prod-count").textContent = storeState.products.length;
+
+            container.innerHTML = storeState.products.map((prod, idx) => {
+                const imgs = normalizeProductImages(prod);
+                const statusText = normalizeProductStatus(prod.status);
+                return `
+                    <div class="flex items-center justify-between gap-2.5 p-3 rounded-3xl bg-white/5 border border-white/10">
+                        <div class="flex flex-col gap-1">
+                            <button type="button" onclick="moveProductOrder(${idx}, -1)" ${idx === 0 ? "disabled" : ""} title="Subir" class="w-7 h-6 rounded-full bg-white/10 hover:bg-ds-gold hover:text-ds-black disabled:opacity-30 flex items-center justify-center text-xs font-bold transition-colors">
+                                ▲
+                            </button>
+                            <button type="button" onclick="moveProductOrder(${idx}, 1)" ${idx === storeState.products.length - 1 ? "disabled" : ""} title="Bajar" class="w-7 h-6 rounded-full bg-white/10 hover:bg-ds-gold hover:text-ds-black disabled:opacity-30 flex items-center justify-center text-xs font-bold transition-colors">
+                                ▼
+                            </button>
+                        </div>
+
+                        <img src="${imgs[0]}" alt="${prod.name}" onerror="this.src='https://placehold.co/100x100/121216/D4AF37?text=DS'" class="w-12 h-12 rounded-2xl object-cover flex-shrink-0">
+
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-white truncate">${prod.name}</p>
+                            <p class="text-[11px] text-ds-muted truncate">${prod.category || "Audífonos"} · <span class="${statusText === "Disponible" ? "text-emerald-400" : statusText === "Próximamente" ? "text-sky-300" : statusText === "Agotados" ? "text-red-400" : "text-amber-300"} font-semibold">${statusText}</span></p>
+                            <p class="text-xs font-bold text-ds-gold">$${Number(prod.price).toFixed(2)}</p>
+                        </div>
+
+                        <div class="flex items-center gap-1.5">
+                            <button type="button" onclick="openProductEditor('${prod.id}')" title="Editar" class="w-9 h-9 rounded-full bg-white/10 hover:bg-ds-gold hover:text-ds-black text-white flex items-center justify-center transition-colors">
+                                <i data-lucide="pencil" class="w-4 h-4"></i>
+                            </button>
+                            <button type="button" onclick="deleteProductById('${prod.id}')" title="Eliminar" class="w-9 h-9 rounded-full bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center transition-colors">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            refreshIcons();
+        }
+
+        function populateProductCategorySelect(selectedCat) {
+            const selectEl = document.getElementById("edit-prod-category");
+            if (!selectEl) return;
+            const cats = storeState.categories.length > 0 ? storeState.categories : DEFAULT_CATEGORIES;
+            selectEl.innerHTML = cats.map((cat) => `<option value="${cat}" class="bg-ds-surface text-white">${cat}</option>`).join("");
+            selectEl.value = cats.includes(selectedCat) ? selectedCat : cats[0];
+        }
+
+        function splitImageSources(rawStr) {
+            const clean = String(rawStr || "").trim();
+            if (!clean) return [];
+            return clean
+                .split(/,(?=https?:\/\/|data:image\/|blob:)/)
+                .map((s) => s.trim())
+                .filter(Boolean);
+        }
+
+        window.renderEditorImagePreviews = () => {
+            const box = document.getElementById("edit-prod-previews");
+            const input = document.getElementById("edit-prod-image");
+            if (!box || !input) return;
+
+            const list = splitImageSources(input.value);
+            if (list.length === 0) {
+                box.innerHTML = "";
+                return;
+            }
+
+            box.innerHTML = list.map((src, i) => `
+                <div class="relative w-14 h-14 rounded-2xl overflow-hidden border border-ds-gold/40 bg-black/50 flex-shrink-0">
+                    <img src="${src}" alt="Foto ${i + 1}" onerror="this.src='https://placehold.co/100x100/121216/D4AF37?text=IMG'" class="w-full h-full object-cover">
+                    <button type="button" onclick="removeEditorImageAt(${i})" title="Quitar foto" class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/80 text-red-300 text-[10px] font-bold flex items-center justify-center">×</button>
+                </div>
+            `).join("");
+        };
+
+        window.removeEditorImageAt = (indexToRemove) => {
+            const input = document.getElementById("edit-prod-image");
+            if (!input) return;
+            const list = splitImageSources(input.value).filter((_, idx) => idx !== indexToRemove);
+            input.value = list.join(",");
+            window.renderEditorImagePreviews();
+        };
+
+        window.openProductEditor = (productId) => {
+            const titleEl = document.getElementById("editor-modal-title");
+            const idInput = document.getElementById("edit-prod-id");
+            const nameInput = document.getElementById("edit-prod-name");
+            const priceInput = document.getElementById("edit-prod-price");
+            const descInput = document.getElementById("edit-prod-desc");
+            const imgInput = document.getElementById("edit-prod-image");
+            const statusSelect = document.getElementById("edit-prod-status");
+
+            if (productId) {
+                const prod = storeState.products.find((p) => p.id === productId);
+                if (!prod) return;
+                const imgs = normalizeProductImages(prod);
+                titleEl.textContent = "Editar Producto";
+                idInput.value = prod.id;
+                nameInput.value = prod.name;
+                priceInput.value = prod.price;
+                descInput.value = prod.description || "";
+                imgInput.value = imgs.join(",");
+                populateProductCategorySelect(prod.category);
+                if (statusSelect) statusSelect.value = normalizeProductStatus(prod.status);
+            } else {
+                titleEl.textContent = "Agregar Nuevo Producto";
+                idInput.value = "";
+                nameInput.value = "";
+                priceInput.value = "";
+                descInput.value = "";
+                imgInput.value = "";
+                populateProductCategorySelect(selectedCategory !== "Todos" ? selectedCategory : storeState.categories[0]);
+                if (statusSelect) statusSelect.value = "Disponible";
+            }
+
+            window.renderEditorImagePreviews();
+
+            const modal = document.getElementById("product-editor-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            updateBackgroundScrollLock();
+        };
+
+        window.openPerfumeEditor = () => {
+            window.openProductEditor(null);
+            const perfumeCat = storeState.categories.find((c) => isPerfumeCategory(c)) || "Perfumes";
+            populateProductCategorySelect(perfumeCat);
+            const titleEl = document.getElementById("editor-modal-title");
+            if (titleEl) titleEl.textContent = "Agregar Nuevo Perfume";
+        };
+
+        window.closeProductEditor = () => {
+            const modal = document.getElementById("product-editor-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            updateBackgroundScrollLock();
+        };
+
+        window.handleLocalImageUpload = (event) => {
+            const files = Array.from(event.target.files || []);
+            if (files.length === 0) return;
+
+            const existingRaw = document.getElementById("edit-prod-image").value.trim();
+            const collected = splitImageSources(existingRaw);
+
+            let processed = 0;
+
+            const finalizeOne = (value) => {
+                if (value) collected.push(value);
+                processed++;
+                if (processed === files.length) {
+                    document.getElementById("edit-prod-image").value = collected.join(",");
+                    window.renderEditorImagePreviews();
+                    showToast(`${files.length} foto(s) cargada(s) correctamente`);
+                    event.target.value = "";
+                }
+            };
+
+            const readAsDataUrlFallback = (file, fallbackUrl) => {
+                try {
+                    const fr = new FileReader();
+                    fr.onload = (ev) => finalizeOne((ev.target && ev.target.result) || fallbackUrl || "");
+                    fr.onerror = () => finalizeOne(fallbackUrl || "");
+                    fr.readAsDataURL(file);
+                } catch (_) {
+                    finalizeOne(fallbackUrl || "");
+                }
+            };
+
+            files.forEach((file) => {
+                const objectUrl = (window.URL && URL.createObjectURL) ? URL.createObjectURL(file) : "";
+                const reader = new FileReader();
+
+                reader.onerror = () => {
+                    if (objectUrl) {
+                        finalizeOne(objectUrl);
+                    } else {
+                        finalizeOne("");
+                    }
+                };
+
+                reader.onload = (e) => {
+                    const rawDataUrl = e.target && e.target.result ? String(e.target.result) : "";
+                    const sourceForImg = rawDataUrl || objectUrl;
+                    if (!sourceForImg) {
+                        finalizeOne("");
+                        return;
+                    }
+
+                    const img = new Image();
+                    img.onload = () => {
+                        try {
+                            const canvas = document.createElement("canvas");
+                            const MAX_SIZE = 520;
+                            let width = img.width || 520;
+                            let height = img.height || 520;
+
+                            if (width > height && width > MAX_SIZE) {
+                                height *= MAX_SIZE / width;
+                                width = MAX_SIZE;
+                            } else if (height > MAX_SIZE) {
+                                width *= MAX_SIZE / height;
+                                height = MAX_SIZE;
+                            }
+
+                            canvas.width = Math.max(1, Math.round(width));
+                            canvas.height = Math.max(1, Math.round(height));
+                            const ctx = canvas.getContext("2d");
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                            let outUrl = canvas.toDataURL("image/jpeg", 0.72);
+                            if (outUrl && outUrl.length > 420000) {
+                                outUrl = canvas.toDataURL("image/jpeg", 0.5);
+                            }
+                            if (outUrl && outUrl.length > 420000) {
+                                const smallCanvas = document.createElement("canvas");
+                                smallCanvas.width = 360;
+                                smallCanvas.height = Math.max(1, Math.round((height / width) * 360));
+                                smallCanvas.getContext("2d").drawImage(img, 0, 0, smallCanvas.width, smallCanvas.height);
+                                outUrl = smallCanvas.toDataURL("image/jpeg", 0.65);
+                            }
+
+                            finalizeOne(outUrl || rawDataUrl || objectUrl);
+                        } catch (_) {
+                            finalizeOne(rawDataUrl || objectUrl);
+                        }
+                    };
+                    img.onerror = () => {
+                        if (rawDataUrl) {
+                            finalizeOne(rawDataUrl);
+                        } else if (objectUrl) {
+                            finalizeOne(objectUrl);
+                        } else {
+                            readAsDataUrlFallback(file, "");
+                        }
+                    };
+                    img.src = sourceForImg;
+                };
+
+                try {
+                    reader.readAsDataURL(file);
+                } catch (_) {
+                    if (objectUrl) {
+                        finalizeOne(objectUrl);
+                    } else {
+                        finalizeOne("");
+                    }
+                }
+            });
+        };
+
+        window.saveProductFromEditor = async () => {
+            const btn = document.getElementById("btn-save-product");
+            const id = document.getElementById("edit-prod-id").value;
+            const name = document.getElementById("edit-prod-name").value.trim();
+            const category = document.getElementById("edit-prod-category").value || storeState.categories[0] || "Audífonos";
+            const status = normalizeProductStatus(document.getElementById("edit-prod-status")?.value);
+            const price = parseFloat(document.getElementById("edit-prod-price").value);
+            const description = document.getElementById("edit-prod-desc").value.trim();
+            const rawImgs = document.getElementById("edit-prod-image").value.trim();
+            const parsedImgs = rawImgs
+                ? rawImgs.split(/,(?=https?:\/\/|data:image\/|blob:)/).map((u) => u.trim()).filter(Boolean)
+                : ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"];
+            const finalImgs = parsedImgs.length > 0
+                ? parsedImgs
+                : ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"];
+
+            if (!name) {
+                showToast("Escribe el nombre del producto");
+                return;
+            }
+            if (Number.isNaN(price) || price < 0) {
+                showToast("Ingresa un precio válido");
+                return;
+            }
+
+            let targetProduct;
+            if (id) {
+                const idx = storeState.products.findIndex((p) => p.id === id);
+                const currentOrder = idx !== -1 ? storeState.products[idx].order : idx;
+                targetProduct = {
+                    id,
+                    name,
+                    category,
+                    status,
+                    price,
+                    order: currentOrder,
+                    description,
+                    images: finalImgs,
+                    image: finalImgs[0]
+                };
+                if (idx !== -1) {
+                    storeState.products[idx] = targetProduct;
+                }
+            } else {
+                targetProduct = {
+                    id: "ds-" + Date.now(),
+                    name,
+                    category,
+                    status,
+                    price,
+                    order: 0,
+                    description,
+                    images: finalImgs,
+                    image: finalImgs[0]
+                };
+                storeState.products.unshift(targetProduct);
+                storeState.products.forEach((p, i) => {
+                    p.order = i;
+                });
+            }
+
+            productSlideIndex[targetProduct.id] = 0;
+
+            btn.disabled = true;
+            btn.textContent = "Guardando...";
+
+            try {
+                renderAll();
+                await saveProductsOrderToFirestore();
+                closeProductEditor();
+                showToast("Producto guardado en Firestore");
+            } catch (err) {
+                showToast("Error guardando producto: " + (err.message || "Verifica Firestore"));
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Guardar Producto";
+            }
+        };
+
+        window.deleteProductById = async (productId) => {
+            storeState.products = storeState.products.filter((p) => p.id !== productId);
+            storeState.products.forEach((p, i) => {
+                p.order = i;
+            });
+            cart = cart.filter((item) => item.id !== productId);
+            renderAll();
+
+            try {
+                await deleteProductFromFirestore(productId);
+                await saveProductsOrderToFirestore();
+                showToast("Producto eliminado de Firestore");
+            } catch (err) {
+                showToast("Error al eliminar en Firestore");
+            }
+        };
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-msg");
+            if (!toast || !toastMsg) return;
+            toastMsg.textContent = msg;
+            toast.classList.remove("opacity-0", "-translate-y-4");
+            toast.classList.add("opacity-100", "translate-y-0");
+            setTimeout(() => {
+                toast.classList.add("opacity-0", "-translate-y-4");
+                toast.classList.remove("opacity-100", "translate-y-0");
+            }, 2800);
+        }
+
+        // Arrancar tienda y sincronizar con Firebase Firestore (sin recargas automáticas)
+        renderAll();
+        loadDataFromFirestore();
+
+        // Limpiar cualquier insignia inyectada por Netlify en el DOM
+        function hideNetlifyBadgeNodes() {
+            const candidates = document.querySelectorAll("a, div, span, aside");
+            candidates.forEach((el) => {
+                const txt = (el.textContent || "").trim().toLowerCase();
+                const href = (el.getAttribute("href") || "").toLowerCase();
+                if (txt === "powered by netlify" || href.includes("netlify.com/?utm_campaign=badge")) {
+                    el.style.setProperty("display", "none", "important");
+                    el.style.setProperty("visibility", "hidden", "important");
+                    el.style.setProperty("opacity", "0", "important");
+                    el.style.setProperty("width", "0px", "important");
+                    el.style.setProperty("height", "0px", "important");
+                    el.style.setProperty("pointer-events", "none", "important");
+                }
+            });
+        }
+
+        hideNetlifyBadgeNodes();
+        const netlifyObserver = new MutationObserver(() => hideNetlifyBadgeNodes());
+        netlifyObserver.observe(document.documentElement, { childList: true, subtree: true });
+
+        // Evitar zoom por doble toque rápido o gestos en iOS Safari y navegadores móviles
+        let lastTouchEnd = 0;
+        document.addEventListener("touchend", (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        document.addEventListener("gesturestart", (event) => {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
